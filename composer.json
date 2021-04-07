@@ -1,0 +1,25 @@
+{
+  "type": "library",
+  "name": "aeliot-tm/translation-maintain",
+  "description": "Dependency injection helpers library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Aeliot\\Bundle\\TransMaintain\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.4",
+    "symfony/config": "^4.4",
+    "symfony/console": "^4.4",
+    "symfony/dependency-injection": "^4.4",
+    "symfony/filesystem": ">=4.4",
+    "symfony/http-kernel": "^4.4",
+    "symfony/yaml": ">=4.4"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
