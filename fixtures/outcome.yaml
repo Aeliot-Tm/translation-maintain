@@ -1,0 +1,8 @@
+a:
+    b:
+        c:
+            d: '*'
+            e: '*'
+f:
+    j: '*'
+    j.h: 'Multiple words without quotes'
