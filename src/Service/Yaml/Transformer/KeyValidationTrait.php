@@ -10,4 +10,9 @@ trait KeyValidationTrait
     {
         return !preg_match('/[^a-zA-Z0-9._-]|\\.{2}|^\\.|\\.$/', $key);
     }
+
+    private function isSplittable(string $key): bool
+    {
+        return $this->isAcceptable($key) && strpos($key, '.');
+    }
 }
