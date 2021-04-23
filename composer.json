@@ -8,6 +8,11 @@
       "Aeliot\\Bundle\\TransMaintain\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Aeliot\\Bundle\\TransMaintain\\Test\\": "tests/"
+    }
+  },
   "require": {
     "php": "^7.4",
     "symfony/config": "^4.4",
@@ -21,5 +26,8 @@
     "sort-packages": true
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  }
 }
