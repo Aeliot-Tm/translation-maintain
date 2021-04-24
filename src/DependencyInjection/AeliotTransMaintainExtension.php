@@ -13,7 +13,8 @@ final class AeliotTransMaintainExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $this->processConfiguration(new Configuration(), $configs);
+        $config = $this->processConfiguration(new Configuration(), $configs);
+        $container->setParameter('aeliot_trans_maintain.yaml.indent', $config['yaml']['indent']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');

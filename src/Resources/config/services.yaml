@@ -2,6 +2,19 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            $yamlIndent: '%aeliot_trans_maintain.yaml.indent%'
 
     Aeliot\Bundle\TransMaintain\Command\:
         resource: '../../Command/*'
+
+    Aeliot\Bundle\TransMaintain\Service\:
+        resource: '../../Service/*'
+        exclude: '../../Service/{Yaml/TransformationConveyor.php}'
+
+    Aeliot\Bundle\TransMaintain\Service\Yaml\TransformationConveyor:
+        arguments:
+            $transformers:
+                - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysCleaner'
+                - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysTransformer'
+                - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysSorter'

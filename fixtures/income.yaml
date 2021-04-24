@@ -1,0 +1,8 @@
+f:
+    j:
+        h: Multiple words without quotes
+f.j: '*'
+a:
+    b:
+        c.d: '*'
+        c.e: "*"
