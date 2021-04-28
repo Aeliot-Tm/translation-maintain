@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer;
+namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 
 trait KeyValidationTrait
 {

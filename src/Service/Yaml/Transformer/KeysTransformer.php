@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer;
 
 use Aeliot\Bundle\TransMaintain\Model\Layer;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyParserTrait;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyValidationTrait;
 
 final class KeysTransformer implements TransformerInterface
 {
+    use KeyParserTrait;
     use KeyValidationTrait;
 
     public function transform(array $yaml): array
@@ -134,13 +137,6 @@ final class KeysTransformer implements TransformerInterface
         $layer->setSelectedNPoint($nPoint);
 
         return $layer;
-    }
-
-    private function createNestedValue(array $path, $value): array
-    {
-        $step = array_shift($path);
-
-        return [$step => $path ? $this->createNestedValue($path, $value) : $value];
     }
 
     private function getFirstKey(array $branch): string

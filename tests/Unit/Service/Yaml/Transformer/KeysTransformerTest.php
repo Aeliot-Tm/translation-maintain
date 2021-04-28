@@ -15,6 +15,7 @@ final class KeysTransformerTest extends TestCase
      *
      * @param array $expected
      * @param array $income
+     *
      * @return void
      */
     public function testTransform(array $expected, array $income): void
@@ -74,6 +75,17 @@ final class KeysTransformerTest extends TestCase
             ['a' => ['b' => ['c' => '*', 'c.d' => '*', 'c.e' => '*']]],
             ['a.b.c.e' => '*', 'a' => ['b' => ['c' => '*', 'c.d' => '*']]],
         ];
+
+        //TODO implement
+        ////compress on root
+        //yield [
+        //    ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
+        //    ['a' => '*', 'a.b.c.d' => '*'],
+        //];
+        //yield [
+        //    ['a' => '*', 'a.b' => '*', 'a.b.c' => ['d' => '*']],
+        //    ['a' => '*', 'a.b' => '*', 'a.b.c.d' => '*'],
+        //];
 
         //not same values
         yield [['a' => ['b' => '1'], 'a.b' => '2'], ['a' => ['b' => '1'], 'a.b' => '2']];

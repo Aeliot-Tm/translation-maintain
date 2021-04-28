@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer;
 
+use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyValidationTrait;
+
 final class KeysCleaner implements TransformerInterface
 {
     use KeyValidationTrait;
