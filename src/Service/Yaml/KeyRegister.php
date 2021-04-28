@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Exception\KeyCollisionException;
+use Aeliot\Bundle\TransMaintain\Service\DirectoryProvider;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -19,21 +20,24 @@ final class KeyRegister
 
     public const POSITIONS = [self::NO, self::MERGE, self::TO_THE_END];
 
+    private const EXTENSIONS = ['yaml', 'yml'];
+
     private array $dirs;
     private BranchInjector $branchInjector;
     private FileManipulator $fileManipulator;
     private LoggerInterface $logger;
     private string $position;
+    private DirectoryProvider $directoryProvider;
 
     public function __construct(
-        iterable $dirs,
         string $position,
         BranchInjector $branchInjector,
+        DirectoryProvider $directoryProvider,
         FileManipulator $fileManipulator,
         ?LoggerInterface $logger = null
     ) {
-        $this->dirs = $dirs instanceof \Traversable ? iterator_to_array($dirs) : (array) $dirs;
         $this->branchInjector = $branchInjector;
+        $this->directoryProvider = $directoryProvider;
         $this->fileManipulator = $fileManipulator;
         $this->logger = $logger ?? new NullLogger();
         $this->position = $position;
@@ -54,15 +58,15 @@ final class KeyRegister
 
     private function locatePath(string $domain, string $locale): string
     {
-        foreach ($this->dirs as $dir) {
-            foreach (['yaml', 'yml'] as $extension) {
+        foreach ($this->directoryProvider->getAll() as $dir) {
+            foreach (self::EXTENSIONS as $extension) {
                 if ($this->fileManipulator->exists($filePath = $dir.'/'.$domain.'.'.$locale.'.'.$extension)) {
                     return $filePath;
                 }
             }
         }
 
-        return reset($this->dirs).'/'.$domain.'.'.$locale.'.yaml';
+        return $this->directoryProvider->getDefault().'/'.$domain.'.'.$locale.'.'.self::EXTENSIONS[0];
     }
 
     /**
@@ -77,11 +81,6 @@ final class KeyRegister
         return [$id => $id];
     }
 
-    /**
-     * @param array $yaml
-     * @param string $id
-     * @return array
-     */
     private function inject(array $yaml, string $id): array
     {
         switch ($this->position) {
