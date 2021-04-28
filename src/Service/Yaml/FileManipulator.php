@@ -27,6 +27,11 @@ final class FileManipulator
         $this->filesystem->dumpFile($pathOut, $content);
     }
 
+    public function exists(string $path): bool
+    {
+        return $this->filesystem->exists($path);
+    }
+
     public function parse(string $pathIn): array
     {
         if (!$this->filesystem->exists($pathIn)) {

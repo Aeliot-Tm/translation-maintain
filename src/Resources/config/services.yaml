@@ -10,7 +10,12 @@ services:
 
     Aeliot\Bundle\TransMaintain\Service\:
         resource: '../../Service/*'
-        exclude: '../../Service/{Yaml/TransformationConveyor.php}'
+        exclude: '../../Service/{Translator.php,Yaml/TransformationConveyor.php,Yaml/KeyRegister.php}'
+
+    Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister:
+        arguments:
+            $dirs: [ ]
+            $position: '%aeliot_trans_maintain.insert_missed_keys%'
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\TransformationConveyor:
         arguments:
