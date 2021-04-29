@@ -8,14 +8,26 @@ services:
     Aeliot\Bundle\TransMaintain\Command\:
         resource: '../../Command/*'
 
-    Aeliot\Bundle\TransMaintain\Service\:
-        resource: '../../Service/*'
-        exclude: '../../Service/{Translator.php,Yaml/TransformationConveyor.php,Yaml/KeyRegister.php}'
+    Aeliot\Bundle\TransMaintain\Service\DirectoryProvider:
+        arguments:
+            $defaultPath: '%translator.default_path%'
+            $dirs: [ ]
+
+    Aeliot\Bundle\TransMaintain\Service\Yaml\:
+        resource: '../../Service/Yaml/*'
+        exclude: '../../Service/Yaml/{Linter,KeyRegister.php,LinterRegistry.php,TransformationConveyor.php}'
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister:
         arguments:
-            $dirs: [ ]
             $position: '%aeliot_trans_maintain.insert_missed_keys%'
+
+    Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\:
+        resource: '../../Service/Yaml/Linter/*'
+        tags: [ 'aeliot_trans_maintain.yaml.linter' ]
+
+    Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry:
+        arguments:
+            $linters: !tagged 'aeliot_trans_maintain.yaml.linter'
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\TransformationConveyor:
         arguments:
