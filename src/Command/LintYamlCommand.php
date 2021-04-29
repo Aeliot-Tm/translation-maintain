@@ -31,12 +31,17 @@ final class LintYamlCommand extends Command
         $this->addArgument('linter', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'List of linters', [self::ALL_LINTERS]);
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $hasProblems = false;
         $reportBuilder = new ConsoleOutputTableBuilder($output);
         foreach ($this->getLinters($input) as $linter) {
-            $reportBuilder->render($linter->lint());
+            $reportBag = $linter->lint();
+            $hasProblems = $hasProblems || !$reportBag->isEmpty();
+            $reportBuilder->render($reportBag);
         }
+
+        return (int) $hasProblems;
     }
 
     /**

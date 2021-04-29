@@ -30,6 +30,14 @@ final class ReportBag
         $this->lines[] = $line;
     }
 
+    public function getHeaders(): array
+    {
+        /** @var ReportLineInterface $reportLineClass */
+        $reportLineClass = $this->reportLineClass;
+
+        return $reportLineClass::getHeaders();
+    }
+
     /**
      * @return ReportLineInterface[]
      */
@@ -38,11 +46,8 @@ final class ReportBag
         return $this->lines;
     }
 
-    public function getHeaders(): array
+    public function isEmpty(): bool
     {
-        /** @var ReportLineInterface $reportLineClass */
-        $reportLineClass = $this->reportLineClass;
-
-        return $reportLineClass::getHeaders();
+        return !$this->lines;
     }
 }
