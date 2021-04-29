@@ -22,6 +22,7 @@ final class FileManipulator
     {
         $this->filesystem->mkdir(basename($pathOut));
 
+        //THINK: how to escape single words?
         $dumpFlags = Yaml::DUMP_EXCEPTION_ON_INVALID_TYPE | Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
         $content = Yaml::dump($yaml, 100, $this->yamlIndent, $dumpFlags);
         $this->filesystem->dumpFile($pathOut, $content);
@@ -38,6 +39,10 @@ final class FileManipulator
             throw new \InvalidArgumentException(\sprintf('Invalid path passed: "%s"', $pathIn));
         }
 
+        /**
+         * NOTE: don't use Yaml::PARSE_CONSTANT like in {@see \Symfony\Component\Translation\Loader\YamlFileLoader::loadResource()}
+         *       to leave values as is
+         */
         return Yaml::parseFile($pathIn, Yaml::PARSE_EXCEPTION_ON_INVALID_TYPE);
     }
 }
