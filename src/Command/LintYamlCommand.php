@@ -15,6 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class LintYamlCommand extends Command
 {
     private const ALL_LINTERS = 'all';
+    private const BASE_LINTERS = 'base';
 
     private LinterRegistry $linterRegistry;
 
@@ -28,7 +29,7 @@ final class LintYamlCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Command for the sorting of yaml files');
-        $this->addArgument('linter', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'List of linters', [self::ALL_LINTERS]);
+        $this->addArgument('linter', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'List of linters', [self::BASE_LINTERS]);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -52,6 +53,8 @@ final class LintYamlCommand extends Command
         $possibleLinters = $this->linterRegistry->getRegisteredLinters();
         $linters = (array) $input->getArgument('linter');
         if (count($linters) === 1 && reset($linters) === self::ALL_LINTERS) {
+            $linters = $possibleLinters;
+        } elseif (count($linters) === 1 && reset($linters) === self::BASE_LINTERS) {
             $linters = $possibleLinters;
         } elseif ($invalid = array_diff($linters, $possibleLinters)) {
             throw new \InvalidArgumentException(

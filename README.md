@@ -19,6 +19,11 @@ $ composer require --dev aeliot-tm/translation-maintain
    ```shell
    $ find path_to_directory -type f \( -iname \*.yml -o -iname \*.yaml \) | sort | xargs  -I {} -t  php  bin/console aeliot_trans_maintain:yaml:transform $1{}
    ```
+1. Test your translation files. Execute command:
+   ```shell
+   $ php bin/console aeliot_trans_maintain:lint:yaml all
+   ```
+   See additional information [there](docs/lint/lint_yaml_command.md).
 
 
 ---

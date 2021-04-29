@@ -19,7 +19,7 @@ final class FilesMissedLinter implements LinterInterface
 
     public function getKey(): string
     {
-        return 'file_missed';
+        return 'files_missed';
     }
 
     public function lint(): ReportBag

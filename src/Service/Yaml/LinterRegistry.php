@@ -8,6 +8,8 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface;
 
 final class LinterRegistry
 {
+    private const RESERVED_KEYS = ['all', 'base'];
+
     /**
      * @var LinterInterface[]
      */
@@ -22,7 +24,11 @@ final class LinterRegistry
 
     public function addLinter(LinterInterface $linter): void
     {
-        if (array_key_exists($key = $linter->getKey(), $this->linters)) {
+        $key = $linter->getKey();
+        if (in_array($key, self::RESERVED_KEYS, true)) {
+            throw new \LogicException(\sprintf('Used reserved key "%s"', $key));
+        }
+        if (array_key_exists($key, $this->linters)) {
             throw new \LogicException(\sprintf('Linter "%s" registered', $key));
         }
 
