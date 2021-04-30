@@ -23,7 +23,7 @@
     "symfony/finder": "^4.4",
     "symfony/http-kernel": "^4.4",
     "symfony/translation": "^4.4",
-    "symfony/translation-contracts": "^2.4",
+    "symfony/translation-contracts": "^v2.3.0",
     "symfony/yaml": ">=4.4"
   },
   "config": {
