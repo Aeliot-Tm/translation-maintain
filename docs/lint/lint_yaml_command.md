@@ -4,6 +4,7 @@ Command:
 ```shell
 $ php bin/console aeliot_trans_maintain:lint:yaml <key1> <key2> <keyN>
 ```
+It returns 0 if there are no problems detected and 1 otherwise.
 
 ### Accepted keys:
 - **all** - *[RESERVED]* then executes all linters. Applicable not for all projects. The same as **base** for now. Only one key can be posted in this case. 
