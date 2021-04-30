@@ -1,5 +1,5 @@
 # TransMaintain
-Package which help to keep you translations consistent.
+Package which helps to keep you translations consistent.
 
 ## Installation
 
