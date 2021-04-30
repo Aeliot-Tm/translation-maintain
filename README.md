@@ -12,20 +12,18 @@ See additional information about installation [there](docs/installation.md) and 
 
 ## Usage
 
-1. Update one YAML file
-   ```shell
-   $ php bin/console aeliot_trans_maintain:yaml:transform <path_to_file_to_be_updated>
-   ```
-   
-1. Update all files in the directory
-   ```shell
-   $ find path_to_directory -type f \( -iname \*.yml -o -iname \*.yaml \) | sort | xargs  -I {} -t  php  bin/console aeliot_trans_maintain:yaml:transform $1{}
-   ```
-1. Test your translation files. Execute command:
+1. Test your translation YAML files (see additional information [there](docs/lint/lint_yaml_command.md)):
    ```shell
    $ php bin/console aeliot_trans_maintain:lint:yaml all
    ```
-   See additional information [there](docs/lint/lint_yaml_command.md).
+1. Update certain YAML file:
+   ```shell
+   $ php bin/console aeliot_trans_maintain:yaml:transform <path_to_file_to_be_updated>
+   ```
+1. Update all YAML files in the directory:
+   ```shell
+   $ find path_to_directory -type f \( -iname \*.yml -o -iname \*.yaml \) | sort | xargs  -I {} -t  php  bin/console aeliot_trans_maintain:yaml:transform $1{}
+   ```
 
 
 **NOTE:** There used standard `\Symfony\Component\Yaml\Yaml` class for dumping, so it inserts single-word values without escaping.
