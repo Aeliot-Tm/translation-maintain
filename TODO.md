@@ -6,7 +6,7 @@
    - YAML keys transformer
 - [x] Implement command for transformation of certain YAML translation file.
 - [ ] Implement autowiring of project translation files and command which will transform them all.
-- [ ] Add a wrapper for a standard translator for automatic registration of missed translations.
+- [x] Add a wrapper for a standard translator for automatic registration of missed translations.
 - [x] [Implement base testing of translations](docs/lint/lint_yaml_command.md):
     - all files presented
     - all variable filled for each language
@@ -14,8 +14,8 @@
 - [ ] Implement extended testing of translations:
     - empty values detector
     - all keys of translations match pattern.
-- [ ] Extend compatibility with older versions.
-- [ ] Extend support of translations formats.
+- [ ] Extend compatibility with older versions of Symfony.
+- [ ] Extend support of translation files formats.
 - [ ] Implement auto-translation via Google/Yandex API and so on.
 - [ ] Implement command "Make my project perfect :)".
 
