@@ -22,7 +22,7 @@ final class KeysDuplicatedLine implements ReportLineInterface
      */
     public static function getHeaders(): array
     {
-        return ['domain', 'locale', 'language_id'];
+        return ['domain', 'locale', 'duplicated_language_id'];
     }
 
     /**
@@ -33,7 +33,7 @@ final class KeysDuplicatedLine implements ReportLineInterface
         return [
             'domain' => $this->domain,
             'locale' => $this->locale,
-            'language_id' => $this->languageId,
+            'duplicated_language_id' => $this->languageId,
         ];
     }
 }
