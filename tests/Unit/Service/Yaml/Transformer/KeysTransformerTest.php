@@ -27,6 +27,7 @@ final class KeysTransformerTest extends TestCase
     {
         //explode keys
         yield [['a' => ['b' => '*']], ['a.b' => '*']];
+        yield [['a' => ['b' => ['c' => '*']]], ['a' => ['b.c' => '*']]];
         yield [['a' => ['b' => '*', 'c' => '*']], ['a.c' => '*', 'a.b' => '*']];
         yield [['a' => '*', 'a.b' => '*'], ['a' => '*', 'a.b' => '*',]];
         yield [['a' => '*', 'a.b' => '*', 'a.c' => '*'], ['a.c' => '*', 'a.b' => '*', 'a' => '*']];
@@ -86,6 +87,12 @@ final class KeysTransformerTest extends TestCase
         //    ['a' => '*', 'a.b' => '*', 'a.b.c' => ['d' => '*']],
         //    ['a' => '*', 'a.b' => '*', 'a.b.c.d' => '*'],
         //];
+
+        //don't compress children in case of parent keys collision
+        yield [
+            ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
+            ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
+        ];
 
         //not same values
         yield [['a' => ['b' => '1'], 'a.b' => '2'], ['a' => ['b' => '1'], 'a.b' => '2']];
