@@ -20,7 +20,7 @@ final class FileManipulator
 
     public function dump(string $pathOut, array $yaml): void
     {
-        $this->filesystem->mkdir(basename($pathOut));
+        $this->filesystem->mkdir(dirname($pathOut));
 
         //THINK: how to escape single words?
         $dumpFlags = Yaml::DUMP_EXCEPTION_ON_INVALID_TYPE | Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
