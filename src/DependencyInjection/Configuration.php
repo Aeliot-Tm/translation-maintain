@@ -24,7 +24,7 @@ final class Configuration implements ConfigurationInterface
                     ->validate()
                         ->ifNotInArray(KeyRegister::POSITIONS)
                         ->thenInvalid(
-                            \sprintf('Invalid configuration. Permitted keys: "%s"', implode('" ,"', KeyRegister::POSITIONS))
+                            \sprintf('Invalid configuration. Permitted keys are "%s" but there is another value %%s defined in the configuration.', implode('" ,"', KeyRegister::POSITIONS))
                         )
                     ->end()
                     ->info('Decorate default translator for inserting of missed keys.')
