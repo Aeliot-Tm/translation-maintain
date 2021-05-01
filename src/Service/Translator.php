@@ -13,14 +13,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class Translator implements LegacyTranslatorInterface, TranslatorInterface, TranslatorBagInterface
 {
     private KeyRegister $keyRegister;
+    private string $position;
     /**
      * @var LegacyTranslatorInterface|TranslatorInterface|TranslatorBagInterface
      */
     private $translator;
 
-    public function __construct($decoratedTranslator, KeyRegister $keyRegister)
+    public function __construct($decoratedTranslator, string $position, KeyRegister $keyRegister)
     {
         $this->keyRegister = $keyRegister;
+        $this->position = $position;
         $this->translator = $decoratedTranslator;
     }
 
@@ -69,6 +71,10 @@ final class Translator implements LegacyTranslatorInterface, TranslatorInterface
 
     private function register(string $id, ?string $domain = null, ?string $locale = null): void
     {
+        if (KeyRegister::NO === $this->position) {
+            return;
+        }
+
         $domain ??= 'messages';
 
         /** @var MessageCatalogueInterface $catalogue */

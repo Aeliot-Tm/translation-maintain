@@ -9,6 +9,7 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
 final class TranslatorCompilerPass implements CompilerPassInterface
@@ -21,6 +22,7 @@ final class TranslatorCompilerPass implements CompilerPassInterface
             $translatorWrapper->setAutowired(true);
             $translatorWrapper->setAutoconfigured(true);
             $translatorWrapper->setArgument('$decoratedTranslator', new Reference('translator.default.inner'));
+            $translatorWrapper->setArgument('$position', new Parameter('aeliot_trans_maintain.insert_missed_keys'));
             $container->setDefinition(Translator::class, $translatorWrapper);
         }
     }
