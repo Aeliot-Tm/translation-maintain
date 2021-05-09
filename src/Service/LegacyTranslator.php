@@ -6,7 +6,7 @@ namespace Aeliot\Bundle\TransMaintain\Service;
 
 use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
 
-final class LegacyTranslator extends BaseTranslator implements LegacyTranslatorInterface
+final class LegacyTranslator extends AbstractTranslator implements LegacyTranslatorInterface
 {
 
 }

@@ -9,7 +9,7 @@ use Symfony\Component\Translation\MessageCatalogueInterface;
 use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class BaseTranslator implements TranslatorInterface, TranslatorBagInterface
+abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagInterface
 {
     private KeyRegister $keyRegister;
     private string $position;
