@@ -6,6 +6,7 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Exception\KeyCollisionException;
 use Aeliot\Bundle\TransMaintain\Service\DirectoryProvider;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\Inserter\InserterInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -23,24 +24,40 @@ final class KeyRegister
     private const EXTENSIONS = ['yaml', 'yml'];
 
     private array $dirs;
+    private DirectoryProvider $directoryProvider;
     private BranchInjector $branchInjector;
     private FileManipulator $fileManipulator;
+    /**
+     * @var InserterInterface[]
+     */
+    private array $inserters = [];
     private LoggerInterface $logger;
     private string $position;
-    private DirectoryProvider $directoryProvider;
 
     public function __construct(
+        iterable $inserters,
         string $position,
-        BranchInjector $branchInjector,
         DirectoryProvider $directoryProvider,
         FileManipulator $fileManipulator,
         ?LoggerInterface $logger = null
     ) {
-        $this->branchInjector = $branchInjector;
         $this->directoryProvider = $directoryProvider;
         $this->fileManipulator = $fileManipulator;
         $this->logger = $logger ?? new NullLogger();
         $this->position = $position;
+
+        foreach ($inserters as $inserter) {
+            $this->addInserter($inserter);
+        }
+    }
+
+    public function addInserter(InserterInterface $inserter): void
+    {
+        if (array_key_exists($position = $inserter->getPosition(), $this->inserters)) {
+            throw new \LogicException(\sprintf('An inserter for the position "%s" has registered', $position));
+        }
+
+        $this->inserters[$position] = $inserter;
     }
 
     public function register(string $id, string $domain, string $locale): void
@@ -49,11 +66,20 @@ final class KeyRegister
         $yaml = $this->fileManipulator->exists($path) ? $this->fileManipulator->parse($path) : [];
 
         try {
-            $yaml = $this->insert($yaml, $id);
+            $yaml = $this->getInserter()->insert($yaml, $id, $id);
             $this->fileManipulator->dump($path, $yaml);
         } catch (KeyCollisionException $e) {
             $this->logger->error($e->getMessage(), ['exception' => $e]);
         }
+    }
+
+    private function getInserter(): InserterInterface
+    {
+        if (!array_key_exists($this->position, $this->inserters)) {
+            throw new \LogicException(\sprintf('Invalid position: "%s"', $this->position));
+        }
+
+        return $this->inserters[$this->position];
     }
 
     private function locatePath(string $domain, string $locale): string
@@ -67,37 +93,5 @@ final class KeyRegister
         }
 
         return $this->directoryProvider->getDefault().'/'.$domain.'.'.$locale.'.'.self::EXTENSIONS[0];
-    }
-
-    private function inject(array $yaml, string $id): array
-    {
-        if (!$this->branchInjector->inject($yaml, $id, $id)) {
-            $yaml = $this->insertToTheEnd($yaml, $id);
-        }
-
-        return $yaml;
-    }
-
-    private function insert(array $yaml, string $id): array
-    {
-        switch ($this->position) {
-            case self::MERGE:
-                return $this->inject($yaml, $id);
-            case self::TO_THE_END:
-                return $this->insertToTheEnd($yaml, $id);
-            case self::NO:
-            default:
-                throw new \LogicException(\sprintf('Invalid position: "%s"', $this->position));
-        }
-    }
-
-    private function insertToTheEnd(array $yaml, string $id): array
-    {
-        if (isset($yaml[$id]) && $yaml[$id] !== $id) {
-            throw new KeyCollisionException('Key exists');
-        }
-        $yaml[$id] = $id;
-
-        return $yaml;
     }
 }

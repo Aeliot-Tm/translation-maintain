@@ -15,11 +15,16 @@ services:
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\:
         resource: '../../Service/Yaml/*'
-        exclude: '../../Service/Yaml/{Linter,KeyRegister.php,LinterRegistry.php,TransformationConveyor.php}'
+        exclude: '../../Service/Yaml/{Inserter,Linter,KeyRegister.php,LinterRegistry.php,TransformationConveyor.php}'
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister:
         arguments:
+            $inserters: !tagged 'aeliot_trans_maintain.yaml.inserter'
             $position: '%aeliot_trans_maintain.insert_missed_keys%'
+
+    Aeliot\Bundle\TransMaintain\Service\Yaml\Inserter\:
+        resource: '../../Service/Yaml/Inserter/*'
+        tags: [ 'aeliot_trans_maintain.yaml.inserter' ]
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\:
         resource: '../../Service/Yaml/Linter/*'
