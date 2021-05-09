@@ -77,16 +77,19 @@ final class KeysTransformerTest extends TestCase
             ['a.b.c.e' => '*', 'a' => ['b' => ['c' => '*', 'c.d' => '*']]],
         ];
 
-        //TODO implement
-        ////compress on root
-        //yield [
-        //    ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
-        //    ['a' => '*', 'a.b.c.d' => '*'],
-        //];
-        //yield [
-        //    ['a' => '*', 'a.b' => '*', 'a.b.c' => ['d' => '*']],
-        //    ['a' => '*', 'a.b' => '*', 'a.b.c.d' => '*'],
-        //];
+        //compress on root
+        yield [
+            ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
+            ['a' => '*', 'a.b.c.d' => '*'],
+        ];
+        yield [
+            ['a' => '*', 'a.b' => '*', 'a.b.c' => ['d' => '*']],
+            ['a' => '*', 'a.b' => '*', 'a.b.c.d' => '*'],
+        ];
+        yield [
+            ['a' => '*', 'a.b' => '*', 'a.b.c' => '*', 'a.b.c.d' => ['e' => '*']],
+            ['a' => '*', 'a.b' => '*', 'a.b.c' => '*', 'a.b.c.d.e' => '*'],
+        ];
 
         //don't compress children in case of parent keys collision
         yield [
@@ -100,6 +103,10 @@ final class KeysTransformerTest extends TestCase
         yield [
             ['a' => ['b' => ['c' => ['d' => '1'], 'c.d' => '2']]],
             ['a' => ['b' => ['c' => ['d' => '1']]], 'a.b' => ['c' => ['d' => '2']]],
+        ];
+        yield [
+            ['a' => '*', 'a.b' => '*', 'a.b.c' => '*', 'a.b.c.d' => ['e' => '1'], 'a.b.c.d.e' => '2'],
+            ['a' => '*', 'a.b' => '*', 'a.b.c' => '*', 'a.b.c.d' => ['e' => '1'], 'a.b.c.d.e' => '2'],
         ];
     }
 }

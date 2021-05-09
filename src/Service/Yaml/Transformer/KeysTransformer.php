@@ -33,14 +33,12 @@ final class KeysTransformer implements TransformerInterface
                 $nPoint = $this->createNestedValue(explode('.', $key), $yaml[$key]);
                 $nKey = $this->getFirstKey($nPoint);
                 if (isset($yaml[$nKey])) {
-                    //NOTE: nothing to do if $nPoint[$nKey] is not an array. We should not explode such keys
-                    if (is_array($yaml[$nKey])) {
-                        //NOTE: $nPoint[$nKey] is always an array there
-                        $layer = $this->createChildLayer($current, $nKey, $yaml[$nKey], $nPoint[$nKey]);
-                        $this->work($layer);
-                        if (!$layer->getSelectedNPoint()) {
-                            unset($yaml[$key]);
-                        }
+                    $valueTmp = $yaml[$key];
+                    unset($yaml[$key]);
+                    $layer = $this->createChildLayer($current, null, $yaml, $nPoint);
+                    $this->work($layer);
+                    if ($layer->getSelectedNPoint()) {
+                        $yaml[$key] = $valueTmp;
                     }
                 } else {
                     $yaml[$nKey] = $nPoint[$nKey];
@@ -93,9 +91,22 @@ final class KeysTransformer implements TransformerInterface
                     $resultKey = $current->getResultKey().'.'.$nKey;
                     if (isset($yPoint[$resultKey])) {
                         //NOTE: $nPoint[$nKey] is always an array
-                        $layer = $this->createChildLayer($current, $nKey, $yPoint[$resultKey], $nPoint[$nKey]);
-                        $layer->setHasWayUp();
-                        $this->work($layer);
+                        if (is_array($yPoint[$resultKey])) {
+                            $layer = $this->createChildLayer($current, $nKey, $yPoint[$resultKey], $nPoint[$nKey]);
+                            $layer->setHasWayUp();
+                            $this->work($layer);
+                        } else {
+                            if (is_array($nPoint[$nKey])) {
+                                $layer = $this->createChildLayer($current, $nKey, $yPoint, $nPoint[$nKey]);
+                                $layer->setNoWayUp();
+                                $this->work($layer);
+                            } elseif ($yPoint[$nKey] !== $nPoint[$nKey]) {
+                                //NOTE: nothing to do if values the save
+                                $current->goDown();
+                                $current->setNotSameValue();
+                                $this->work($current);
+                            }
+                        }
                     } else {
                         $yPoint[$resultKey] = $nPoint[$nKey];
                         unset($nPoint[$nKey]);
@@ -112,29 +123,23 @@ final class KeysTransformer implements TransformerInterface
         } elseif ($parent = $current->getParent()) {
             $nKey = $current->getSelectedKey();
             $pnPoint = &$parent->getSelectedNPoint();
-            if ($current->isSameValue()) {
-                $pKey = $parent->getSelectedKey();
-                $resultKey = $pKey.'.'.$nKey;
-                unset($pnPoint[$pKey]);
-                $pnPoint[$resultKey] = $current->getSelectedNPoint();
-            } else {
-                $cnPoint = &$current->getSelectedNPoint();
-                $fKey = $this->getFirstKey($cnPoint);
-                $resultKey = $nKey.'.'.$fKey;
-                $pnPoint[$resultKey] = $cnPoint[$fKey];
-                unset($pnPoint[$nKey]);
-            }
-            $parent->setSelectedKey($resultKey);
+            $cnPoint = &$current->getSelectedNPoint();
+            $fKey = $this->getFirstKey($cnPoint);
+            $resultKey = $nKey.'.'.$fKey;
+            $pnPoint[$resultKey] = $cnPoint[$fKey];
+            unset($pnPoint[$nKey]);
             $this->work($parent);
         }
     }
 
-    private function createChildLayer(Layer $parent, string $key, array &$yPoint, array &$nPoint): Layer
+    private function createChildLayer(Layer $parent, ?string $key, array &$yPoint, array &$nPoint): Layer
     {
         $layer = new Layer($parent);
-        $layer->setSelectedKey($key);
         $layer->setSelectedYPoint($yPoint);
         $layer->setSelectedNPoint($nPoint);
+        if (null !== $key) {
+            $layer->setSelectedKey($key);
+        }
 
         return $layer;
     }
