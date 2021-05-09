@@ -15,37 +15,27 @@ final class KeysTransformer implements TransformerInterface
 
     public function transform(array $yaml): array
     {
-        $layer = new Layer();
-        $layer->setYaml($yaml);
-        $this->iterate($layer);
-
-        return $layer->getYaml();
-    }
-
-    private function iterate(Layer $current): void
-    {
-        $yaml = &$current->getYaml();
         foreach (array_keys($yaml) as $key) {
-            if (is_array($yaml[$key])) {
-                $yaml[$key] = $this->transform($yaml[$key]);
+            if (is_array($value = $yaml[$key])) {
+                $value = $yaml[$key] = $this->transform($value);
             }
             if ($this->isSplittable($key)) {
-                $nPoint = $this->createNestedValue(explode('.', $key), $yaml[$key]);
+                unset($yaml[$key]);
+                $nPoint = $this->createNestedValue(explode('.', $key), $value);
                 $nKey = $this->getFirstKey($nPoint);
                 if (isset($yaml[$nKey])) {
-                    $valueTmp = $yaml[$key];
-                    unset($yaml[$key]);
-                    $layer = $this->createChildLayer($current, null, $yaml, $nPoint);
+                    $layer = $this->createParentLayer($yaml, $yaml, $nPoint);
                     $this->work($layer);
                     if ($layer->getSelectedNPoint()) {
-                        $yaml[$key] = $valueTmp;
+                        $yaml[$key] = $value;
                     }
                 } else {
                     $yaml[$nKey] = $nPoint[$nKey];
-                    unset($yaml[$key]);
                 }
             }
         }
+
+        return $yaml;
     }
 
     private function work(Layer $current): void
@@ -113,7 +103,7 @@ final class KeysTransformer implements TransformerInterface
                         $this->work($current);
                     }
                 }
-            } elseif (($parent = $current->getParent()) && $parent->getParent()) {
+            } elseif ($parent = $current->getParent()) {
                 $parent->goUp();
                 $parent->setHasWayUp();
                 $nPoint = &$parent->getSelectedNPoint();
@@ -132,14 +122,22 @@ final class KeysTransformer implements TransformerInterface
         }
     }
 
-    private function createChildLayer(Layer $parent, ?string $key, array &$yPoint, array &$nPoint): Layer
+    private function createChildLayer(Layer $parent, string $key, array &$yPoint, array &$nPoint): Layer
     {
         $layer = new Layer($parent);
         $layer->setSelectedYPoint($yPoint);
         $layer->setSelectedNPoint($nPoint);
-        if (null !== $key) {
-            $layer->setSelectedKey($key);
-        }
+        $layer->setSelectedKey($key);
+
+        return $layer;
+    }
+
+    private function createParentLayer(array &$yaml, array &$yPoint, array &$nPoint): Layer
+    {
+        $layer = new Layer();
+        $layer->setYaml($yaml);
+        $layer->setSelectedYPoint($yPoint);
+        $layer->setSelectedNPoint($nPoint);
 
         return $layer;
     }
