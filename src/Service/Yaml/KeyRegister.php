@@ -49,7 +49,7 @@ final class KeyRegister
         $yaml = $this->fileManipulator->exists($path) ? $this->fileManipulator->parse($path) : [];
 
         try {
-            $yaml = $this->inject($yaml, $id);
+            $yaml = $this->insert($yaml, $id);
             $this->fileManipulator->dump($path, $yaml);
         } catch (KeyCollisionException $e) {
             $this->logger->error($e->getMessage(), ['exception' => $e]);
@@ -69,34 +69,34 @@ final class KeyRegister
         return $this->directoryProvider->getDefault().'/'.$domain.'.'.$locale.'.'.self::EXTENSIONS[0];
     }
 
-    /**
-     * @return string[]
-     */
-    private function createBranch(string $id): array
+    private function inject(array $yaml, string $id): array
     {
-        if ($this->isSplittable($id)) {
-            return $this->createNestedValue(explode('.', $id), $id);
+        if (!$this->branchInjector->inject($yaml, $id, $id)) {
+            $yaml = $this->insertToTheEnd($yaml, $id);
         }
 
-        return [$id => $id];
+        return $yaml;
     }
 
-    private function inject(array $yaml, string $id): array
+    private function insert(array $yaml, string $id): array
     {
         switch ($this->position) {
             case self::MERGE:
-                $yaml = $this->branchInjector->inject($yaml, $this->createBranch($id));
-                break;
+                return $this->inject($yaml, $id);
             case self::TO_THE_END:
-                if (isset($yaml[$id]) && $yaml[$id] !== $id) {
-                    throw new KeyCollisionException('Key exists');
-                }
-                $yaml[$id] = $id;
-                break;
+                return $this->insertToTheEnd($yaml, $id);
             case self::NO:
             default:
                 throw new \LogicException(\sprintf('Invalid position: "%s"', $this->position));
         }
+    }
+
+    private function insertToTheEnd(array $yaml, string $id): array
+    {
+        if (isset($yaml[$id]) && $yaml[$id] !== $id) {
+            throw new KeyCollisionException('Key exists');
+        }
+        $yaml[$id] = $id;
 
         return $yaml;
     }
