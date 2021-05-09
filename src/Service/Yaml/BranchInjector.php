@@ -14,7 +14,7 @@ final class BranchInjector
     public function inject(array &$yaml, string $key, $value): bool
     {
         if (!$this->isSplittable($key)) {
-            if (isset($yaml[$key])) {
+            if (isset($yaml[$key]) && $yaml[$key] !== $value) {
                 return false;
             }
 
