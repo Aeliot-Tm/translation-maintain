@@ -7,15 +7,14 @@ namespace Aeliot\Bundle\TransMaintain\Service;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\Translation\MessageCatalogueInterface;
 use Symfony\Component\Translation\TranslatorBagInterface;
-use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-final class Translator implements LegacyTranslatorInterface, TranslatorInterface, TranslatorBagInterface
+class BaseTranslator implements TranslatorInterface, TranslatorBagInterface
 {
     private KeyRegister $keyRegister;
     private string $position;
     /**
-     * @var LegacyTranslatorInterface|TranslatorInterface|TranslatorBagInterface
+     * @var TranslatorInterface|TranslatorBagInterface
      */
     private $translator;
 
