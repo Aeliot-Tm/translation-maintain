@@ -16,15 +16,15 @@
   "require": {
     "php": "^7.4",
     "ext-json": "*",
-    "symfony/config": ">=4.4",
-    "symfony/console": ">=4.4",
-    "symfony/dependency-injection": ">=4.4",
-    "symfony/filesystem": ">=4.4",
-    "symfony/finder": ">=4.4",
-    "symfony/http-kernel": ">=4.4",
-    "symfony/translation": ">=4.4",
-    "symfony/translation-contracts": "^v2.3.0",
-    "symfony/yaml": ">=4.4"
+    "symfony/config": ">=3.4",
+    "symfony/console": ">=3.4",
+    "symfony/dependency-injection": ">=3.4",
+    "symfony/filesystem": ">=3.4",
+    "symfony/finder": ">=3.4",
+    "symfony/http-kernel": ">=3.4",
+    "symfony/translation": ">=3.4",
+    "symfony/translation-contracts": "^v2.0.0",
+    "symfony/yaml": ">=3.4"
   },
   "config": {
     "sort-packages": true
