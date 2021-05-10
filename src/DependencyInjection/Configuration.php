@@ -11,7 +11,16 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('aeliot_trans_maintain');
-        $treeBuilder->getRootNode()
+
+        if (method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->getRootNode();
+        } elseif (method_exists($treeBuilder, 'root')) {
+            $rootNode = $treeBuilder->root('aeliot_trans_maintain');
+        } else {
+            throw new \LogicException('Cannot get root node');
+        }
+
+        $rootNode
             ->children()
                 ->arrayNode('yaml')
                     ->addDefaultsIfNotSet()
