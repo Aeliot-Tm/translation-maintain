@@ -14,7 +14,7 @@
 - [ ] Implement extended testing of translations:
     - empty values detector
     - all keys of translations match pattern.
-- [ ] Extend compatibility with older versions of Symfony.
+- [x] Make compatible with Symfony versions since 3.4 till 5.2.
 - [ ] Extend support of translation files formats.
 - [ ] Implement auto-translation via Google/Yandex API and so on.
 - [ ] Implement command "Make my project perfect :)".
