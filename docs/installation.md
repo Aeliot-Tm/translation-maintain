@@ -1,4 +1,5 @@
-# Installation
+Installation
+============
 
 Basically, there is enough to execute the command:
 ```shell
@@ -60,6 +61,7 @@ Add root node `aeliot_trans_maintain:` to the config files:
 - `./app/config/config_dev.yml`
 - `./app/config/config_test.yml`
 
+See additional information in [configuration](configuration.md) section.
 
 ---
 *[Read Me](../README.md)*
