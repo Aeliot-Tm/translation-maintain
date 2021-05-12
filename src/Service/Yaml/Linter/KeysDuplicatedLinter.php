@@ -8,6 +8,7 @@ use Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class KeysDuplicatedLinter implements LinterInterface
 {
@@ -25,6 +26,11 @@ final class KeysDuplicatedLinter implements LinterInterface
     public function getKey(): string
     {
         return 'keys_duplicated';
+    }
+
+    public function getPresets(): array
+    {
+        return [LinterRegistry::PRESET_BASE];
     }
 
     public function lint(): ReportBag

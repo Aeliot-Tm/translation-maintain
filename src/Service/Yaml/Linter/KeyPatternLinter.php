@@ -27,6 +27,11 @@ final class KeyPatternLinter implements LinterInterface
         return 'key_pattern';
     }
 
+    public function getPresets(): array
+    {
+        return [];
+    }
+
     public function lint(): ReportBag
     {
         $bag = new ReportBag(KeysPatternLine::class);

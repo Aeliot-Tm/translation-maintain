@@ -8,6 +8,7 @@ use Aeliot\Bundle\TransMaintain\Model\KeysMissedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class KeysMissedLinter implements LinterInterface
 {
@@ -23,6 +24,11 @@ final class KeysMissedLinter implements LinterInterface
     public function getKey(): string
     {
         return 'keys_missed';
+    }
+
+    public function getPresets(): array
+    {
+        return [LinterRegistry::PRESET_BASE];
     }
 
     public function lint(): ReportBag
