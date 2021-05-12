@@ -10,5 +10,7 @@ interface LinterInterface
 {
     public function getKey(): string;
 
+    public function getPresets(): array;
+
     public function lint(): ReportBag;
 }

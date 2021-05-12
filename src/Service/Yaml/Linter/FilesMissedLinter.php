@@ -7,6 +7,7 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 use Aeliot\Bundle\TransMaintain\Model\FilesMissedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class FilesMissedLinter implements LinterInterface
 {
@@ -20,6 +21,11 @@ final class FilesMissedLinter implements LinterInterface
     public function getKey(): string
     {
         return 'files_missed';
+    }
+
+    public function getPresets(): array
+    {
+        return [LinterRegistry::PRESET_BASE];
     }
 
     public function lint(): ReportBag

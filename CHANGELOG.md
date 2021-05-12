@@ -5,6 +5,9 @@ CHANGELOG
 -----
 * Added compatibility with Symfony 5.2.
 * Added compatibility with Symfony 3.4.
+* Added YAML key pattern checker.
+* Updated Linters presets mechanism.
+* Arguments for command `aeliot_trans_maintain:lint:yaml` became optional. Preset "base" used by default.
 
 2.2.0
 -----

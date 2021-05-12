@@ -14,9 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class LintYamlCommand extends Command
 {
-    private const ALL_LINTERS = 'all';
-    private const BASE_LINTERS = 'base';
-
     private LinterRegistry $linterRegistry;
 
     public function __construct(LinterRegistry $linterRegistry)
@@ -29,7 +26,7 @@ final class LintYamlCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Command for the sorting of yaml files');
-        $this->addArgument('linter', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'List of linters', [self::BASE_LINTERS]);
+        $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterRegistry::PRESET_BASE]);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -46,17 +43,22 @@ final class LintYamlCommand extends Command
     }
 
     /**
-     * @return iterable<LinterInterface>
+     * @return \Generator<LinterInterface>
      */
-    private function getLinters(InputInterface $input): iterable
+    private function getLinters(InputInterface $input): \Generator
     {
-        $possibleLinters = $this->linterRegistry->getRegisteredLinters();
         $linters = (array) $input->getArgument('linter');
-        if (count($linters) === 1 && reset($linters) === self::ALL_LINTERS) {
-            $linters = $possibleLinters;
-        } elseif (count($linters) === 1 && reset($linters) === self::BASE_LINTERS) {
-            $linters = $possibleLinters;
-        } elseif ($invalid = array_diff($linters, $possibleLinters)) {
+        if (\in_array(LinterRegistry::PRESET_ALL, $linters, true)) {
+            if (count($linters) !== 1) {
+                throw new \InvalidArgumentException('Preset "all" must be a single arguments');
+            }
+
+            yield from $this->linterRegistry->getPresetLinters(LinterRegistry::PRESET_ALL);
+        }
+
+        $linters = $this->transformPresetsToLinterKeys($linters);
+
+        if ($invalid = array_diff($linters, $this->linterRegistry->getRegisteredLintersKeys())) {
             throw new \InvalidArgumentException(
                 \sprintf('Requested not available linters: %s', implode(', ', $invalid))
             );
@@ -65,5 +67,24 @@ final class LintYamlCommand extends Command
         foreach ($linters as $linterKey) {
             yield $this->linterRegistry->getLinter($linterKey);
         }
+    }
+
+    /**
+     * @param string[] $linters
+     *
+     * @return string[]
+     */
+    private function transformPresetsToLinterKeys(array $linters): array
+    {
+        if ($requestedPresets = array_intersect($this->linterRegistry->getExistingPresets(), $linters)) {
+            $linters = array_diff($linters, $requestedPresets);
+            $presetsLinters = array_map(
+                fn(string $preset): array => $this->linterRegistry->getPresetLintersKeys($preset),
+                $requestedPresets
+            );
+            $linters = array_unique(array_merge($linters, ...array_values($presetsLinters)));
+        }
+
+        return $linters;
     }
 }
