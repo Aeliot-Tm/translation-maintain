@@ -33,7 +33,7 @@ final class FilesMissedLinter implements LinterInterface
     {
         $bag = new ReportBag(FilesMissedLine::class);
         $filesMap = $this->filesFinder->getFilesMap();
-        $mentionedLocales = $this->getMentionedLocales($filesMap);
+        $mentionedLocales = $this->filesFinder->getLocales();
         foreach ($filesMap as $domain => $localesFiles) {
             if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
                 continue;
@@ -48,15 +48,5 @@ final class FilesMissedLinter implements LinterInterface
         }
 
         return $bag;
-    }
-
-    private function getMentionedLocales(array $filesMap): array
-    {
-        $mentionedLocales = array_unique(
-            array_merge(...array_map(static fn(array $x): array => array_keys($x), array_values($filesMap)))
-        );
-        sort($mentionedLocales);
-
-        return $mentionedLocales;
     }
 }

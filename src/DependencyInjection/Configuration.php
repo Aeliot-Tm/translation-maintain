@@ -22,6 +22,15 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->arrayNode('translation_api')
+                    ->children()
+                        ->arrayNode('google')
+                            ->children()
+                                ->scalarNode('key')->info('Google Cloud Translate key')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
                 ->arrayNode('yaml')
                     ->addDefaultsIfNotSet()
                     ->children()
