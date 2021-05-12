@@ -41,3 +41,17 @@ services:
                 - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysCleaner'
                 - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysTransformer'
                 - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysSorter'
+
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Facades\:
+        resource: '../../Service/ApiTranslator/Facades/*'
+        tags: [ 'aeliot_trans_maintain.api_translator.facade' ]
+
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\FacadesRegistry:
+        arguments:
+            $facades: !tagged 'aeliot_trans_maintain.api_translator.facade'
+
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Mediator: ~
+
+    Google\Cloud\Translate\V2\TranslateClient:
+        arguments:
+            $config: '%aeliot_trans_maintain.translation_api.google.config%'

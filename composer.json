@@ -16,6 +16,7 @@
   "require": {
     "php": "^7.4",
     "ext-json": "*",
+    "google/cloud-translate": "^1.10",
     "symfony/config": ">=3.4",
     "symfony/console": ">=3.4",
     "symfony/dependency-injection": ">=3.4",
