@@ -14,9 +14,9 @@ final class KeyPatternLinter implements LinterInterface
 {
     private FilesMapProvider $filesMapProvider;
     private KeysParser $keysParser;
-    private string $keyPattern;
+    private ?string $keyPattern;
 
-    public function __construct(FilesMapProvider $filesMapProvider, KeysParser $keysParser, string $yamlKeyPattern)
+    public function __construct(FilesMapProvider $filesMapProvider, KeysParser $keysParser, ?string $yamlKeyPattern)
     {
         $this->filesMapProvider = $filesMapProvider;
         $this->keysParser = $keysParser;
@@ -35,6 +35,10 @@ final class KeyPatternLinter implements LinterInterface
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
+        if (!$this->keyPattern) {
+            throw new \LogicException('YAML Key Pattern Linter is not configured yet');
+        }
+
         $bag = new ReportBag(KeysPatternLine::class);
         $domainsFiles = $this->filesMapProvider->getFilesMap();
         foreach ($domainsFiles as $domain => $localesFiles) {
