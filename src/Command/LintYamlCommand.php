@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Command;
 
+use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Report\Builder\ConsoleOutputTableBuilder;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class LintYamlCommand extends Command
@@ -27,19 +29,36 @@ final class LintYamlCommand extends Command
     {
         $this->setDescription('Command for the sorting of yaml files');
         $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterRegistry::PRESET_BASE]);
+        $this->addOption('domain', 'd', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter domains');
+        $this->addOption('locale', 'l', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter locales');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $hasProblems = false;
+        $filterDto = $this->createFilterDto($input);
         $reportBuilder = new ConsoleOutputTableBuilder($output);
         foreach ($this->getLinters($input) as $linter) {
-            $reportBag = $linter->lint();
+            /** @var LinterInterface $linter */
+            $reportBag = $linter->lint($filterDto);
             $hasProblems = $hasProblems || !$reportBag->isEmpty();
             $reportBuilder->render($reportBag);
         }
 
         return (int) $hasProblems;
+    }
+
+    private function createFilterDto(InputInterface $input): LintYamlFilterDto
+    {
+        $filterDto = new LintYamlFilterDto();
+        if ($input->hasOption('domain')) {
+            $filterDto->domains = $input->getOption('domain');
+        }
+        if ($input->hasOption('locale')) {
+            $filterDto->locales = $input->getOption('locale');
+        }
+
+        return $filterDto;
     }
 
     /**
