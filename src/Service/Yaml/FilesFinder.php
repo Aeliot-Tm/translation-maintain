@@ -8,7 +8,7 @@ use Aeliot\Bundle\TransMaintain\Service\DirectoryProvider;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-final class FilesMapProvider
+final class FilesFinder
 {
     private DirectoryProvider $directoryProvider;
 

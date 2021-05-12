@@ -7,16 +7,16 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\FilesMissedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class FilesMissedLinter implements LinterInterface
 {
-    private FilesMapProvider $filesMapProvider;
+    private FilesFinder $filesFinder;
 
-    public function __construct(FilesMapProvider $filesMapProvider)
+    public function __construct(FilesFinder $filesFinder)
     {
-        $this->filesMapProvider = $filesMapProvider;
+        $this->filesFinder = $filesFinder;
     }
 
     public function getKey(): string
@@ -32,7 +32,7 @@ final class FilesMissedLinter implements LinterInterface
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
         $bag = new ReportBag(FilesMissedLine::class);
-        $filesMap = $this->filesMapProvider->getFilesMap();
+        $filesMap = $this->filesFinder->getFilesMap();
         $mentionedLocales = $this->getMentionedLocales($filesMap);
         foreach ($filesMap as $domain => $localesFiles) {
             if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {

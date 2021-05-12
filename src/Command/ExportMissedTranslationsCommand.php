@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Command;
 
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,14 +14,14 @@ use Symfony\Component\Yaml\Yaml;
 
 final class ExportMissedTranslationsCommand extends Command
 {
-    private FilesMapProvider $filesMapProvider;
+    private FilesFinder $filesFinder;
     private KeysParser $keysParser;
 
-    public function __construct(FilesMapProvider $filesMapProvider, KeysParser $keysParser)
+    public function __construct(FilesFinder $filesFinder, KeysParser $keysParser)
     {
         parent::__construct('aeliot_trans_maintain:yaml:export_missed_translations');
 
-        $this->filesMapProvider = $filesMapProvider;
+        $this->filesFinder = $filesFinder;
         $this->keysParser = $keysParser;
     }
 
@@ -37,7 +37,7 @@ final class ExportMissedTranslationsCommand extends Command
     {
         $domain = $input->getArgument('domain');
         $localeFrom = $input->getArgument('locale_from');
-        $domainsFiles = $this->filesMapProvider->getFilesMap();
+        $domainsFiles = $this->filesFinder->getFilesMap();
 
         if (!isset($domainsFiles[$domain][$localeFrom])) {
             throw new \InvalidArgumentException(
