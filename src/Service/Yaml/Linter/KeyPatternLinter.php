@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
+use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\KeysPatternLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
@@ -32,11 +33,19 @@ final class KeyPatternLinter implements LinterInterface
         return [];
     }
 
-    public function lint(): ReportBag
+    public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
         $bag = new ReportBag(KeysPatternLine::class);
         $domainsFiles = $this->filesMapProvider->getFilesMap();
         foreach ($domainsFiles as $domain => $localesFiles) {
+            if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
+                continue;
+            }
+
+            if ($filterDto->locales) {
+                $localesFiles = array_intersect_key($localesFiles, array_flip($filterDto->locales));
+            }
+
             $keys = $this->getKeysSummary($this->keysParser->getParsedKeys($localesFiles));
             foreach ($keys as $languageId => $locales) {
                 if (!preg_match($this->keyPattern, $languageId)) {

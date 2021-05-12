@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
+use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\KeysMissedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
@@ -31,14 +32,18 @@ final class KeysMissedLinter implements LinterInterface
         return [LinterRegistry::PRESET_BASE];
     }
 
-    public function lint(): ReportBag
+    public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
         $bag = new ReportBag(KeysMissedLine::class);
         $domainsFiles = $this->filesMapProvider->getFilesMap();
         foreach ($domainsFiles as $domain => $localesFiles) {
+            if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
+                continue;
+            }
             if (count($localesFiles) === 1) {
                 continue;
             }
+
             $parsedKeys = $this->keysParser->getParsedKeys($localesFiles);
             $omittedKeys = $this->keysParser->getOmittedKeys($parsedKeys);
             $allOmittedKeys = $this->keysParser->mergeKeys($omittedKeys);
@@ -46,10 +51,15 @@ final class KeysMissedLinter implements LinterInterface
             foreach ($allOmittedKeys as $languageId) {
                 $omittedLanguages = [];
                 foreach ($omittedKeys as $locale => $keys) {
-                    if (in_array($languageId, $keys, true)) {
+                    if (\in_array($languageId, $keys, true)) {
                         $omittedLanguages[] = $locale;
                     }
                 }
+
+                if ($filterDto->locales) {
+                    $omittedLanguages = array_intersect($omittedLanguages, $filterDto->locales);
+                }
+
                 if ($omittedLanguages) {
                     sort($omittedLanguages);
                     $bag->addLine(new KeysMissedLine($domain, $languageId, $omittedLanguages));

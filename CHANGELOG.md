@@ -8,6 +8,9 @@ CHANGELOG
 * Added YAML key pattern checker.
 * Updated Linters presets mechanism.
 * Arguments for command `aeliot_trans_maintain:lint:yaml` became optional. Preset "base" used by default.
+* Added filtering to command `aeliot_trans_maintain:lint:yaml` by options:
+  * "domain" - list of analyzed domains,
+  * "locale" - list of analyzed locales.
 
 2.2.0
 -----
