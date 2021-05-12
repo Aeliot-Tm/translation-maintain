@@ -26,6 +26,7 @@ final class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('indent')->defaultValue(4)->cannotBeEmpty()->isRequired()->info('The amount of spaces to use for indentation of nested nodes')->end()
+                        ->scalarNode('key_pattern')->defaultNull()->info('Pattern to match keys. Example: /^[a-zA-Z0-9_.-]+$/')->end()
                     ->end()
                 ->end()
                 ->scalarNode('insert_missed_keys')

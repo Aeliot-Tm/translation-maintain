@@ -3,6 +3,7 @@ services:
         autowire: true
         autoconfigure: true
         bind:
+            $yamlKeyPattern: '%aeliot_trans_maintain.yaml.key_pattern%'
             $yamlIndent: '%aeliot_trans_maintain.yaml.indent%'
 
     Aeliot\Bundle\TransMaintain\Command\:
