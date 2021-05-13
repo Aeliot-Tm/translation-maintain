@@ -24,7 +24,7 @@ final class ExportMissedTranslationsCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Command for the sorting of yaml files');
+        $this->setDescription('Export missed translations in YAML files');
         $this->addArgument('domain', InputArgument::REQUIRED, 'Domain name');
         $this->addArgument('source_locale', InputArgument::REQUIRED, 'Locale code from data will be taken');
         $this->addArgument('target_locale', InputArgument::OPTIONAL, 'Locale code exported for. Used for filterring if passed');
