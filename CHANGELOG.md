@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+2.4.0
+-----
+* Implement usage of Google Translate API to translate missed keys.
+
 2.3.2
 -----
 * Fix getting of project directory path for Symfony >=5.0
