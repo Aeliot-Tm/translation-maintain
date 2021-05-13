@@ -27,7 +27,7 @@ final class LintYamlCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Command for the sorting of yaml files');
+        $this->setDescription('Check YAML files');
         $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterRegistry::PRESET_BASE]);
         $this->addOption('domain', 'd', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter domains');
         $this->addOption('locale', 'l', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter locales');
