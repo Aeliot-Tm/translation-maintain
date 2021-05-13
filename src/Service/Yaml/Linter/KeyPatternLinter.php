@@ -7,18 +7,18 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\KeysPatternLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
 
 final class KeyPatternLinter implements LinterInterface
 {
-    private FilesMapProvider $filesMapProvider;
+    private FilesFinder $filesFinder;
     private KeysParser $keysParser;
     private ?string $keyPattern;
 
-    public function __construct(FilesMapProvider $filesMapProvider, KeysParser $keysParser, ?string $yamlKeyPattern)
+    public function __construct(FilesFinder $filesFinder, KeysParser $keysParser, ?string $yamlKeyPattern)
     {
-        $this->filesMapProvider = $filesMapProvider;
+        $this->filesFinder = $filesFinder;
         $this->keysParser = $keysParser;
         $this->keyPattern = $yamlKeyPattern;
     }
@@ -40,7 +40,7 @@ final class KeyPatternLinter implements LinterInterface
         }
 
         $bag = new ReportBag(KeysPatternLine::class);
-        $domainsFiles = $this->filesMapProvider->getFilesMap();
+        $domainsFiles = $this->filesFinder->getFilesMap();
         foreach ($domainsFiles as $domain => $localesFiles) {
             if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
                 continue;

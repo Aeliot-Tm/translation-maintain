@@ -18,7 +18,18 @@ final class AeliotTransMaintainExtension extends Extension
         $container->setParameter('aeliot_trans_maintain.yaml.key_pattern', $config['yaml']['key_pattern']);
         $container->setParameter('aeliot_trans_maintain.insert_missed_keys', $config['insert_missed_keys']);
 
+        $this->defineGoogleCloudTranslate($config, $container);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
+    }
+
+    private function defineGoogleCloudTranslate(array $config, ContainerBuilder $container): void
+    {
+        $clientConfig = [];
+        if (isset($config['translation_api']['google']['key'])) {
+            $clientConfig['key'] = $config['translation_api']['google']['key'];
+        }
+        $container->setParameter('aeliot_trans_maintain.translation_api.google.config', $clientConfig);
     }
 }

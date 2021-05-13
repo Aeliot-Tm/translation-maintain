@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+2.4.0
+-----
+* Implement usage of Google Translate API to translate missed keys.
+
+2.3.1
+-----
+* Fix YAML Key Pattern Linter.
+
 2.3.0
 -----
 * Added compatibility with Symfony 5.2.
