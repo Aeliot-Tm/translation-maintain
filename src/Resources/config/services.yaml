@@ -50,7 +50,19 @@ services:
         arguments:
             $facades: !tagged 'aeliot_trans_maintain.api_translator.facade'
 
-    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Mediator: ~
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\LimitKeeper:
+        arguments:
+            $limits: '%aeliot_trans_maintain.translation_api.limits%'
+
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\LimitRepository:
+        arguments:
+            $path: '%aeliot_trans_maintain.translation_api.report_path%'
+
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\ServiceUniqueIdProvider:
+        arguments:
+            $keys: '%aeliot_trans_maintain.translation_api.keys%'
+
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Translator: ~
 
     Google\Cloud\Translate\V2\TranslateClient:
         arguments:

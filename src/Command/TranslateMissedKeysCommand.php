@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Command;
 
-use Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Mediator;
+use Aeliot\Bundle\TransMaintain\Exception\ApiLimitOutOfBoundsException;
+use Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Translator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\BranchInjector;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
@@ -21,7 +22,7 @@ final class TranslateMissedKeysCommand extends Command
     private FilesFinder $filesFinder;
     private FileManipulator $fileManipulator;
     private MissedValuesFinder $missedValuesFinder;
-    private Mediator $translatorMediator;
+    private Translator $translator;
     private TransformationConveyor $transformationConveyor;
 
     public function __construct(
@@ -30,7 +31,7 @@ final class TranslateMissedKeysCommand extends Command
         FileManipulator $fileManipulator,
         MissedValuesFinder $missedValuesFinder,
         TransformationConveyor $transformationConveyor,
-        Mediator $translatorMediator
+        Translator $translator
     ) {
         parent::__construct('aeliot_trans_maintain:yaml:translate');
 
@@ -39,7 +40,7 @@ final class TranslateMissedKeysCommand extends Command
         $this->fileManipulator = $fileManipulator;
         $this->missedValuesFinder = $missedValuesFinder;
         $this->transformationConveyor = $transformationConveyor;
-        $this->translatorMediator = $translatorMediator;
+        $this->translator = $translator;
     }
 
     protected function configure(): void
@@ -73,9 +74,16 @@ final class TranslateMissedKeysCommand extends Command
                 if (!$values) {
                     continue;
                 }
-                $values = $this->translatorMediator->translateBatch($values, $targetLocale, $sourceLocale);
 
-                $this->save($domain, $targetLocale, $values);
+                [$values, $isLimitReached] = $this->translateBatch($values, $targetLocale, $sourceLocale);
+
+                if ($values) {
+                    $this->save($domain, $targetLocale, $values);
+                }
+
+                if ($isLimitReached) {
+                    $output->writeln('[ERROR] API Limit reached');
+                }
             }
         }
 
@@ -123,5 +131,21 @@ final class TranslateMissedKeysCommand extends Command
         }
         $values = $this->transformationConveyor->transform($values);
         $this->fileManipulator->dump($path, $values);
+    }
+
+    private function translateBatch(array $values, string $targetLocale, ?string $sourceLocale = null): array
+    {
+        $isLimitReached = false;
+        $translatedValues = [];
+        foreach ($values as $key => $value) {
+            try {
+                $translatedValues[$key] = $this->translator->translate($value, $targetLocale, $sourceLocale);
+            } catch (ApiLimitOutOfBoundsException $exception) {
+                $isLimitReached = true;
+                break;
+            }
+        }
+
+        return [$translatedValues, $isLimitReached];
     }
 }
