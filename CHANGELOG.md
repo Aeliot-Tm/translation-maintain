@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+2.3.2
+-----
+* Fix getting of project directory path for Symfony >=5.0
+
+2.3.1
+-----
+* Fix YAML Key Pattern Linter.
+
 2.3.0
 -----
 * Added compatibility with Symfony 5.2.
