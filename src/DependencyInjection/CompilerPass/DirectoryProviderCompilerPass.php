@@ -25,7 +25,7 @@ final class DirectoryProviderCompilerPass implements CompilerPassInterface
         $dirs = [];
         $version = (new KernelVersionDetector())->getVersion($container, 'symfony/http-kernel');
         if (version_compare($version, '5.0.0', '>=')) {
-            $projectDir = $container->hasParameter('kernel.project_dir');
+            $projectDir = $container->getParameter('kernel.project_dir');
             $dirs[] = $projectDir.'/translations';
             $isResourcesFirst = false;
         } else {
