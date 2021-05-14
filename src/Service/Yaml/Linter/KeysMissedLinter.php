@@ -7,18 +7,18 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\KeysMissedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesMapProvider;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class KeysMissedLinter implements LinterInterface
 {
-    private FilesMapProvider $filesMapProvider;
+    private FilesFinder $filesFinder;
     private KeysParser $keysParser;
 
-    public function __construct(FilesMapProvider $filesMapProvider, KeysParser $keysParser)
+    public function __construct(FilesFinder $filesFinder, KeysParser $keysParser)
     {
-        $this->filesMapProvider = $filesMapProvider;
+        $this->filesFinder = $filesFinder;
         $this->keysParser = $keysParser;
     }
 
@@ -35,7 +35,7 @@ final class KeysMissedLinter implements LinterInterface
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
         $bag = new ReportBag(KeysMissedLine::class);
-        $domainsFiles = $this->filesMapProvider->getFilesMap();
+        $domainsFiles = $this->filesFinder->getFilesMap();
         foreach ($domainsFiles as $domain => $localesFiles) {
             if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
                 continue;

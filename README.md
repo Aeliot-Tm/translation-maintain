@@ -34,6 +34,10 @@ Full information about files transformation see [there](docs/lint/lint_yaml_comm
    ```
 Full information about updating of YAML files see [there](docs/transform_yaml_files.md).
 
+### Machine Translation via Vendor's API
+
+Full information about machine translation see [there](docs/machine_translation.md).
+
 **NOTE:** There used standard `\Symfony\Component\Yaml\Yaml` class for dumping, so it inserts single-word values without escaping.
 
 ---

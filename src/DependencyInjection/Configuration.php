@@ -2,6 +2,7 @@
 
 namespace Aeliot\Bundle\TransMaintain\DependencyInjection;
 
+use Aeliot\Bundle\TransMaintain\Service\ApiTranslator\FacadesRegistry;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -22,6 +23,18 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->arrayNode('translation_api')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode(FacadesRegistry::FACADE_GOOGLE)
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('key')->defaultNull()->info('Google Cloud Translate key')->end()
+                                ->scalarNode('limit')->defaultValue(500000)->info('Google Cloud Translate limit')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
                 ->arrayNode('yaml')
                     ->addDefaultsIfNotSet()
                     ->children()
