@@ -1,7 +1,7 @@
 {
   "type": "library",
   "name": "aeliot-tm/translation-maintain",
-  "description": "Dependency injection helpers library",
+  "description": "The package that helps you keep your translations consistent",
   "license": "MIT",
   "autoload": {
     "psr-4": {
