@@ -23,6 +23,11 @@ The order of passed keys has no matter.
 - **keys_duplicated** - then check if project has duplicated keys in each used locale of each domain.
 - **keys_missed** - then check if key mentioned in any locale of domain presented in all of them.
 
+#### Extend linters
+
+- **file_transformed** - then check if translation files transformed (has normalised structure).
+- **key_pattern** - then check if translation keys match configured pattern.
+
 
 ### Examples of reports
 
