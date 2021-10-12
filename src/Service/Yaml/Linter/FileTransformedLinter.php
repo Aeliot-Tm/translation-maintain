@@ -8,23 +8,19 @@ use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\FilesTransformedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\TransformationConveyor;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\YamlContentHandler;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FileTransformedStateDetector;
 
 final class FileTransformedLinter implements LinterInterface
 {
     private FileMapFilter $fileMapFilter;
-    private TransformationConveyor $transformationConveyor;
-    private YamlContentHandler $yamlContentHandler;
+    private FileTransformedStateDetector $fileTransformedStateDetector;
 
     public function __construct(
         FileMapFilter $fileMapFilter,
-        TransformationConveyor $transformationConveyor,
-        YamlContentHandler $yamlContentHandler
+        FileTransformedStateDetector $fileTransformedStateDetector
     ) {
         $this->fileMapFilter = $fileMapFilter;
-        $this->transformationConveyor = $transformationConveyor;
-        $this->yamlContentHandler = $yamlContentHandler;
+        $this->fileTransformedStateDetector = $fileTransformedStateDetector;
     }
 
     public function getKey(): string
@@ -48,7 +44,7 @@ final class FileTransformedLinter implements LinterInterface
         foreach ($domainsFiles as $domain => $localesFiles) {
             foreach ($localesFiles as $locale => $files) {
                 foreach ($files as $file) {
-                    if (!$this->isTransformed($file)) {
+                    if (!$this->fileTransformedStateDetector->isTransformed($file)) {
                         $bag->addLine(new FilesTransformedLine($domain, $locale, $file));
                     }
                 }
@@ -56,16 +52,5 @@ final class FileTransformedLinter implements LinterInterface
         }
 
         return $bag;
-    }
-
-    private function isTransformed(string $file): bool
-    {
-        if (!$yaml = $this->yamlContentHandler->parseFile($file)) {
-            return false;
-        }
-
-        $yaml = $this->transformationConveyor->transform($yaml);
-
-        return $this->yamlContentHandler->dump($yaml) === file_get_contents($file);
     }
 }
