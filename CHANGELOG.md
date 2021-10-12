@@ -6,6 +6,8 @@ CHANGELOG
 * Add linter "file_transformed" for check if file structure is normalised for all YAML files.
 * Updated parameter data type declaration.
 * Updated phpDocs.
+* Add ability to call commands in the isolated dev environment (without installing into application).
+* Add ability of services testing.
 
 2.4.0
 -----
