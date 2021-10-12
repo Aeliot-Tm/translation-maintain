@@ -8,7 +8,7 @@ use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class KeysDuplicatedLinter implements LinterInterface
@@ -16,12 +16,12 @@ final class KeysDuplicatedLinter implements LinterInterface
     use GlueKeysTrait;
 
     private FileManipulator $fileManipulator;
-    private FilesFinder $filesFinder;
+    private FileMapFilter $fileMapFilter;
 
-    public function __construct(FileManipulator $fileManipulator, FilesFinder $filesFinder)
+    public function __construct(FileManipulator $fileManipulator, FileMapFilter $fileMapFilter)
     {
         $this->fileManipulator = $fileManipulator;
-        $this->filesFinder = $filesFinder;
+        $this->fileMapFilter = $fileMapFilter;
     }
 
     public function getKey(): string
@@ -37,17 +37,9 @@ final class KeysDuplicatedLinter implements LinterInterface
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
         $bag = new ReportBag(KeysDuplicatedLine::class);
-        $domainsFiles = $this->filesFinder->getFilesMap();
+        $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
-            if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
-                continue;
-            }
-
-            if ($filterDto->locales) {
-                $localesFiles = array_intersect_key($localesFiles, array_flip($filterDto->locales));
-            }
-
             foreach ($localesFiles as $locale => $files) {
                 $values = [];
                 $duplicatedKeys = [];
