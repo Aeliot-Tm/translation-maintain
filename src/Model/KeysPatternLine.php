@@ -9,7 +9,7 @@ final class KeysPatternLine implements ReportLineInterface
     private string $domain;
     private string $languageId;
     /**
-     * @var array<string>
+     * @var array<int,string>
      */
     private array $locales;
 
@@ -21,7 +21,7 @@ final class KeysPatternLine implements ReportLineInterface
     }
 
     /**
-     * @var array<string>
+     * @return array<int,string>
      */
     public static function getHeaders(): array
     {
@@ -29,7 +29,7 @@ final class KeysPatternLine implements ReportLineInterface
     }
 
     /**
-     * @var array<string>
+     * @return array<string,string>
      */
     public function jsonSerialize(): array
     {

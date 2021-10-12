@@ -1,0 +1,8 @@
+framework:
+    csrf_protection: false
+    test: true
+    session:
+        handler_id: 'Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler'
+
+services:
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler:

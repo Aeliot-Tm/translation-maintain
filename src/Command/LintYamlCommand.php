@@ -17,12 +17,31 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class LintYamlCommand extends Command
 {
     private LinterRegistry $linterRegistry;
+    private ?string $yamlKeyPattern;
 
-    public function __construct(LinterRegistry $linterRegistry)
+    public function __construct(LinterRegistry $linterRegistry, ?string $yamlKeyPattern)
     {
         parent::__construct('aeliot_trans_maintain:lint:yaml');
 
         $this->linterRegistry = $linterRegistry;
+        $this->yamlKeyPattern = $yamlKeyPattern;
+    }
+
+    public function getHelp(): string
+    {
+        $presets = implode(', ', $this->linterRegistry->getExistingPresets());
+        $help = "There are available presets: $presets.\n";
+
+        $lintersKeys = implode(', ', $this->linterRegistry->getRegisteredLintersKeys());
+        $help .= "There are available linters: $lintersKeys.\n";
+
+        if ($this->yamlKeyPattern) {
+            $help .= "\nThere is configured pattern for the checking of translation keys: $this->yamlKeyPattern\n";
+        } else {
+            $help .= "\nKey pattern is not configured. You have not to use such linter.\n";
+        }
+
+        return $help;
     }
 
     protected function configure(): void

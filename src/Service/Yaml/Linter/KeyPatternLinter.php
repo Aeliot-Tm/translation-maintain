@@ -7,18 +7,18 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\KeysPatternLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
 
 final class KeyPatternLinter implements LinterInterface
 {
-    private FilesFinder $filesFinder;
+    private FileMapFilter $fileMapFilter;
     private KeysParser $keysParser;
     private ?string $keyPattern;
 
-    public function __construct(FilesFinder $filesFinder, KeysParser $keysParser, ?string $yamlKeyPattern)
+    public function __construct(FileMapFilter $fileMapFilter, KeysParser $keysParser, ?string $yamlKeyPattern)
     {
-        $this->filesFinder = $filesFinder;
+        $this->fileMapFilter = $fileMapFilter;
         $this->keysParser = $keysParser;
         $this->keyPattern = $yamlKeyPattern;
     }
@@ -40,16 +40,8 @@ final class KeyPatternLinter implements LinterInterface
         }
 
         $bag = new ReportBag(KeysPatternLine::class);
-        $domainsFiles = $this->filesFinder->getFilesMap();
+        $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
         foreach ($domainsFiles as $domain => $localesFiles) {
-            if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
-                continue;
-            }
-
-            if ($filterDto->locales) {
-                $localesFiles = array_intersect_key($localesFiles, array_flip($filterDto->locales));
-            }
-
             $keys = $this->getKeysSummary($this->keysParser->getParsedKeys($localesFiles));
             foreach ($keys as $languageId => $locales) {
                 if (!preg_match($this->keyPattern, $languageId)) {

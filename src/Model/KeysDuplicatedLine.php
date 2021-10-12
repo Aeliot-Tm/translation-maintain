@@ -18,7 +18,7 @@ final class KeysDuplicatedLine implements ReportLineInterface
     }
 
     /**
-     * @var array<string>
+     * @return array<int,string>
      */
     public static function getHeaders(): array
     {
@@ -26,7 +26,7 @@ final class KeysDuplicatedLine implements ReportLineInterface
     }
 
     /**
-     * @var array<string>
+     * @return array<string,string>
      */
     public function jsonSerialize(): array
     {

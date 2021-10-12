@@ -8,7 +8,7 @@ final class FilesMissedLine implements ReportLineInterface
 {
     private string $domain;
     /**
-     * @var array<string>
+     * @var array<int,string>
      */
     private array $omittedLanguages;
 
@@ -19,7 +19,7 @@ final class FilesMissedLine implements ReportLineInterface
     }
 
     /**
-     * @var array<string>
+     * @return array<int,string>
      */
     public static function getHeaders(): array
     {
@@ -27,7 +27,7 @@ final class FilesMissedLine implements ReportLineInterface
     }
 
     /**
-     * @var array<string>
+     * @return array<string,string>
      */
     public function jsonSerialize(): array
     {

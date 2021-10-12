@@ -31,12 +31,14 @@ final class SortFileCommand extends Command
         $this->addArgument('output', InputArgument::OPTIONAL, 'Output file path');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $pathIn = (string) $input->getArgument('file');
         $yaml = $this->fileManipulator->parse($pathIn);
         $yaml = $this->keySorter->transform($yaml);
         $pathOut = $input->getArgument('output') ?: $pathIn;
         $this->fileManipulator->dump($pathOut, $yaml);
+
+        return 0;
     }
 }

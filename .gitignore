@@ -1,5 +1,9 @@
 .idea
 
+/report/
+!/report/**/**/.gitkeep
+/translations/*
+!/translations/.gitkeep
 /vendor
 .phpunit.result.cache
 composer.lock

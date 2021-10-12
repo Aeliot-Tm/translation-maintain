@@ -28,11 +28,13 @@ final class TransformYamlCommand extends Command
         $this->addArgument('output', InputArgument::OPTIONAL, 'Output file path. Optional. Incoming file will be updated if the argument omitted.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $pathIn = (string) $input->getArgument('file');
         $pathOut = $input->getArgument('output') ?: $pathIn;
 
         $this->fileManager->update($pathIn, $pathOut);
+
+        return 0;
     }
 }

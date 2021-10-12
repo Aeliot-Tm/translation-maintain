@@ -1,13 +1,21 @@
 CHANGELOG
 =========
 
+2.5.0
+-----
+* Add linter "file_transformed" for check if file structure is normalised for all YAML files.
+* Updated parameter data type declaration.
+* Updated phpDocs.
+* Add ability to call commands in the isolated dev environment (without installing into application).
+* Add ability of services testing.
+
 2.4.0
 -----
 * Implement usage of Google Translate API to translate missed keys.
 
 2.3.2
 -----
-* Fix getting of project directory path for Symfony >=5.0
+* Fix getting of project directory path for Symfony >=5.0.
 
 2.3.1
 -----

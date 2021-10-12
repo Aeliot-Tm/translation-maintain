@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Aeliot\Bundle\TransMaintain\Test\Kernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+
+require __DIR__.'/bootstrap.php';
+
+$kernel = new Kernel('test', true);
+(new Application($kernel))->run(new ArgvInput());
