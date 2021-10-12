@@ -3,11 +3,13 @@
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
          colors="true"
 >
     <php>
         <ini name="error_reporting" value="-1" />
         <ini name="memory_limit" value="-1" />
+        <server name="KERNEL_CLASS" value="Aeliot\Bundle\TransMaintain\Test\Kernel" />
     </php>
 
     <testsuites>

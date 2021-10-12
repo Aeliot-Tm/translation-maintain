@@ -23,7 +23,6 @@
     "symfony/filesystem": ">=3.4",
     "symfony/finder": ">=3.4",
     "symfony/http-kernel": ">=3.4",
-    "symfony/translation": ">=3.4",
     "symfony/translation-contracts": "^v2.0.0",
     "symfony/yaml": ">=3.4"
   },
@@ -33,7 +32,9 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.5",
+    "symfony/framework-bundle": ">=3.4",
+    "symfony/translation": "^5.3"
   },
   "scripts": {
     "test": "vendor/bin/phpunit"
