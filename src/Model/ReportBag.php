@@ -12,8 +12,14 @@ final class ReportBag
      */
     private array $lines = [];
 
+    /**
+     * @var class-string
+     */
     private string $reportLineClass;
 
+    /**
+     * @param class-string $reportLineClass
+     */
     public function __construct(string $reportLineClass)
     {
         $this->reportLineClass = $reportLineClass;

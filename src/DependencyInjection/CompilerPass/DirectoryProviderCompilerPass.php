@@ -18,7 +18,7 @@ final class DirectoryProviderCompilerPass implements CompilerPassInterface
     }
 
     /**
-     * @return array<string>
+     * @return array<int,string>
      */
     private function getDirectories(ContainerBuilder $container): array
     {

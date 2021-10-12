@@ -17,6 +17,9 @@ final class FilesFinder
         $this->directoryProvider = $directoryProvider;
     }
 
+    /**
+     * @return array<int,string>
+     */
     public function getDomains(): array
     {
         $domains = array_keys($this->getFilesMap());
@@ -26,7 +29,7 @@ final class FilesFinder
     }
 
     /**
-     * @return array<array>
+     * @return array<string,array<string,array<int,string>>>
      */
     public function getFilesMap(): array
     {
@@ -47,6 +50,9 @@ final class FilesFinder
         return $map;
     }
 
+    /**
+     * @return array<int,string>
+     */
     public function getLocales(): array
     {
         $mentionedLocales = array_unique(array_merge(...array_map('array_keys', array_values($this->getFilesMap()))));

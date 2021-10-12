@@ -8,7 +8,7 @@ final class DirectoryProvider
 {
     private string $defaultPath;
     /**
-     * @var array<string>
+     * @var array<int,string>
      */
     private array $dirs;
 
@@ -21,7 +21,7 @@ final class DirectoryProvider
     }
 
     /**
-     * @return array<string>
+     * @return array<int,string>
      */
     public function getAll(): array
     {
