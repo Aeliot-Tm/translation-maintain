@@ -61,7 +61,7 @@ final class FilesFinder
         return $mentionedLocales;
     }
 
-    public function locateFile($domain, $locale): string
+    public function locateFile(string $domain, string $locale): string
     {
         $pattern = \sprintf('~%s\b%s.%s.ya?ml$~', preg_quote(DIRECTORY_SEPARATOR, '~'), preg_quote($domain, '~'), preg_quote($locale, '~'));
         foreach ($this->getFiles() as $file) {
