@@ -12,6 +12,16 @@ final class FilesMissedLine implements ReportLineInterface
      */
     private array $omittedLanguages;
 
+    public static function getEmptyReportMessage(): string
+    {
+        return 'All domains have files for all used locales';
+    }
+
+    public static function getReportWithErrorsMessage(): string
+    {
+        return 'Missed locales files for domains';
+    }
+
     public function __construct(string $domain, array $omittedLanguages)
     {
         $this->domain = $domain;

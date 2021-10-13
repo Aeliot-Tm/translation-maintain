@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+2.5.1
+-----
+* Make lint reports easier to understand.
+
 2.5.0
 -----
 * Add linter "file_transformed" for check if file structure is normalised for all YAML files.

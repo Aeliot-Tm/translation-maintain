@@ -13,6 +13,16 @@ final class KeysMissedLine implements ReportLineInterface
      */
     private array $omittedLanguages;
 
+    public static function getEmptyReportMessage(): string
+    {
+        return 'All locales of all domains are in the sync state. There are no missed translation keys';
+    }
+
+    public static function getReportWithErrorsMessage(): string
+    {
+        return 'Missed translation keys';
+    }
+
     public function __construct(string $domain, string $languageId, array $omittedLanguages)
     {
         $this->domain = $domain;

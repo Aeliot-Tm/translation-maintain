@@ -13,6 +13,16 @@ final class KeysPatternLine implements ReportLineInterface
      */
     private array $locales;
 
+    public static function getEmptyReportMessage(): string
+    {
+        return 'All translation keys match configured pattern';
+    }
+
+    public static function getReportWithErrorsMessage(): string
+    {
+        return 'Translation keys that are not match configured pattern';
+    }
+
     public function __construct(string $domain, string $languageId, array $locales)
     {
         $this->domain = $domain;
