@@ -10,6 +10,16 @@ final class KeysDuplicatedLine implements ReportLineInterface
     private string $locale;
     private string $languageId;
 
+    public static function getEmptyReportMessage(): string
+    {
+        return 'There are no duplicated keys';
+    }
+
+    public static function getReportWithErrorsMessage(): string
+    {
+        return 'Duplicated translation keys';
+    }
+
     public function __construct(string $domain, string $locale, string $languageId)
     {
         $this->domain = $domain;

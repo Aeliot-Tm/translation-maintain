@@ -19,11 +19,15 @@ final class ConsoleOutputTableBuilder
 
     public function render(ReportBag $reportBag): void
     {
-        $table = new Table($this->output);
-        $table->setHeaders($reportBag->getHeaders());
-        foreach ($reportBag->getLines() as $line) {
-            $table->addRow($line->jsonSerialize());
+        $this->output->writeln($reportBag->getPriorMessage());
+
+        if (!$reportBag->isEmpty()) {
+            $table = new Table($this->output);
+            $table->setHeaders($reportBag->getHeaders());
+            foreach ($reportBag->getLines() as $line) {
+                $table->addRow($line->jsonSerialize());
+            }
+            $table->render();
         }
-        $table->render();
     }
 }

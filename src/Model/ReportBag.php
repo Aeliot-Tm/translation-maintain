@@ -52,6 +52,18 @@ final class ReportBag
         return $this->lines;
     }
 
+    public function getPriorMessage(): string
+    {
+        $prefix = 'Translation files linter report: ';
+        /** @var ReportLineInterface $reportLineClass */
+        $reportLineClass = $this->reportLineClass;
+        if ($this->isEmpty()) {
+            return \sprintf('%s<info>%s</info>', $prefix, $reportLineClass::getEmptyReportMessage());
+        }
+
+        return \sprintf('%s<fg=black;bg=yellow>%s</>', $prefix, $reportLineClass::getReportWithErrorsMessage());
+    }
+
     public function isEmpty(): bool
     {
         return !$this->lines;

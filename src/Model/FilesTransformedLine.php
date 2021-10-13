@@ -10,6 +10,16 @@ final class FilesTransformedLine implements ReportLineInterface
     private string $file;
     private string $locale;
 
+    public static function getEmptyReportMessage(): string
+    {
+        return 'All files have normalised state (they are transformed)';
+    }
+
+    public static function getReportWithErrorsMessage(): string
+    {
+        return 'Files which have abnormal state (they are not transformed)';
+    }
+
     public function __construct(string $domain, string $locale, string $file)
     {
         $this->domain = $domain;
