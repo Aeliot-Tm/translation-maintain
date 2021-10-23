@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+2.6.0
+-----
+* Add files allocation functionality to the transform command.
+* Rename example files (add locale to the file name).
+
 2.5.1
 -----
 * Make lint reports easier to understand.
