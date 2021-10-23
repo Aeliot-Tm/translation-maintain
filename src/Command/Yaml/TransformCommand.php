@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Command;
+namespace Aeliot\Bundle\TransMaintain\Command\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Exception\InvalidCommandParametersException;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class TransformYamlCommand extends Command
+final class TransformCommand extends Command
 {
     private FilesFinder $filesFinder;
     private FileUpdater $fileManager;
