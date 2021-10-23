@@ -59,7 +59,7 @@ here:
 
 ### Examples
 
-See [income](../examples/income.yaml) and [outgoing](../examples/outgoing.yaml) files.
+See [income](../examples/income.en.yaml) and [outgoing](../examples/outgoing.en.yaml) files.
 
 ---
 *[Read Me](../README.md)*
