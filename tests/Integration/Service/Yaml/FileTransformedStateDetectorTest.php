@@ -21,8 +21,8 @@ final class FileTransformedStateDetectorTest extends KernelTestCase
 
     public function getDataForTest(): iterable
     {
-        yield [true, __DIR__.'/../../../../examples/outgoing.yaml'];
-        yield [false, __DIR__.'/../../../../examples/income.yaml'];
+        yield [true, __DIR__.'/../../../../examples/outgoing.en.yaml'];
+        yield [false, __DIR__.'/../../../../examples/income.en.yaml'];
     }
 
     protected function setUp(): void
