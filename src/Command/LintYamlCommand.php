@@ -50,6 +50,7 @@ final class LintYamlCommand extends Command
         $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterRegistry::PRESET_BASE]);
         $this->addOption('domain', 'd', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter domains');
         $this->addOption('locale', 'l', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter locales');
+        $this->setAliases(['aeliot_trans_maintain:yaml:lint']);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

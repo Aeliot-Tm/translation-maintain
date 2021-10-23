@@ -5,6 +5,7 @@ CHANGELOG
 -----
 * Add files allocation functionality to the transform command.
 * Rename example files (add locale to the file name).
+* Add alias for the Lint YAML command: `aeliot_trans_maintain:yaml:lint`.
 
 2.5.1
 -----
