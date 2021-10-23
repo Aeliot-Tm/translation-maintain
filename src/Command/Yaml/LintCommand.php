@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Command;
+namespace Aeliot\Bundle\TransMaintain\Command\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Report\Builder\ConsoleOutputTableBuilder;
@@ -14,7 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class LintYamlCommand extends Command
+final class LintCommand extends Command
 {
     private LinterRegistry $linterRegistry;
     private ?string $yamlKeyPattern;
@@ -50,6 +50,7 @@ final class LintYamlCommand extends Command
         $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterRegistry::PRESET_BASE]);
         $this->addOption('domain', 'd', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter domains');
         $this->addOption('locale', 'l', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter locales');
+        $this->setAliases(['aeliot_trans_maintain:yaml:lint']);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

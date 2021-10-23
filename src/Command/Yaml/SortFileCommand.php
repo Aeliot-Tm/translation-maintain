@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Command;
+namespace Aeliot\Bundle\TransMaintain\Command\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysSorter;
