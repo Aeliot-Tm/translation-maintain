@@ -11,7 +11,7 @@
     - all files presented
     - all variable filled for each language
     - files have duplicated keys
-    - file transformed
+    - not transformed files detection
     - all keys of translations match pattern.
 - [ ] Implement extended testing of translations:
     - empty values detector.
