@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Command;
+namespace Aeliot\Bundle\TransMaintain\Command\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Report\Builder\ConsoleOutputTableBuilder;
@@ -14,7 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class LintYamlCommand extends Command
+final class LintCommand extends Command
 {
     private LinterRegistry $linterRegistry;
     private ?string $yamlKeyPattern;
