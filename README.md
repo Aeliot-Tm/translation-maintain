@@ -28,11 +28,22 @@ Full information about files transformation see [there](docs/lint/lint_yaml_comm
    ```shell
    php bin/console aeliot_trans_maintain:yaml:transform <PATH_TO_FILE_TO_BE_UPDATED>
    ```
-1. Update all YAML files in the directory:
+2. Update all YAML files in the project:
+   ```shell
+   php bin/console aeliot_trans_maintain:yaml:transform --all
+   ```
+2. Update some YAML files of the project which belongs to domain(s) and/or locale(s):
+   ```shell
+   php bin/console aeliot_trans_maintain:yaml:transform --domain=messages --domain=validators --locale=en --locale=de
+   ```
+3. Update all YAML files in the specific directory (e.g. not standard or not in the project):
    ```shell
    find PATH_TO_DIRECTORY -type f \( -iname \*.yml -o -iname \*.yaml \) | sort | xargs  -I {} -t  php  bin/console aeliot_trans_maintain:yaml:transform $1{}
    ```
-Full information about updating of YAML files see [there](docs/transform_yaml_files.md).
+   You can filter them additionally with `grep "some text in the file path"` when you add this before, after or instead of `sort` instruction. 
+   And don't forget to separate instructions by the pipe.
+
+Additional information about updating of YAML files see [there](docs/transform_yaml_files.md).
 
 ### Machine Translation via Vendor's API
 

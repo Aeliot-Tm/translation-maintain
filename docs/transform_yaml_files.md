@@ -7,7 +7,26 @@ and let to avoid repeating of words or can be concatenated if you want.
 Such keys will be automatically concatenated by translator during the parsing of fils. 
 But it takes a lot of time to maintain lits in the sorted state.
 
-So there implemented command:
+So, there implemented command: `aeliot_trans_maintain:yaml:transform`
+
+It can work in two **modes**:
+1. transformation of allocated files
+1. transformation of specific file
+
+For the **first mode (transformation of allocated files)** it accepts options:
+1. `all` - then all files of the project will be transformed. There must not be specified other options together with this one.
+    ```shell
+    php bin/console aeliot_trans_maintain:yaml:transform --all
+    ```
+2. `domain` - one o several options which represents desired domains
+3. `locale` - one o several options which represents desired locales
+    ```shell
+    php bin/console aeliot_trans_maintain:yaml:transform --domain=messages --domain=validators --locale=en --locale=de
+    ```
+
+In this mode, at least one option must be specified.
+
+For the **second mode (transformation of specific file)** it accepts one or two arguments:
 
 ```shell
 php bin/console aeliot_trans_maintain:yaml:transform INCOME_FILE_PATH OUTGOING_FILE_PATH
