@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class FilesTransformedLine implements ReportLineInterface
+final class FilesTransformedLine extends AbstractLine
 {
     private string $domain;
     private string $file;
@@ -28,17 +28,9 @@ final class FilesTransformedLine implements ReportLineInterface
     }
 
     /**
-     * @return array<int,string>
-     */
-    public static function getHeaders(): array
-    {
-        return ['domain', 'locale', 'file'];
-    }
-
-    /**
      * @return array<string,string>
      */
-    public function jsonSerialize(): array
+    protected function getNamedValues(): array
     {
         return ['domain' => $this->domain, 'locale' => $this->locale, 'file' => $this->file, ];
     }

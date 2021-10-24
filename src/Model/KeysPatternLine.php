@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class KeysPatternLine implements ReportLineInterface
+final class KeysPatternLine extends AbstractLine
 {
     private string $domain;
     private string $languageId;
@@ -31,22 +31,14 @@ final class KeysPatternLine implements ReportLineInterface
     }
 
     /**
-     * @return array<int,string>
-     */
-    public static function getHeaders(): array
-    {
-        return ['domain', 'invalid_language_id', 'locales'];
-    }
-
-    /**
      * @return array<string,string>
      */
-    public function jsonSerialize(): array
+    protected function getNamedValues(): array
     {
         return [
             'domain' => $this->domain,
             'invalid_language_id' => $this->languageId,
-            'locales' => implode(', ', $this->locales),
+            'locales' => $this->locales,
         ];
     }
 }

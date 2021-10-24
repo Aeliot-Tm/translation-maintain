@@ -4,18 +4,11 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class EmptyValueLine implements ReportLineInterface
+final class EmptyValueLine extends AbstractLine
 {
     private string $domain;
     private string $languageId;
     private array $locales;
-
-    public function __construct(string $domain, string $languageId, array $locales)
-    {
-        $this->domain = $domain;
-        $this->locales = $locales;
-        $this->languageId = $languageId;
-    }
 
     public static function getEmptyReportMessage(): string
     {
@@ -27,23 +20,19 @@ final class EmptyValueLine implements ReportLineInterface
         return 'Translation keys with empty values';
     }
 
-    /**
-     * @return array<int,string>
-     */
-    public static function getHeaders(): array
+    public function __construct(string $domain, string $languageId, array $locales)
     {
-        return ['domain', 'language_id', 'locales'];
+        $this->domain = $domain;
+        $this->locales = $locales;
+        $this->languageId = $languageId;
     }
 
-    /**
-     * @return array<string,string>
-     */
-    public function jsonSerialize(): array
+    protected function getNamedValues(): array
     {
         return [
             'domain' => $this->domain,
             'language_id' => $this->languageId,
-            'locales' => implode(', ', $this->locales),
+            'locales' => $this->locales,
         ];
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class KeysDuplicatedLine implements ReportLineInterface
+final class KeysDuplicatedLine extends AbstractLine
 {
     private string $domain;
     private string $locale;
@@ -28,17 +28,9 @@ final class KeysDuplicatedLine implements ReportLineInterface
     }
 
     /**
-     * @return array<int,string>
-     */
-    public static function getHeaders(): array
-    {
-        return ['domain', 'locale', 'duplicated_language_id'];
-    }
-
-    /**
      * @return array<string,string>
      */
-    public function jsonSerialize(): array
+    protected function getNamedValues(): array
     {
         return [
             'domain' => $this->domain,
