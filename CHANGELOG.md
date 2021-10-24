@@ -8,6 +8,7 @@ CHANGELOG
 * Add alias for the Lint YAML command: `aeliot_trans_maintain:yaml:lint`.
 * Move commands which works with YAML files to the separate namespace.
 * Add detector (linter) of empty values of translations.
+* Move public constants of `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry` to `\Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface`.
 
 2.5.1
 -----

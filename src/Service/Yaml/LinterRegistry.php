@@ -8,10 +8,12 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface;
 
 final class LinterRegistry
 {
-    public const PRESET_ALL = 'all';
-    public const PRESET_BASE = 'base';
+    /** @deprecated Use {@see \Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface::PRESET_ALL } */
+    public const PRESET_ALL = LinterInterface::PRESET_ALL;
+    /** @deprecated Use {@see \Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface::PRESET_BASE } */
+    public const PRESET_BASE = LinterInterface::PRESET_BASE;
 
-    private const PRESETS = [self::PRESET_ALL, self::PRESET_BASE];
+    private const PRESETS = [LinterInterface::PRESET_ALL, LinterInterface::PRESET_BASE];
 
     /**
      * @var array<array<LinterInterface>>
@@ -35,7 +37,7 @@ final class LinterRegistry
         }
 
         $presets = $linter->getPresets();
-        $presets[] = self::PRESET_ALL;
+        $presets[] = LinterInterface::PRESET_ALL;
 
         if ($diff = array_diff($presets, self::PRESETS)) {
             throw new \LogicException(\sprintf('Used invalid preset name(s): %s', implode(', ', $diff)));
@@ -59,11 +61,11 @@ final class LinterRegistry
 
     public function getLinter(string $key): LinterInterface
     {
-        if (!\array_key_exists($key, $this->linters[self::PRESET_ALL])) {
+        if (!\array_key_exists($key, $this->linters[LinterInterface::PRESET_ALL])) {
             throw new \LogicException(\sprintf('Linter "%s" not registered', $key));
         }
 
-        return $this->linters[self::PRESET_ALL][$key];
+        return $this->linters[LinterInterface::PRESET_ALL][$key];
     }
 
     /**
@@ -95,6 +97,6 @@ final class LinterRegistry
      */
     public function getRegisteredLintersKeys(): array
     {
-        return array_keys($this->linters[self::PRESET_ALL]);
+        return array_keys($this->linters[LinterInterface::PRESET_ALL]);
     }
 }
