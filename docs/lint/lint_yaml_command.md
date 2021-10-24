@@ -25,6 +25,7 @@ The order of passed keys has no matter.
 
 #### Extend linters
 
+- **empty_value** - then check if translation is empty string. Note: value trimmed before the testing. So, string that consists of spaces is empty too.
 - **file_transformed** - then check if translation files transformed (has normalised structure).
 - **key_pattern** - then check if translation keys match configured pattern.
 

@@ -7,6 +7,7 @@ CHANGELOG
 * Rename example files (add locale to the file name).
 * Add alias for the Lint YAML command: `aeliot_trans_maintain:yaml:lint`.
 * Move commands which works with YAML files to the separate namespace.
+* Add detector (linter) of empty values of translations.
 
 2.5.1
 -----

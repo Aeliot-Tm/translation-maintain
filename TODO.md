@@ -10,10 +10,10 @@
 - [x] [Implement base testing of translations](docs/lint/lint_yaml_command.md):
     - all files presented
     - all variable filled for each language
-    - files have duplicated keys
+    - files have duplicated keys.
+- [x] Implement extended testing of translations:
     - not transformed files detection
     - all keys of translations match pattern.
-- [ ] Implement extended testing of translations:
     - empty values detector.
 - [x] Make compatible with Symfony versions since 3.4 till 5.2.
 - [ ] Extend support of translation files formats.
