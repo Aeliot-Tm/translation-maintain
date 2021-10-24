@@ -10,6 +10,7 @@ CHANGELOG
 * Add detector (linter) of empty values of translations.
 * Move public constants of `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry` to `\Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface`.
 * Simplify report line definitions through the defining of columns order and headers in the single place of each report line model. 
+* Make Google Translation model configurable.
 
 2.5.1
 -----
