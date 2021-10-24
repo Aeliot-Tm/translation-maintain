@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine;
+use Aeliot\Bundle\TransMaintain\Model\EmptyValueLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
-final class KeysDuplicatedLinter implements LinterInterface
+final class EmptyValueLinter implements LinterInterface
 {
     use GlueKeysTrait;
 
@@ -26,39 +25,39 @@ final class KeysDuplicatedLinter implements LinterInterface
 
     public function getKey(): string
     {
-        return 'keys_duplicated';
+        return 'empty_value';
     }
 
     public function getPresets(): array
     {
-        return [LinterInterface::PRESET_BASE];
+        return [];
     }
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
-        $bag = new ReportBag(KeysDuplicatedLine::class);
+        $bag = new ReportBag(EmptyValueLine::class);
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
+            $empty = [];
             foreach ($localesFiles as $locale => $files) {
-                $values = [];
-                $duplicatedKeys = [];
                 foreach ($files as $file) {
                     foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $languageId => $value) {
-                        if (array_key_exists($languageId, $values)) {
-                            $duplicatedKeys[] = $languageId;
-                        } else {
-                            $values[$languageId] = $value;
+                        if (trim($value) === '') {
+                            if (!array_key_exists($languageId, $empty)) {
+                                $empty[$languageId] = [];
+                            }
+                            $empty[$languageId][] = $locale;
                         }
                     }
                 }
+            }
 
-                $duplicatedKeys = array_unique($duplicatedKeys);
-                sort($duplicatedKeys);
+            ksort($empty);
 
-                foreach ($duplicatedKeys as $languageId) {
-                    $bag->addLine(new KeysDuplicatedLine($domain, $locale, $languageId));
-                }
+            foreach ($empty as $languageId => $locales) {
+                sort($locales);
+                $bag->addLine(new EmptyValueLine($domain, $languageId, $locales));
             }
         }
 

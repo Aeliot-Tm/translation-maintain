@@ -42,8 +42,9 @@ services:
                 - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysTransformer'
                 - '@Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysSorter'
 
-    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Facades\:
-        resource: '../../Service/ApiTranslator/Facades/*'
+    Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Facades\GoogleTranslateFacade:
+        arguments:
+            $model: '%aeliot_trans_maintain.translation_api.google.model%'
         tags: [ 'aeliot_trans_maintain.api_translator.facade' ]
 
     Aeliot\Bundle\TransMaintain\Service\ApiTranslator\FacadesRegistry:

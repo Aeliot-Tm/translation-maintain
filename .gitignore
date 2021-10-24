@@ -4,6 +4,8 @@
 !/report/**/**/.gitkeep
 /translations/*
 !/translations/.gitkeep
+/var
 /vendor
 .phpunit.result.cache
 composer.lock
+/.env.local

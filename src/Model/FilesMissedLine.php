@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class FilesMissedLine implements ReportLineInterface
+final class FilesMissedLine extends AbstractLine
 {
     private string $domain;
     /**
@@ -29,18 +29,10 @@ final class FilesMissedLine implements ReportLineInterface
     }
 
     /**
-     * @return array<int,string>
-     */
-    public static function getHeaders(): array
-    {
-        return ['domain', 'omitted_languages'];
-    }
-
-    /**
      * @return array<string,string>
      */
-    public function jsonSerialize(): array
+    protected function getNamedValues(): array
     {
-        return ['domain' => $this->domain, 'omitted_languages' => implode(', ', $this->omittedLanguages)];
+        return ['domain' => $this->domain, 'omitted_languages' => $this->omittedLanguages];
     }
 }

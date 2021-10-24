@@ -26,7 +26,7 @@ final class FilesMissedLinter implements LinterInterface
 
     public function getPresets(): array
     {
-        return [LinterRegistry::PRESET_BASE];
+        return [LinterInterface::PRESET_BASE];
     }
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag

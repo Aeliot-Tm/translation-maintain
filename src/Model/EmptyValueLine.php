@@ -4,38 +4,35 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class KeysDuplicatedLine extends AbstractLine
+final class EmptyValueLine extends AbstractLine
 {
     private string $domain;
-    private string $locale;
     private string $languageId;
+    private array $locales;
 
     public static function getEmptyReportMessage(): string
     {
-        return 'There are no duplicated keys';
+        return 'There is no key with empty value';
     }
 
     public static function getReportWithErrorsMessage(): string
     {
-        return 'Duplicated translation keys';
+        return 'Translation keys with empty values';
     }
 
-    public function __construct(string $domain, string $locale, string $languageId)
+    public function __construct(string $domain, string $languageId, array $locales)
     {
         $this->domain = $domain;
+        $this->locales = $locales;
         $this->languageId = $languageId;
-        $this->locale = $locale;
     }
 
-    /**
-     * @return array<string,string>
-     */
     protected function getNamedValues(): array
     {
         return [
             'domain' => $this->domain,
-            'locale' => $this->locale,
-            'duplicated_language_id' => $this->languageId,
+            'language_id' => $this->languageId,
+            'locales' => $this->locales,
         ];
     }
 }

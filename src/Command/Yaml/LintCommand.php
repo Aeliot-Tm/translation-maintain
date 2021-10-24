@@ -47,7 +47,7 @@ final class LintCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Check YAML files');
-        $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterRegistry::PRESET_BASE]);
+        $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterInterface::PRESET_BASE]);
         $this->addOption('domain', 'd', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter domains');
         $this->addOption('locale', 'l', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter locales');
         $this->setAliases(['aeliot_trans_maintain:yaml:lint']);
@@ -87,12 +87,12 @@ final class LintCommand extends Command
     private function getLinters(InputInterface $input): \Generator
     {
         $linters = (array) $input->getArgument('linter');
-        if (\in_array(LinterRegistry::PRESET_ALL, $linters, true)) {
+        if (\in_array(LinterInterface::PRESET_ALL, $linters, true)) {
             if (count($linters) !== 1) {
                 throw new \InvalidArgumentException('Preset "all" must be a single arguments');
             }
 
-            yield from $this->linterRegistry->getPresetLinters(LinterRegistry::PRESET_ALL);
+            yield from $this->linterRegistry->getPresetLinters(LinterInterface::PRESET_ALL);
         }
 
         $linters = $this->transformPresetsToLinterKeys($linters);

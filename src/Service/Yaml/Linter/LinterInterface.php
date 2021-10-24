@@ -9,6 +9,9 @@ use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 
 interface LinterInterface
 {
+    public const PRESET_ALL = 'all';
+    public const PRESET_BASE = 'base';
+
     public function getKey(): string;
 
     public function getPresets(): array;

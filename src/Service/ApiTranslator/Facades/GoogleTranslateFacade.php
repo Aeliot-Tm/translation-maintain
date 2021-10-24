@@ -9,10 +9,12 @@ use Google\Cloud\Translate\V2\TranslateClient;
 
 final class GoogleTranslateFacade implements TranslatorFacadeInterface
 {
+    private ?string $model;
     private TranslateClient $translateClient;
 
-    public function __construct(TranslateClient $translateClient)
+    public function __construct(?string $model, TranslateClient $translateClient)
     {
+        $this->model = $model;
         $this->translateClient = $translateClient;
     }
 
@@ -23,9 +25,12 @@ final class GoogleTranslateFacade implements TranslatorFacadeInterface
 
     public function translate(string $value, string $targetLocale, ?string $sourceLocale = null): string
     {
-        $options = ['target' => $targetLocale, 'model' => 'base'];
+        $options = ['target' => $targetLocale];
         if ($sourceLocale) {
             $options['source'] = $sourceLocale;
+        }
+        if ($this->model) {
+            $options['model'] = $this->model;
         }
 
         $result = $this->translateClient->translate($value, $options);

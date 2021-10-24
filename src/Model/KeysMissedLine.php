@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class KeysMissedLine implements ReportLineInterface
+final class KeysMissedLine extends AbstractLine
 {
     private string $domain;
     private string $languageId;
@@ -31,22 +31,14 @@ final class KeysMissedLine implements ReportLineInterface
     }
 
     /**
-     * @return array<int,string>
-     */
-    public static function getHeaders(): array
-    {
-        return ['domain', 'language_id', 'omitted_languages'];
-    }
-
-    /**
      * @return array<string,string>
      */
-    public function jsonSerialize(): array
+    protected function getNamedValues(): array
     {
         return [
             'domain' => $this->domain,
             'language_id' => $this->languageId,
-            'omitted_languages' => implode(', ', $this->omittedLanguages),
+            'omitted_languages' => $this->omittedLanguages,
         ];
     }
 }
