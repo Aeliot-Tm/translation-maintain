@@ -24,6 +24,16 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('insert_missed_keys')
+                    ->defaultValue(KeyRegister::NO)
+                    ->validate()
+                        ->ifNotInArray(KeyRegister::POSITIONS)
+                        ->thenInvalid(
+                            \sprintf('Invalid configuration. Permitted keys are "%s" but there is another value %%s defined in the configuration.', implode('" ,"', KeyRegister::POSITIONS))
+                        )
+                    ->end()
+                    ->info('Decorate default translator for inserting of missed keys.')
+                ->end()
                 ->arrayNode('translation_api')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -43,16 +53,6 @@ final class Configuration implements ConfigurationInterface
                         ->scalarNode('indent')->defaultValue(4)->cannotBeEmpty()->isRequired()->info('The amount of spaces to use for indentation of nested nodes')->end()
                         ->scalarNode('key_pattern')->defaultNull()->info('Pattern to match keys. Example: /^[a-zA-Z0-9_.-]+$/')->end()
                     ->end()
-                ->end()
-                ->scalarNode('insert_missed_keys')
-                    ->defaultValue(KeyRegister::NO)
-                    ->validate()
-                        ->ifNotInArray(KeyRegister::POSITIONS)
-                        ->thenInvalid(
-                            \sprintf('Invalid configuration. Permitted keys are "%s" but there is another value %%s defined in the configuration.', implode('" ,"', KeyRegister::POSITIONS))
-                        )
-                    ->end()
-                    ->info('Decorate default translator for inserting of missed keys.')
                 ->end()
             ->end();
 

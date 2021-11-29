@@ -45,6 +45,14 @@ Full information about files transformation see [there](docs/lint/lint_yaml_comm
 
 Additional information about updating of YAML files see [there](docs/transform_yaml_files.md).
 
+### Export missed translations
+
+Example:
+   ```shell
+   php bin/console aeliot_trans_maintain:yaml:export_missed_translations messages en de
+   ```
+Full information about files transformation see [there](docs/export_missed_translations.md).
+
 ### Machine Translation via Vendor's API
 
 Full information about machine translation see [there](docs/machine_translation.md).
