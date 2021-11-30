@@ -27,7 +27,7 @@ So, you can use it in CI testing scripts easy. Reports of each linter will be re
   - **keys_duplicated** - check if project has duplicated keys in each used locale of each domain.
   - **keys_missed** - check if key mentioned in one locale of the domain is not presented in others.
 
-- _Extend linters:_
+- _Auxiliary linters:_
   - **empty_value** - then check if translation is empty string. Note: value trimmed before the testing. So, string that consists of spaces is empty too.
   - **file_transformed** - then check if translation files transformed (has normalised structure).
   - **key_pattern** - then check if translation keys match configured pattern. Example: `/^[a-zA-Z0-9_.-]+$/`.
