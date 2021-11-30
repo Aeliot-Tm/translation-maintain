@@ -18,7 +18,7 @@ So, you can use it in CI testing scripts easy. Reports of each linter will be re
 
 ### Presets
 - **base** - executes base (mostly required) linters. Can be used with the list of linters.
-- **all** - executes all linters. Applicable not for all projects. Only one (this) key can be permitted if passed.
+- **all** - executes all linters. Applicable not for all projects. Only one (this) key permitted if passed.
 
 ### Linters
 
