@@ -12,6 +12,9 @@ CHANGELOG
   * Removed deprecated constants:
     * `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry::PRESET_ALL`
     * `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry::PRESET_BASE`
+  * Change naming:
+    * language_id -> translation_id
+    * language -> locale
 
 2.6.0
 -----
