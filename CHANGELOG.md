@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-2.7
+2.7.0
 -----
 * Features:
   * Add linter `same_value` which detects translation keys with the same value.
