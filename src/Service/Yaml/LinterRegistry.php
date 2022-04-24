@@ -8,11 +8,6 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface;
 
 final class LinterRegistry
 {
-    /** @deprecated Use {@see \Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface::PRESET_ALL } */
-    public const PRESET_ALL = LinterInterface::PRESET_ALL;
-    /** @deprecated Use {@see \Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface::PRESET_BASE } */
-    public const PRESET_BASE = LinterInterface::PRESET_BASE;
-
     private const PRESETS = [LinterInterface::PRESET_ALL, LinterInterface::PRESET_BASE];
 
     /**
