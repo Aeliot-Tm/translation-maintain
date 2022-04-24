@@ -7,11 +7,11 @@ namespace Aeliot\Bundle\TransMaintain\Model;
 final class KeysPatternLine extends AbstractLine
 {
     private string $domain;
-    private string $languageId;
     /**
      * @var array<int,string>
      */
     private array $locales;
+    private string $translationId;
 
     public static function getEmptyReportMessage(): string
     {
@@ -23,10 +23,10 @@ final class KeysPatternLine extends AbstractLine
         return 'Translation keys that are not match configured pattern';
     }
 
-    public function __construct(string $domain, string $languageId, array $locales)
+    public function __construct(string $domain, string $translationId, array $locales)
     {
         $this->domain = $domain;
-        $this->languageId = $languageId;
+        $this->translationId = $translationId;
         $this->locales = $locales;
     }
 
@@ -37,7 +37,7 @@ final class KeysPatternLine extends AbstractLine
     {
         return [
             'domain' => $this->domain,
-            'invalid_language_id' => $this->languageId,
+            'invalid_translation_id' => $this->translationId,
             'locales' => $this->locales,
         ];
     }

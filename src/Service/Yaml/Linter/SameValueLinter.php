@@ -48,23 +48,23 @@ final class SameValueLinter implements LinterInterface
                         $files
                     )
                 );
-                foreach ($pairs as $languageId => $translation) {
+                foreach ($pairs as $translationId => $translation) {
                     if (!array_key_exists($translation, $values)) {
-                        $values[$translation] = $languageId;
+                        $values[$translation] = $translationId;
                     } else {
                         if (!array_key_exists($translation, $same)) {
                             $same[$translation] = [$values[$translation]];
                         }
 
-                        $same[$translation][] = $languageId;
+                        $same[$translation][] = $translationId;
                     }
                 }
 
                 ksort($same);
 
-                foreach ($same as $translation => $languageIds) {
-                    sort($languageIds);
-                    $bag->addLine(new SameValueLine($domain, $locale, $translation, $languageIds));
+                foreach ($same as $translation => $translationIds) {
+                    sort($translationIds);
+                    $bag->addLine(new SameValueLine($domain, $locale, $translation, $translationIds));
                 }
             }
         }

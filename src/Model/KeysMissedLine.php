@@ -7,11 +7,11 @@ namespace Aeliot\Bundle\TransMaintain\Model;
 final class KeysMissedLine extends AbstractLine
 {
     private string $domain;
-    private string $languageId;
     /**
      * @var array<int,string>
      */
     private array $omittedLanguages;
+    private string $translationId;
 
     public static function getEmptyReportMessage(): string
     {
@@ -23,10 +23,10 @@ final class KeysMissedLine extends AbstractLine
         return 'Missed translation keys';
     }
 
-    public function __construct(string $domain, string $languageId, array $omittedLanguages)
+    public function __construct(string $domain, string $translationId, array $omittedLanguages)
     {
         $this->domain = $domain;
-        $this->languageId = $languageId;
+        $this->translationId = $translationId;
         $this->omittedLanguages = $omittedLanguages;
     }
 
@@ -37,7 +37,7 @@ final class KeysMissedLine extends AbstractLine
     {
         return [
             'domain' => $this->domain,
-            'language_id' => $this->languageId,
+            'translation_id' => $this->translationId,
             'omitted_languages' => $this->omittedLanguages,
         ];
     }

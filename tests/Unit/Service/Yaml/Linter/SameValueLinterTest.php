@@ -81,7 +81,7 @@ final class SameValueLinterTest extends TestCase
                     'domain' => 'messages',
                     'locale' => 'en',
                     'translation' => 'value_a',
-                    'language_ids' => 'a.b, a.c',
+                    'translation_ids' => 'a.b, a.c',
                 ],
             ],
             ['messages' => ['en' => ['messages.en.yaml']]],

@@ -7,9 +7,9 @@ namespace Aeliot\Bundle\TransMaintain\Model;
 final class SameValueLine extends AbstractLine
 {
     private string $domain;
-    private array $languageIds;
     private string $locale;
     private string $translation;
+    private array $translationIds;
 
     public static function getEmptyReportMessage(): string
     {
@@ -21,12 +21,12 @@ final class SameValueLine extends AbstractLine
         return 'Translation keys with same values';
     }
 
-    public function __construct(string $domain, string $locale, string $translation, array $languageIds)
+    public function __construct(string $domain, string $locale, string $translation, array $translationIds)
     {
         $this->domain = $domain;
         $this->locale = $locale;
         $this->translation = $translation;
-        $this->languageIds = $languageIds;
+        $this->translationIds = $translationIds;
     }
 
     protected function getNamedValues(): array
@@ -35,7 +35,7 @@ final class SameValueLine extends AbstractLine
             'domain' => $this->domain,
             'locale' => $this->locale,
             'translation' => $this->translation,
-            'language_ids' => $this->languageIds,
+            'translation_ids' => $this->translationIds,
         ];
     }
 }

@@ -8,7 +8,7 @@ final class KeysDuplicatedLine extends AbstractLine
 {
     private string $domain;
     private string $locale;
-    private string $languageId;
+    private string $translationId;
 
     public static function getEmptyReportMessage(): string
     {
@@ -20,10 +20,10 @@ final class KeysDuplicatedLine extends AbstractLine
         return 'Duplicated translation keys';
     }
 
-    public function __construct(string $domain, string $locale, string $languageId)
+    public function __construct(string $domain, string $locale, string $translationId)
     {
         $this->domain = $domain;
-        $this->languageId = $languageId;
+        $this->translationId = $translationId;
         $this->locale = $locale;
     }
 
@@ -35,7 +35,7 @@ final class KeysDuplicatedLine extends AbstractLine
         return [
             'domain' => $this->domain,
             'locale' => $this->locale,
-            'duplicated_language_id' => $this->languageId,
+            'duplicated_translation_id' => $this->translationId,
         ];
     }
 }

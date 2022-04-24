@@ -42,12 +42,12 @@ final class EmptyValueLinter implements LinterInterface
             $empty = [];
             foreach ($localesFiles as $locale => $files) {
                 foreach ($files as $file) {
-                    foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $languageId => $value) {
+                    foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $translationId => $value) {
                         if (trim($value) === '') {
-                            if (!array_key_exists($languageId, $empty)) {
-                                $empty[$languageId] = [];
+                            if (!array_key_exists($translationId, $empty)) {
+                                $empty[$translationId] = [];
                             }
-                            $empty[$languageId][] = $locale;
+                            $empty[$translationId][] = $locale;
                         }
                     }
                 }
@@ -55,9 +55,9 @@ final class EmptyValueLinter implements LinterInterface
 
             ksort($empty);
 
-            foreach ($empty as $languageId => $locales) {
+            foreach ($empty as $translationId => $locales) {
                 sort($locales);
-                $bag->addLine(new EmptyValueLine($domain, $languageId, $locales));
+                $bag->addLine(new EmptyValueLine($domain, $translationId, $locales));
             }
         }
 
