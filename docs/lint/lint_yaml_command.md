@@ -23,50 +23,15 @@ So, you can use it in CI testing scripts easy. Reports of each linter will be re
 ### Linters
 
 - _Base linters:_
-  - **files_missed** - check if domain presented by all mentioned locales.
-  - **keys_duplicated** - check if project has duplicated keys in each used locale of each domain.
-  - **keys_missed** - check if key mentioned in one locale of the domain is not presented in others.
+  - **files_missed** - check if domain presented by all mentioned locales. [Report example](./reports/files_missed.md).
+  - **keys_duplicated** - check if project has duplicated keys in each used locale of each domain. [Report example](./reports/files_missed.md).
+  - **keys_missed** - check if key mentioned in one locale of the domain is not presented in others. [Report example](./reports/files_missed.md).
 
 - _Auxiliary linters:_
   - **empty_value** - then check if translation is empty string. Note: value trimmed before the testing. So, string that consists of spaces is empty too.
   - **file_transformed** - then check if translation files transformed (has normalised structure).
   - **key_pattern** - then check if translation keys match configured pattern. Example: `/^[a-zA-Z0-9_.-]+$/`.
-
----
-
-### Examples of reports
-
-#### Missed files
-
-```shell
-+------------+-------------------+
-| domain     | omitted_languages |
-+------------+-------------------+
-| messages   | de                |
-| validators | fr, pl            |
-+------------+-------------------+
-```
-
-#### Duplicated keys
-
-```shell
-+----------+--------+------------------------+
-| domain   | locale | duplicated_language_id |
-+----------+--------+------------------------+
-| messages | en     | some.nested.key        |
-+----------+--------+------------------------+
-```
-
-#### Missed translation keys
-
-```shell
-+----------+-------------+-------------------+
-| domain   | language_id | omitted_languages |
-+----------+-------------+-------------------+
-| messages | first_key   | fr, nl            |
-| messages | second_key  | fr, de            |
-+----------+-------------+-------------------+
-```
+  - **same_value** - detect translations with the same values in all files of one language of one domain.
 
 ---
 *[Read Me](../../README.md)*

@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+2.7
+-----
+* Features:
+  * Add linter `same_value` which detects translation keys with the same value.
+* Backward compatibility breaks:
+  * Removed deprecated constants:
+    * `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry::PRESET_ALL`
+    * `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry::PRESET_BASE`
+
 2.6.0
 -----
 * Add files allocation functionality to the transform command.

@@ -32,6 +32,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
+    "dg/bypass-finals": "^1.1",
     "phpunit/phpunit": "^9.5",
     "symfony/dotenv": "^5.3",
     "symfony/framework-bundle": ">=3.4",
