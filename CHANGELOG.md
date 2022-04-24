@@ -5,6 +5,7 @@ CHANGELOG
 -----
 * Features:
   * Add linter `same_value` which detects translation keys with the same value.
+  * Add docker configuration for development purposes.
 * Backward compatibility breaks:
   * Removed deprecated constants:
     * `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry::PRESET_ALL`

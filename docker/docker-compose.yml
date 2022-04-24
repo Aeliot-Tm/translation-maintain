@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  tramaint-php:
+    build:
+      dockerfile: .Dockerfile
+      context: .
+    restart: on-failure
+    environment:
+      PHP_XDEBUG_PORT: 9003
+    volumes:
+      - ./../../:/app:delegated
