@@ -10,7 +10,7 @@ final class KeysMissedLine extends AbstractLine
     /**
      * @var array<int,string>
      */
-    private array $omittedLanguages;
+    private array $omittedLocales;
     private string $translationId;
 
     public static function getEmptyReportMessage(): string
@@ -23,11 +23,11 @@ final class KeysMissedLine extends AbstractLine
         return 'Missed translation keys';
     }
 
-    public function __construct(string $domain, string $translationId, array $omittedLanguages)
+    public function __construct(string $domain, string $translationId, array $omittedLocales)
     {
         $this->domain = $domain;
         $this->translationId = $translationId;
-        $this->omittedLanguages = $omittedLanguages;
+        $this->omittedLocales = $omittedLocales;
     }
 
     /**
@@ -38,7 +38,7 @@ final class KeysMissedLine extends AbstractLine
         return [
             'domain' => $this->domain,
             'translation_id' => $this->translationId,
-            'omitted_languages' => $this->omittedLanguages,
+            'omitted_locales' => $this->omittedLocales,
         ];
     }
 }
