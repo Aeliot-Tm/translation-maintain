@@ -5,7 +5,9 @@ CHANGELOG
 -----
 * Features:
   * Add linter `same_value` which detects translation keys with the same value.
+* Minors:
   * Add docker configuration for development purposes.
+  * Configured CS Fixer.
 * Bug fixes:
   * Fix registering of missed translation.
   * Remove not used dependencies.
