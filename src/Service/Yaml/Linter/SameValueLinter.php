@@ -44,15 +44,15 @@ final class SameValueLinter implements LinterInterface
                 $values = [];
                 $pairs = array_merge(
                     ...array_map(
-                        fn(string $x): array => iterator_to_array($this->glueKeys($this->fileManipulator->parse($x))),
+                        fn (string $x): array => iterator_to_array($this->glueKeys($this->fileManipulator->parse($x))),
                         $files
                     )
                 );
                 foreach ($pairs as $translationId => $translation) {
-                    if (!array_key_exists($translation, $values)) {
+                    if (!\array_key_exists($translation, $values)) {
                         $values[$translation] = $translationId;
                     } else {
-                        if (!array_key_exists($translation, $same)) {
+                        if (!\array_key_exists($translation, $same)) {
                             $same[$translation] = [$values[$translation]];
                         }
 

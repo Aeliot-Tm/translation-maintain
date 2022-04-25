@@ -43,8 +43,8 @@ final class EmptyValueLinter implements LinterInterface
             foreach ($localesFiles as $locale => $files) {
                 foreach ($files as $file) {
                     foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $translationId => $value) {
-                        if (trim($value) === '') {
-                            if (!array_key_exists($translationId, $empty)) {
+                        if ('' === trim($value)) {
+                            if (!\array_key_exists($translationId, $empty)) {
                                 $empty[$translationId] = [];
                             }
                             $empty[$translationId][] = $locale;

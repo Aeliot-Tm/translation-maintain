@@ -13,11 +13,6 @@ final class KeysTransformerTest extends TestCase
 {
     /**
      * @dataProvider getDataForTestTransform
-     *
-     * @param array $expected
-     * @param array $income
-     *
-     * @return void
      */
     public function testTransform(array $expected, array $income): void
     {
@@ -26,11 +21,11 @@ final class KeysTransformerTest extends TestCase
 
     public function getDataForTestTransform(): Generator
     {
-        //explode keys
+        // explode keys
         yield [['a' => ['b' => '*']], ['a.b' => '*']];
         yield [['a' => ['b' => ['c' => '*']]], ['a' => ['b.c' => '*']]];
         yield [['a' => ['b' => '*', 'c' => '*']], ['a.c' => '*', 'a.b' => '*']];
-        yield [['a' => '*', 'a.b' => '*'], ['a' => '*', 'a.b' => '*',]];
+        yield [['a' => '*', 'a.b' => '*'], ['a' => '*', 'a.b' => '*']];
         yield [['a' => '*', 'a.b' => '*', 'a.c' => '*'], ['a.c' => '*', 'a.b' => '*', 'a' => '*']];
         yield [['a' => ['b' => ['c' => '*', 'd' => '*']]], ['a.b.c' => '*', 'a.b.d' => '*']];
         yield [['a' => ['b' => '*', 'b.c' => '*', 'b.d' => '*']], ['a.b' => '*', 'a.b.c' => '*', 'a.b.d' => '*']];
@@ -44,13 +39,13 @@ final class KeysTransformerTest extends TestCase
             ['a.b.c.d.e.f' => '*', 'a.b.c.d.e.g' => '*', 'a.b.c.d.e.h' => '*'],
         ];
 
-        //explode child keys
+        // explode child keys
         yield [
             ['a' => ['b' => ['c' => ['d' => '*', 'e' => '*']]]],
             ['a' => ['b' => ['c.d' => '*', 'c.e' => '*']]],
         ];
 
-        //compress child
+        // compress child
         yield [
             ['a' => ['b' => ['c' => '*', 'c.d' => '*', 'c.e' => '*']]],
             ['a.b.c' => '*', 'a.b.c.d' => '*', 'a.b.c.e' => '*'],
@@ -64,7 +59,7 @@ final class KeysTransformerTest extends TestCase
             ['a.b' => '*', 'a.b.c.d.e.f' => '*', 'a.b.c.d.e.g' => '*'],
         ];
 
-        //compress parent
+        // compress parent
         yield [
             ['a' => ['b' => ['c' => '*', 'c.d' => '*']]],
             ['a.b.c.d' => '*', 'a.b.c' => '*'],
@@ -78,7 +73,7 @@ final class KeysTransformerTest extends TestCase
             ['a.b.c.e' => '*', 'a' => ['b' => ['c' => '*', 'c.d' => '*']]],
         ];
 
-        //compress on root
+        // compress on root
         yield [
             ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
             ['a' => '*', 'a.b.c.d' => '*'],
@@ -92,13 +87,13 @@ final class KeysTransformerTest extends TestCase
             ['a' => '*', 'a.b' => '*', 'a.b.c' => '*', 'a.b.c.d.e' => '*'],
         ];
 
-        //don't compress children in case of parent keys collision
+        // don't compress children in case of parent keys collision
         yield [
             ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
             ['a' => '*', 'a.b' => ['c' => ['d' => '*']]],
         ];
 
-        //not same values
+        // not same values
         yield [['a' => ['b' => '1'], 'a.b' => '2'], ['a' => ['b' => '1'], 'a.b' => '2']];
         yield [['a' => ['b' => '1'], 'a.b' => '2'], ['a.b' => '2', 'a' => ['b' => '1']]];
         yield [

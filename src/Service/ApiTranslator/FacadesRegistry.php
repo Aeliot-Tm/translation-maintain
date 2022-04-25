@@ -24,8 +24,8 @@ final class FacadesRegistry
 
     private function addFacade(TranslatorFacadeInterface $facade): void
     {
-        if (array_key_exists($key = $facade->getKey(), $this->facades)) {
-            throw new \LogicException(\sprintf('Facade "%s" is registered', $key));
+        if (\array_key_exists($key = $facade->getKey(), $this->facades)) {
+            throw new \LogicException(sprintf('Facade "%s" is registered', $key));
         }
 
         $this->facades[$key] = $facade;
@@ -33,8 +33,8 @@ final class FacadesRegistry
 
     public function getFacade(string $key): TranslatorFacadeInterface
     {
-        if (!array_key_exists($key, $this->facades)) {
-            throw new \InvalidArgumentException(\sprintf('Requested not registered facade "%s"', $key));
+        if (!\array_key_exists($key, $this->facades)) {
+            throw new \InvalidArgumentException(sprintf('Requested not registered facade "%s"', $key));
         }
 
         return $this->facades[$key];

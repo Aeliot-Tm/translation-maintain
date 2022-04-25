@@ -21,7 +21,6 @@ final class ApiLimitReport implements \JsonSerializable
         }
     }
 
-
     public function jsonSerialize(): array
     {
         return [

@@ -28,19 +28,19 @@ final class LinterRegistry
     {
         $key = $linter->getKey();
         if (\in_array($key, self::PRESETS, true)) {
-            throw new \LogicException(\sprintf('Used reserved key "%s"', $key));
+            throw new \LogicException(sprintf('Used reserved key "%s"', $key));
         }
 
         $presets = $linter->getPresets();
         $presets[] = LinterInterface::PRESET_ALL;
 
         if ($diff = array_diff($presets, self::PRESETS)) {
-            throw new \LogicException(\sprintf('Used invalid preset name(s): %s', implode(', ', $diff)));
+            throw new \LogicException(sprintf('Used invalid preset name(s): %s', implode(', ', $diff)));
         }
 
         foreach ($presets as $preset) {
             if (\array_key_exists($key, $this->linters[$preset])) {
-                throw new \LogicException(\sprintf('Linter "%s" registered', $key));
+                throw new \LogicException(sprintf('Linter "%s" registered', $key));
             }
             $this->linters[$preset][$key] = $linter;
         }
@@ -57,7 +57,7 @@ final class LinterRegistry
     public function getLinter(string $key): LinterInterface
     {
         if (!\array_key_exists($key, $this->linters[LinterInterface::PRESET_ALL])) {
-            throw new \LogicException(\sprintf('Linter "%s" not registered', $key));
+            throw new \LogicException(sprintf('Linter "%s" not registered', $key));
         }
 
         return $this->linters[LinterInterface::PRESET_ALL][$key];

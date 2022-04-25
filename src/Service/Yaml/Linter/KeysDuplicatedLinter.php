@@ -9,7 +9,6 @@ use Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class KeysDuplicatedLinter implements LinterInterface
 {
@@ -45,7 +44,7 @@ final class KeysDuplicatedLinter implements LinterInterface
                 $duplicatedKeys = [];
                 foreach ($files as $file) {
                     foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $translationId => $value) {
-                        if (array_key_exists($translationId, $values)) {
+                        if (\array_key_exists($translationId, $values)) {
                             $duplicatedKeys[] = $translationId;
                         } else {
                             $values[$translationId] = $value;

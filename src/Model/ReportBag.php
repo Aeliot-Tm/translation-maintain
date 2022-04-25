@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-
 final class ReportBag
 {
     /**
@@ -28,9 +27,12 @@ final class ReportBag
     public function addLine(ReportLineInterface $line): void
     {
         if (!is_a($line, $this->reportLineClass)) {
-            throw new \InvalidArgumentException(
-                \sprintf('Invalid report line passed "%s". Expected "%s"', get_class($line), $this->reportLineClass)
+            $message = sprintf(
+                'Invalid report line passed "%s". Expected "%s"',
+                \get_class($line),
+                $this->reportLineClass
             );
+            throw new \InvalidArgumentException($message);
         }
 
         $this->lines[] = $line;
@@ -58,10 +60,10 @@ final class ReportBag
         /** @var ReportLineInterface $reportLineClass */
         $reportLineClass = $this->reportLineClass;
         if ($this->isEmpty()) {
-            return \sprintf('%s<info>%s</info>', $prefix, $reportLineClass::getEmptyReportMessage());
+            return sprintf('%s<info>%s</info>', $prefix, $reportLineClass::getEmptyReportMessage());
         }
 
-        return \sprintf('%s<fg=black;bg=yellow>%s</>', $prefix, $reportLineClass::getReportWithErrorsMessage());
+        return sprintf('%s<fg=black;bg=yellow>%s</>', $prefix, $reportLineClass::getReportWithErrorsMessage());
     }
 
     public function isEmpty(): bool

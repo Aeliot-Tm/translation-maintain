@@ -58,7 +58,7 @@ final class KeyPatternLinter implements LinterInterface
         $summary = [];
         foreach ($parsedKeys as $locale => $translationIds) {
             foreach ($translationIds as $translationId) {
-                if (!array_key_exists($translationId, $summary)) {
+                if (!\array_key_exists($translationId, $summary)) {
                     $summary[$translationId] = [];
                 }
                 $summary[$translationId][] = $locale;

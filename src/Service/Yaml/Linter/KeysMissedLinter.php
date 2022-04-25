@@ -9,7 +9,6 @@ use Aeliot\Bundle\TransMaintain\Model\KeysMissedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 
 final class KeysMissedLinter implements LinterInterface
 {
@@ -40,7 +39,7 @@ final class KeysMissedLinter implements LinterInterface
             if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
                 continue;
             }
-            if (count($localesFiles) === 1) {
+            if (1 === \count($localesFiles)) {
                 continue;
             }
 

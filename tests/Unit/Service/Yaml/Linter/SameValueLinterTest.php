@@ -13,12 +13,11 @@ use PHPUnit\Framework\TestCase;
 
 final class SameValueLinterTest extends TestCase
 {
-
     /**
      * @dataProvider getDataForTestCorrectFiles
      *
      * @param array<string,array<string,array<int,string>>> $filesMap
-     * @param array<string,mixed> $fileTranslations
+     * @param array<string,mixed>                           $fileTranslations
      */
     public function testNothingDetected(array $filesMap, array $fileTranslations): void
     {
@@ -55,7 +54,7 @@ final class SameValueLinterTest extends TestCase
      * @dataProvider getDataForTestFilesWithSameValues
      *
      * @param array<string,array<string,array<int,string>>> $filesMap
-     * @param array<string,mixed> $fileTranslations
+     * @param array<string,mixed>                           $fileTranslations
      */
     public function testSameValuesDetected(array $expected, array $filesMap, array $fileTranslations): void
     {
@@ -64,7 +63,7 @@ final class SameValueLinterTest extends TestCase
 
         self::assertSame(
             $expected,
-            array_map(static fn(ReportLineInterface $x): array => $x->jsonSerialize(), $bag->getLines())
+            array_map(static fn (ReportLineInterface $x): array => $x->jsonSerialize(), $bag->getLines())
         );
     }
 

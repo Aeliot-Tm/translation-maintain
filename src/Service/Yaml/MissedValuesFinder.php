@@ -20,9 +20,7 @@ final class MissedValuesFinder
         $domainsFiles = $this->filesFinder->getFilesMap();
 
         if (!isset($domainsFiles[$domain][$sourceLocale])) {
-            throw new \InvalidArgumentException(
-                \sprintf('Invalid domain "%s" or locale "%s" posted', $domain, $sourceLocale)
-            );
+            throw new \InvalidArgumentException(sprintf('Invalid domain "%s" or locale "%s" posted', $domain, $sourceLocale));
         }
 
         $parsedKeys = $this->keysParser->getParsedKeys($domainsFiles[$domain]);
@@ -36,7 +34,7 @@ final class MissedValuesFinder
 
         if ($targetLocale) {
             if (!$filterKeys = $omittedKeys[$targetLocale] ?? null) {
-                throw new \InvalidArgumentException(\sprintf('There is no omitted keys for locale "%s"', $targetLocale));
+                throw new \InvalidArgumentException(sprintf('There is no omitted keys for locale "%s"', $targetLocale));
             }
 
             $values = array_intersect_key($values, array_flip($filterKeys));

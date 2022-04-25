@@ -6,5 +6,4 @@ namespace Aeliot\Bundle\TransMaintain\Exception;
 
 final class ApiLimitOutOfBoundsException extends \OutOfBoundsException
 {
-
 }

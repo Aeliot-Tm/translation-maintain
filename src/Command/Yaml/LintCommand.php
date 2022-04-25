@@ -88,7 +88,7 @@ final class LintCommand extends Command
     {
         $linters = (array) $input->getArgument('linter');
         if (\in_array(LinterInterface::PRESET_ALL, $linters, true)) {
-            if (count($linters) !== 1) {
+            if (1 !== \count($linters)) {
                 throw new \InvalidArgumentException('Preset "all" must be a single arguments');
             }
 
@@ -98,9 +98,7 @@ final class LintCommand extends Command
         $linters = $this->transformPresetsToLinterKeys($linters);
 
         if ($invalid = array_diff($linters, $this->linterRegistry->getRegisteredLintersKeys())) {
-            throw new \InvalidArgumentException(
-                \sprintf('Requested not available linters: %s', implode(', ', $invalid))
-            );
+            throw new \InvalidArgumentException(sprintf('Requested not available linters: %s', implode(', ', $invalid)));
         }
 
         foreach ($linters as $linterKey) {
@@ -118,7 +116,7 @@ final class LintCommand extends Command
         if ($requestedPresets = array_intersect($this->linterRegistry->getExistingPresets(), $linters)) {
             $linters = array_diff($linters, $requestedPresets);
             $presetsLinters = array_map(
-                fn(string $preset): array => $this->linterRegistry->getPresetLintersKeys($preset),
+                fn (string $preset): array => $this->linterRegistry->getPresetLintersKeys($preset),
                 $requestedPresets
             );
             $linters = array_unique(array_merge($linters, ...array_values($presetsLinters)));

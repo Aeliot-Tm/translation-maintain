@@ -18,7 +18,7 @@ final class KeysCleaner implements TransformerInterface
                 unset($yaml[$rawKey]);
             }
 
-            $yaml[$key] = is_array($value) ? $this->transform($value) : $value;
+            $yaml[$key] = \is_array($value) ? $this->transform($value) : $value;
         }
 
         return $yaml;

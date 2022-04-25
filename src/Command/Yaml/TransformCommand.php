@@ -45,7 +45,7 @@ final class TransformCommand extends Command
                 $this->fileManager->update($pathIn, $pathOut);
             }
         } catch (\Exception $exception) {
-            $output->writeln(\sprintf('<fg=white;bg=red>[ERROR] %s</>', $exception->getMessage()));
+            $output->writeln(sprintf('<fg=white;bg=red>[ERROR] %s</>', $exception->getMessage()));
 
             return $exception->getCode();
         }

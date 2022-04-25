@@ -73,8 +73,8 @@ final class BranchInjector
                 $nKey = $this->getFirstKey($nPoint);
                 if ($current->hasWayUp()) {
                     if (isset($yPoint[$nKey])) {
-                        if (is_array($yPoint[$nKey])) {
-                            if (is_array($nPoint[$nKey])) {
+                        if (\is_array($yPoint[$nKey])) {
+                            if (\is_array($nPoint[$nKey])) {
                                 $layer = $this->createChildLayer($current, $nKey, $yPoint[$nKey], $nPoint[$nKey]);
                                 $this->work($layer);
                             } else {
@@ -86,12 +86,12 @@ final class BranchInjector
                                 $this->work($current);
                             }
                         } else {
-                            if (is_array($nPoint[$nKey])) {
+                            if (\is_array($nPoint[$nKey])) {
                                 $layer = $this->createChildLayer($current, $nKey, $yPoint, $nPoint[$nKey]);
                                 $layer->setNoWayUp();
                                 $this->work($layer);
                             } elseif ($yPoint[$nKey] !== $nPoint[$nKey]) {
-                                //NOTE: nothing to do if values the save
+                                // NOTE: nothing to do if values the save
                                 $current->goDown();
                                 $current->setNotSameValue();
                                 $this->work($current);
@@ -107,18 +107,18 @@ final class BranchInjector
                 } else {
                     $resultKey = $current->getResultKey().'.'.$nKey;
                     if (isset($yPoint[$resultKey])) {
-                        //NOTE: $nPoint[$nKey] is always an array
-                        if (is_array($yPoint[$resultKey])) {
+                        // NOTE: $nPoint[$nKey] is always an array
+                        if (\is_array($yPoint[$resultKey])) {
                             $layer = $this->createChildLayer($current, $nKey, $yPoint[$resultKey], $nPoint[$nKey]);
                             $layer->setHasWayUp();
                             $this->work($layer);
                         } else {
-                            if (is_array($nPoint[$nKey])) {
+                            if (\is_array($nPoint[$nKey])) {
                                 $layer = $this->createChildLayer($current, $nKey, $yPoint, $nPoint[$nKey]);
                                 $layer->setNoWayUp();
                                 $this->work($layer);
                             } elseif ($yPoint[$nKey] !== $nPoint[$nKey]) {
-                                //NOTE: nothing to do if values the save
+                                // NOTE: nothing to do if values the save
                                 $current->goDown();
                                 $current->setNotSameValue();
                                 $this->work($current);

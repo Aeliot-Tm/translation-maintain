@@ -17,7 +17,7 @@ final class Aggregator implements InserterInterface
     public function insert(array $yaml, string $id, string $value): array
     {
         if (isset($yaml[$id]) && $yaml[$id] !== $value) {
-            throw new KeyCollisionException(\sprintf('Key "%s" exists', $id));
+            throw new KeyCollisionException(sprintf('Key "%s" exists', $id));
         }
         $yaml[$id] = $value;
 
