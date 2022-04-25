@@ -11,7 +11,7 @@ trait GlueKeysTrait
         $prefix = null === $prefix ? '' : $prefix.'.';
         foreach ($array as $key => $value) {
             $key = $prefix.$key;
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 yield from $this->glueKeys($value, $key);
             } else {
                 yield $key => $value;

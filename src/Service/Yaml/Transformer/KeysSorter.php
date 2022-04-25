@@ -10,7 +10,7 @@ final class KeysSorter implements TransformerInterface
     {
         ksort($yaml);
         foreach ($yaml as $key => $value) {
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 $yaml[$key] = $this->transform($value);
             }
         }

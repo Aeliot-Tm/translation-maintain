@@ -32,6 +32,6 @@ final class FilesTransformedLine extends AbstractLine
      */
     protected function getNamedValues(): array
     {
-        return ['domain' => $this->domain, 'locale' => $this->locale, 'file' => $this->file, ];
+        return ['domain' => $this->domain, 'locale' => $this->locale, 'file' => $this->file];
     }
 }

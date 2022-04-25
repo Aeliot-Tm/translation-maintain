@@ -16,10 +16,10 @@ final class ServiceUniqueIdProvider
     public function getId(string $serviceId): string
     {
         if (!$key = $this->keys[$serviceId]) {
-            throw new \DomainException(\sprintf('Undefined key for service "%s"', $serviceId));
+            throw new \DomainException(sprintf('Undefined key for service "%s"', $serviceId));
         }
 
-        //TODO use more secure algorithm
-        return md5(\sprintf('%s.%s', $serviceId, $key));
+        // TODO use more secure algorithm
+        return md5(sprintf('%s.%s', $serviceId, $key));
     }
 }

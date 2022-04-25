@@ -30,7 +30,7 @@ final class FileMapFilter
                 $localesFiles = array_intersect_key($localesFiles, array_flip($filterDto->locales));
             }
 
-            if(!$localesFiles){
+            if (!$localesFiles) {
                 continue;
             }
 

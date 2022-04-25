@@ -33,12 +33,16 @@
   "prefer-stable": true,
   "require-dev": {
     "dg/bypass-finals": "^1.1",
+    "friendsofphp/php-cs-fixer": "^3.8",
     "phpunit/phpunit": "^9.5",
     "symfony/dotenv": "^5.3",
     "symfony/framework-bundle": ">=3.4",
     "symfony/translation": "^5.3"
   },
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": [
+      "vendor/bin/phpunit",
+      "vendor/bin/php-cs-fixer fix -vv --using-cache=no"
+    ]
   }
 }

@@ -40,7 +40,7 @@ final class DirectoryProviderCompilerPass implements CompilerPassInterface
 
         foreach ($container->getParameter('kernel.bundles_metadata') as $bundle) {
             $dir = $this->locateBundlePath($container, $bundle['path'], $isResourcesFirst);
-            if ($dir && stripos($dir, $vendorDir) === false) {
+            if ($dir && false === stripos($dir, $vendorDir)) {
                 $dirs[] = $dir;
             }
         }

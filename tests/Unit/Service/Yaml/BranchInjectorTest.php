@@ -32,13 +32,13 @@ final class BranchInjectorTest extends TestCase
 
     public function getDataForSuccessfulInjectionTest(): \Generator
     {
-        //simple insert
+        // simple insert
         yield [['a' => '*'], [], 'a', '*'];
         yield [['a' => '*'], ['a' => '*'], 'a', '*'];
         yield [['a' => ['b' => ['c' => '*']]], [], 'a', ['b' => ['c' => '*']]];
         yield [['a' => ['b' => '1'], 'a.b' => '2'], ['a' => ['b' => '1']], 'a.b', '2'];
 
-        //explode keys
+        // explode keys
         yield [['a' => ['b' => '*']], [], 'a.b', '*'];
         yield [['a' => ['b' => '*', 'c' => '*']], ['a' => ['b' => '*']], 'a.c', '*'];
         yield [['a' => '*', 'a.b' => '*'], ['a' => '*'], 'a.b', '*'];

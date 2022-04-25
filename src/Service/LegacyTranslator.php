@@ -8,5 +8,4 @@ use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterfa
 
 final class LegacyTranslator extends AbstractTranslator implements LegacyTranslatorInterface
 {
-
 }

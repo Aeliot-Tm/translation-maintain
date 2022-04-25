@@ -50,7 +50,7 @@ final class AeliotTransMaintainExtension extends Extension
 
         $version = (new KernelVersionDetector())->getVersion($container, 'symfony/translation');
         $projectDir = version_compare($version, '5.0.0', '>=') ? '%kernel.project_dir%' : '%kernel.root_dir%/..';
-        $reportPath = \sprintf('%s/var/aeliot_trans_maintain_limit_report.csv', $projectDir);
+        $reportPath = sprintf('%s/var/aeliot_trans_maintain_limit_report.csv', $projectDir);
 
         $container->setParameter('aeliot_trans_maintain.translation_api.report_path', $reportPath);
     }

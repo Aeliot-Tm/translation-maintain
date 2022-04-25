@@ -35,12 +35,12 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
             return $this->translator->{$name}(...$arguments);
         }
 
-        throw new \BadMethodCallException(\sprintf('Called undefined method "%s"', $name));
+        throw new \BadMethodCallException(sprintf('Called undefined method "%s"', $name));
     }
 
     public function trans($id, array $parameters = [], $domain = null, $locale = null)
     {
-        $translation = $this->translator->trans(...func_get_args());
+        $translation = $this->translator->trans(...\func_get_args());
         if (('' !== ($id = (string) $id)) && $translation === $id) {
             $this->register($id, $domain, $locale);
         }
@@ -50,12 +50,12 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
 
     public function transChoice($id, $number, array $parameters = [], $domain = null, $locale = null)
     {
-        return $this->translator->transChoice(...func_get_args());
+        return $this->translator->transChoice(...\func_get_args());
     }
 
-    public function setLocale($locale)
+    public function setLocale($locale): void
     {
-        $this->translator->setLocale(...func_get_args());
+        $this->translator->setLocale(...\func_get_args());
     }
 
     public function getLocale()
@@ -65,7 +65,7 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
 
     public function getCatalogue($locale = null)
     {
-        return $this->translator->getCatalogue(...func_get_args());
+        return $this->translator->getCatalogue(...\func_get_args());
     }
 
     private function register(string $id, ?string $domain = null, ?string $locale = null): void

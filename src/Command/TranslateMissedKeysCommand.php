@@ -116,7 +116,7 @@ final class TranslateMissedKeysCommand extends Command
     {
         foreach ($values as $key => $value) {
             if (!$this->branchInjector->inject($yaml, $key, $value)) {
-                throw new \DomainException(\sprintf('Cannot inject key %s', $key));
+                throw new \DomainException(sprintf('Cannot inject key %s', $key));
             }
         }
 

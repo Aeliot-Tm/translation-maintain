@@ -19,7 +19,7 @@ final class FileManipulator
 
     public function dump(string $pathOut, array $yaml): void
     {
-        $this->filesystem->mkdir(dirname($pathOut));
+        $this->filesystem->mkdir(\dirname($pathOut));
 
         $content = $this->yamlContentHandler->dump($yaml);
         $this->filesystem->dumpFile($pathOut, $content);
@@ -33,7 +33,7 @@ final class FileManipulator
     public function parse(string $pathIn): array
     {
         if (!$this->filesystem->exists($pathIn)) {
-            throw new \InvalidArgumentException(\sprintf('Invalid path passed: "%s"', $pathIn));
+            throw new \InvalidArgumentException(sprintf('Invalid path passed: "%s"', $pathIn));
         }
 
         return $this->yamlContentHandler->parseFile($pathIn) ?? [];

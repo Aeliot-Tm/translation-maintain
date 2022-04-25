@@ -16,7 +16,7 @@ final class KernelVersionDetector
             return $version;
         }
 
-        //try to guess
+        // try to guess
         if ($container->hasParameter('kernel.project_dir') && !$container->hasParameter('kernel.root_dir')) {
             return '5.0.0';
         }
@@ -31,8 +31,8 @@ final class KernelVersionDetector
     {
         $packages = [];
         if (file_exists($path)) {
-            $packages = (\json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR)['packages'] ?? []);
-            $packages = array_filter($packages, static fn(array $x): bool => $x['name'] === $packageName);
+            $packages = (json_decode(file_get_contents($path), true, 512, \JSON_THROW_ON_ERROR)['packages'] ?? []);
+            $packages = array_filter($packages, static fn (array $x): bool => $x['name'] === $packageName);
         }
 
         if ($packages && preg_match('/v?(\d+(?:\.\d+){,2})/', end($packages)['version'] ?? '', $matches)) {
@@ -46,7 +46,7 @@ final class KernelVersionDetector
     {
         if ($container->hasParameter('kernel.project_dir')
             && ($projectPath = $container->getParameter('kernel.project_dir'))
-            && file_exists($path = (rtrim($projectPath, '\\/').DIRECTORY_SEPARATOR.'composer.lock'))
+            && file_exists($path = (rtrim($projectPath, '\\/').\DIRECTORY_SEPARATOR.'composer.lock'))
         ) {
             return $path;
         }

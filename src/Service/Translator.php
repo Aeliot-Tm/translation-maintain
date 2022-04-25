@@ -8,5 +8,4 @@ use Symfony\Contracts\Translation\LocaleAwareInterface;
 
 final class Translator extends AbstractTranslator implements LocaleAwareInterface
 {
-
 }

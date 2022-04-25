@@ -51,8 +51,8 @@ final class KeyRegister
 
     public function addInserter(InserterInterface $inserter): void
     {
-        if (array_key_exists($position = $inserter->getPosition(), $this->inserters)) {
-            throw new \LogicException(\sprintf('An inserter for the position "%s" has registered', $position));
+        if (\array_key_exists($position = $inserter->getPosition(), $this->inserters)) {
+            throw new \LogicException(sprintf('An inserter for the position "%s" has registered', $position));
         }
 
         $this->inserters[$position] = $inserter;
@@ -73,8 +73,8 @@ final class KeyRegister
 
     private function getInserter(): InserterInterface
     {
-        if (!array_key_exists($this->position, $this->inserters)) {
-            throw new \LogicException(\sprintf('Invalid position: "%s"', $this->position));
+        if (!\array_key_exists($this->position, $this->inserters)) {
+            throw new \LogicException(sprintf('Invalid position: "%s"', $this->position));
         }
 
         return $this->inserters[$this->position];

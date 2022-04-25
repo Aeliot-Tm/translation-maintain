@@ -18,12 +18,11 @@ final class TranslatorCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        if ($container->getParameter('aeliot_trans_maintain.insert_missed_keys') !== KeyRegister::NO) {
+        if (KeyRegister::NO !== $container->getParameter('aeliot_trans_maintain.insert_missed_keys')) {
             if (!$container->has('translator.default')) {
-                throw new \LogicException(
-                    'Translator decorator cannot be enabled as the Translation component is not installed.'
-                    .' Try running "composer require symfony/translation".'
-                );
+                $message = 'Translator decorator cannot be enabled as the Translation component is not installed.'
+                    .' Try running "composer require symfony/translation".';
+                throw new \LogicException($message);
             }
 
             $translatorWrapper = new Definition($class = $this->getClass($container));

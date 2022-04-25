@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-
 final class CsvReader implements \Iterator
 {
     private string $path;
@@ -78,7 +77,7 @@ final class CsvReader implements \Iterator
             if (!$rowData = fgetcsv($this->handler)) {
                 continue;
             }
-            $rowNumber++;
+            ++$rowNumber;
 
             if ($rowNumber < $titleRowNumber) {
                 continue;

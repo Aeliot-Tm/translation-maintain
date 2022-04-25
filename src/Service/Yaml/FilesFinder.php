@@ -63,7 +63,7 @@ final class FilesFinder
 
     public function locateFile(string $domain, string $locale): string
     {
-        $pattern = \sprintf('~%s\b%s.%s.ya?ml$~', preg_quote(DIRECTORY_SEPARATOR, '~'), preg_quote($domain, '~'), preg_quote($locale, '~'));
+        $pattern = sprintf('~%s\b%s.%s.ya?ml$~', preg_quote(\DIRECTORY_SEPARATOR, '~'), preg_quote($domain, '~'), preg_quote($locale, '~'));
         foreach ($this->getFiles() as $file) {
             /** @var \SplFileInfo $file */
             if (preg_match($pattern, $path = $file->getRealPath())) {
@@ -71,7 +71,7 @@ final class FilesFinder
             }
         }
 
-        return $this->directoryProvider->getDefault() . '/' . $domain . '.' . $locale . '.yaml';
+        return $this->directoryProvider->getDefault().'/'.$domain.'.'.$locale.'.yaml';
     }
 
     /**

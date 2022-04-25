@@ -41,8 +41,8 @@ final class LimitKeeper
 
     private function getLimit(string $serviceId): ?int
     {
-        if (!array_key_exists($serviceId, $this->limits)) {
-            throw new \DomainException(\sprintf('Requested not registered service "%s"', $serviceId));
+        if (!\array_key_exists($serviceId, $this->limits)) {
+            throw new \DomainException(sprintf('Requested not registered service "%s"', $serviceId));
         }
 
         return $this->limits[$serviceId];

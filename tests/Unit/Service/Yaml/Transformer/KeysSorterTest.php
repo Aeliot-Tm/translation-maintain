@@ -12,10 +12,6 @@ final class KeysSorterTest extends TestCase
 {
     /**
      * @dataProvider getDataForTestTransform
-     *
-     * @param array $expected
-     * @param array $income
-     * @return void
      */
     public function testTransform(array $expected, array $income): void
     {
@@ -24,7 +20,7 @@ final class KeysSorterTest extends TestCase
 
     public function getDataForTestTransform(): Generator
     {
-        yield [['a' => '*', 'b' => '*'], ['a' => '*', 'b' => '*'],];
+        yield [['a' => '*', 'b' => '*'], ['a' => '*', 'b' => '*']];
         yield [['a' => '*', 'b' => '*'], ['b' => '*', 'a' => '*']];
         yield [
             ['a' => '*', 'b' => ['c' => '*', 'd' => '*']],

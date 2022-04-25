@@ -17,14 +17,15 @@ final class YamlContentHandler
 
     public function dump(array $yaml): string
     {
-        //THINK: how to escape single words?
+        // THINK: how to escape single words?
         $dumpFlags = Yaml::DUMP_EXCEPTION_ON_INVALID_TYPE | Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
+
         return Yaml::dump($yaml, 100, $this->yamlIndent, $dumpFlags);
     }
 
     public function parseFile(string $filename): ?array
     {
-        /**
+        /*
          * NOTE: don't use Yaml::PARSE_CONSTANT like in {@see \Symfony\Component\Translation\Loader\YamlFileLoader::loadResource()}
          *       to leave values as is
          */

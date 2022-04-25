@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Aeliot\Bundle\TransMaintain;
 
 use Aeliot\Bundle\TransMaintain\DependencyInjection\CompilerPass\DirectoryProviderCompilerPass;

@@ -35,7 +35,7 @@ final class LimitRepository
 
     public function save(ApiLimitReport $report): void
     {
-        (new Filesystem())->mkdir(dirname($this->path));
+        (new Filesystem())->mkdir(\dirname($this->path));
 
         $table = [];
         $isFound = false;

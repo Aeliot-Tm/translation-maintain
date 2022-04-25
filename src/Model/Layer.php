@@ -42,7 +42,7 @@ final class Layer
         $this->yaml = &$yaml;
     }
 
-    public function getParent(): ?Layer
+    public function getParent(): ?self
     {
         return $this->parent;
     }
@@ -84,7 +84,6 @@ final class Layer
 
     public function &getSelectedNPoint(): ?array
     {
-
         return $this->selectedNPoint;
     }
 
@@ -119,7 +118,7 @@ final class Layer
             $hasWayUp = $this->parent->hasWayUp();
         }
 
-        return is_bool($hasWayUp) ? $hasWayUp : true;
+        return \is_bool($hasWayUp) ? $hasWayUp : true;
     }
 
     public function getResultKey(): string

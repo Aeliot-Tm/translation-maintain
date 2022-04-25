@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Aeliot\Bundle\TransMaintain\DependencyInjection;
 
-use Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Facades\GoogleTranslateFacade;
 use Aeliot\Bundle\TransMaintain\Service\ApiTranslator\FacadesRegistry;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -29,7 +30,7 @@ final class Configuration implements ConfigurationInterface
                     ->validate()
                         ->ifNotInArray(KeyRegister::POSITIONS)
                         ->thenInvalid(
-                            \sprintf('Invalid configuration. Permitted keys are "%s" but there is another value %%s defined in the configuration.', implode('" ,"', KeyRegister::POSITIONS))
+                            sprintf('Invalid configuration. Permitted keys are "%s" but there is another value %%s defined in the configuration.', implode('" ,"', KeyRegister::POSITIONS))
                         )
                     ->end()
                     ->info('Decorate default translator for inserting of missed keys.')
