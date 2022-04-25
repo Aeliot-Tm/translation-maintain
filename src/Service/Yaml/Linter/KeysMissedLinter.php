@@ -48,21 +48,21 @@ final class KeysMissedLinter implements LinterInterface
             $omittedKeys = $this->keysParser->getOmittedKeys($parsedKeys);
             $allOmittedKeys = $this->keysParser->mergeKeys($omittedKeys);
 
-            foreach ($allOmittedKeys as $languageId) {
-                $omittedLanguages = [];
+            foreach ($allOmittedKeys as $translationId) {
+                $omittedLocales = [];
                 foreach ($omittedKeys as $locale => $keys) {
-                    if (\in_array($languageId, $keys, true)) {
-                        $omittedLanguages[] = $locale;
+                    if (\in_array($translationId, $keys, true)) {
+                        $omittedLocales[] = $locale;
                     }
                 }
 
                 if ($filterDto->locales) {
-                    $omittedLanguages = array_intersect($omittedLanguages, $filterDto->locales);
+                    $omittedLocales = array_intersect($omittedLocales, $filterDto->locales);
                 }
 
-                if ($omittedLanguages) {
-                    sort($omittedLanguages);
-                    $bag->addLine(new KeysMissedLine($domain, $languageId, $omittedLanguages));
+                if ($omittedLocales) {
+                    sort($omittedLocales);
+                    $bag->addLine(new KeysMissedLine($domain, $translationId, $omittedLocales));
                 }
             }
         }

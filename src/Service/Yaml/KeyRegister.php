@@ -23,9 +23,7 @@ final class KeyRegister
 
     private const EXTENSIONS = ['yaml', 'yml'];
 
-    private array $dirs;
     private DirectoryProvider $directoryProvider;
-    private BranchInjector $branchInjector;
     private FileManipulator $fileManipulator;
     /**
      * @var InserterInterface[]

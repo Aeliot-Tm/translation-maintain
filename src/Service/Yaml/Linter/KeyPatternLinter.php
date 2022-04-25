@@ -43,9 +43,9 @@ final class KeyPatternLinter implements LinterInterface
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
         foreach ($domainsFiles as $domain => $localesFiles) {
             $keys = $this->getKeysSummary($this->keysParser->getParsedKeys($localesFiles));
-            foreach ($keys as $languageId => $locales) {
-                if (!preg_match($this->keyPattern, $languageId)) {
-                    $bag->addLine(new KeysPatternLine($domain, $languageId, $locales));
+            foreach ($keys as $translationId => $locales) {
+                if (!preg_match($this->keyPattern, $translationId)) {
+                    $bag->addLine(new KeysPatternLine($domain, $translationId, $locales));
                 }
             }
         }
@@ -56,12 +56,12 @@ final class KeyPatternLinter implements LinterInterface
     private function getKeysSummary(array $parsedKeys): array
     {
         $summary = [];
-        foreach ($parsedKeys as $locale => $languageIds) {
-            foreach ($languageIds as $languageId) {
-                if (!array_key_exists($languageId, $summary)) {
-                    $summary[$languageId] = [];
+        foreach ($parsedKeys as $locale => $translationIds) {
+            foreach ($translationIds as $translationId) {
+                if (!array_key_exists($translationId, $summary)) {
+                    $summary[$translationId] = [];
                 }
-                $summary[$languageId][] = $locale;
+                $summary[$translationId][] = $locale;
             }
         }
         asort($summary);

@@ -86,7 +86,7 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
         }
 
         if (!$catalogue->has($id, $domain)) {
-            $catalogue->has($id, $domain);
+            $catalogue->set($id, $id, $domain);
             $this->keyRegister->register($id, $domain, $catalogue->getLocale());
         }
     }

@@ -10,7 +10,7 @@ final class FilesMissedLine extends AbstractLine
     /**
      * @var array<int,string>
      */
-    private array $omittedLanguages;
+    private array $omittedLocales;
 
     public static function getEmptyReportMessage(): string
     {
@@ -22,10 +22,10 @@ final class FilesMissedLine extends AbstractLine
         return 'Missed locales files for domains';
     }
 
-    public function __construct(string $domain, array $omittedLanguages)
+    public function __construct(string $domain, array $omittedLocales)
     {
         $this->domain = $domain;
-        $this->omittedLanguages = $omittedLanguages;
+        $this->omittedLocales = $omittedLocales;
     }
 
     /**
@@ -33,6 +33,6 @@ final class FilesMissedLine extends AbstractLine
      */
     protected function getNamedValues(): array
     {
-        return ['domain' => $this->domain, 'omitted_languages' => $this->omittedLanguages];
+        return ['domain' => $this->domain, 'omitted_locales' => $this->omittedLocales];
     }
 }

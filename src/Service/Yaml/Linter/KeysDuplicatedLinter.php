@@ -44,11 +44,11 @@ final class KeysDuplicatedLinter implements LinterInterface
                 $values = [];
                 $duplicatedKeys = [];
                 foreach ($files as $file) {
-                    foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $languageId => $value) {
-                        if (array_key_exists($languageId, $values)) {
-                            $duplicatedKeys[] = $languageId;
+                    foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $translationId => $value) {
+                        if (array_key_exists($translationId, $values)) {
+                            $duplicatedKeys[] = $translationId;
                         } else {
-                            $values[$languageId] = $value;
+                            $values[$translationId] = $value;
                         }
                     }
                 }
@@ -56,8 +56,8 @@ final class KeysDuplicatedLinter implements LinterInterface
                 $duplicatedKeys = array_unique($duplicatedKeys);
                 sort($duplicatedKeys);
 
-                foreach ($duplicatedKeys as $languageId) {
-                    $bag->addLine(new KeysDuplicatedLine($domain, $locale, $languageId));
+                foreach ($duplicatedKeys as $translationId) {
+                    $bag->addLine(new KeysDuplicatedLine($domain, $locale, $translationId));
                 }
             }
         }
