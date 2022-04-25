@@ -8,6 +8,7 @@ CHANGELOG
   * Add docker configuration for development purposes.
 * Bug fixes:
   * Fix registering of missed translation.
+  * Remove not used dependencies.
 * Backward compatibility breaks:
   * Removed deprecated constants:
     * `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry::PRESET_ALL`
