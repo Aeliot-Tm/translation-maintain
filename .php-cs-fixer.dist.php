@@ -25,7 +25,7 @@ return (new PhpCsFixer\Config())
             'spacing' => 'none',
         ],
         'declare_strict_types' => true,
-        'final_class' => true,
+        // 'final_class' => true,
         'fopen_flags' => true,
         'is_null' => true,
         'method_chaining_indentation' => true,

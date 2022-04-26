@@ -11,5 +11,4 @@ namespace Aeliot\Bundle\TransMaintain\Model;
  */
 final class CsvReader extends CSV
 {
-
 }

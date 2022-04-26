@@ -26,30 +26,6 @@ final class SameValueLinterTest extends TestCase
         self::assertTrue($bag->isEmpty());
     }
 
-    private function createLinter(array $filesMap, array $fileTranslations): SameValueLinter
-    {
-        $fileManipulator = $this->getMockBuilder(FileToSingleLevelArrayParser::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $method = $fileManipulator->method('parse');
-        foreach ($fileTranslations as $file => $translations) {
-            $method->with($file)->willReturn($translations);
-        }
-
-        $fileMapFilter = $this->getMockBuilder(FileMapFilter::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $fileMapFilter->method('getFilesMap')->willReturn($filesMap);
-
-        return new SameValueLinter($fileMapFilter, $fileManipulator);
-    }
-
     /**
      * @dataProvider getDataForTestFilesWithSameValues
      *
@@ -86,5 +62,29 @@ final class SameValueLinterTest extends TestCase
             ['messages' => ['en' => ['messages.en.yaml']]],
             ['messages.en.yaml' => ['a.c' => 'value_a', 'a.b' => 'value_a', 'a' => 'a', 'b' => 'b']],
         ];
+    }
+
+    private function createLinter(array $filesMap, array $fileTranslations): SameValueLinter
+    {
+        $fileManipulator = $this->getMockBuilder(FileToSingleLevelArrayParser::class)
+            ->disableOriginalConstructor()
+            ->disableOriginalClone()
+            ->disableArgumentCloning()
+            ->disallowMockingUnknownTypes()
+            ->getMock();
+        $method = $fileManipulator->method('parse');
+        foreach ($fileTranslations as $file => $translations) {
+            $method->with($file)->willReturn($translations);
+        }
+
+        $fileMapFilter = $this->getMockBuilder(FileMapFilter::class)
+            ->disableOriginalConstructor()
+            ->disableOriginalClone()
+            ->disableArgumentCloning()
+            ->disallowMockingUnknownTypes()
+            ->getMock();
+        $fileMapFilter->method('getFilesMap')->willReturn($filesMap);
+
+        return new SameValueLinter($fileMapFilter, $fileManipulator);
     }
 }
