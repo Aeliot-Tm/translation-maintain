@@ -30,7 +30,7 @@ final class InvalidValueLinterTest extends TestCase
 
         self::assertSame(
             $expected,
-            array_map(static fn(ReportLineInterface $x): array => $x->jsonSerialize(), $bag->getLines())
+            array_map(static fn (ReportLineInterface $x): array => $x->jsonSerialize(), $bag->getLines())
         );
     }
 
@@ -45,10 +45,11 @@ final class InvalidValueLinterTest extends TestCase
                 ],
             ],
             ['messages' => ['en' => ['messages.en.yaml']]],
-            ['messages.en.yaml' => ['valid_key' => 'value_a', 'invalid_key' => 'value of '.chr(160)]],
-            '/[\xa0]/'
+            ['messages.en.yaml' => ['valid_key' => 'value_a', 'invalid_key' => 'value of '.\chr(160)]],
+            '/[\xa0]/',
         ];
     }
+
     private function createLinter(array $filesMap, array $fileTranslations, string $pattern): InvalidValueLinter
     {
         $fileParser = $this->getMockBuilder(FileToSingleLevelArrayParser::class)
