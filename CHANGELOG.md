@@ -30,17 +30,17 @@ CHANGELOG
   * Removed class `\Aeliot\Bundle\TransMaintain\Report\Builder\ConsoleOutputTableBuilder`.
     Use service `\Aeliot\Bundle\TransMaintain\Service\ReportBagConsoleRenderer` instead of it.
   * Removed linters' report line classes:
-    * `Aeliot\Bundle\TransMaintain\Model\AbstractLine`
-    * `Aeliot\Bundle\TransMaintain\Model\EmptyValueLine`
-    * `Aeliot\Bundle\TransMaintain\Model\FilesMissedLine`
-    * `Aeliot\Bundle\TransMaintain\Model\FilesTransformedLine`
-    * `Aeliot\Bundle\TransMaintain\Model\InvalidValueLine`
-    * `Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine`
-    * `Aeliot\Bundle\TransMaintain\Model\KeysMissedLine`
-    * `Aeliot\Bundle\TransMaintain\Model\KeysPatternLine`
-    * `Aeliot\Bundle\TransMaintain\Model\SameValueLine`
-  * Removed trait `Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\GlueKeysTrait`. 
-    Use class `Aeliot\Bundle\TransMaintain\Service\Yaml\KeysLinker` instead of it. 
+    * `\Aeliot\Bundle\TransMaintain\Model\AbstractLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\EmptyValueLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\FilesMissedLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\FilesTransformedLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\InvalidValueLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\KeysMissedLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\KeysPatternLine`
+    * `\Aeliot\Bundle\TransMaintain\Model\SameValueLine`
+  * Removed trait `\Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\GlueKeysTrait`. 
+    Use class `\Aeliot\Bundle\TransMaintain\Service\Yaml\KeysLinker` instead of it. 
 
 2.6.0
 -----
