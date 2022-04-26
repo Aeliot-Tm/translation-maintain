@@ -11,6 +11,7 @@ CHANGELOG
 * Minors:
   * Add docker configuration for development purposes.
   * Configured CS Fixer.
+  * Refactored gluing of yaml tree to single level array.
 * Bug fixes:
   * Fix registering of missed translation.
   * Remove not used dependencies.
@@ -22,7 +23,7 @@ CHANGELOG
     * language_id -> translation_id
     * language -> locale
   * Refactored linters' [ReportBag](src/Model/ReportBag.php) class.
-  * Removed linters' reports line classes:
+  * Removed linters' report line classes:
     * `Aeliot\Bundle\TransMaintain\Model\AbstractLine`
     * `Aeliot\Bundle\TransMaintain\Model\EmptyValueLine`
     * `Aeliot\Bundle\TransMaintain\Model\FilesMissedLine`
@@ -32,6 +33,8 @@ CHANGELOG
     * `Aeliot\Bundle\TransMaintain\Model\KeysMissedLine`
     * `Aeliot\Bundle\TransMaintain\Model\KeysPatternLine`
     * `Aeliot\Bundle\TransMaintain\Model\SameValueLine`
+  * Removed trait `Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\GlueKeysTrait`. 
+    Use class `Aeliot\Bundle\TransMaintain\Service\Yaml\KeysLinker` instead of it. 
 
 2.6.0
 -----

@@ -6,8 +6,8 @@ namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\ReportLineInterface;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\SameValueLinter;
 use PHPUnit\Framework\TestCase;
 
@@ -28,7 +28,7 @@ final class SameValueLinterTest extends TestCase
 
     private function createLinter(array $filesMap, array $fileTranslations): SameValueLinter
     {
-        $fileManipulator = $this->getMockBuilder(FileManipulator::class)
+        $fileManipulator = $this->getMockBuilder(FileToSingleLevelArrayParser::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()
             ->disableArgumentCloning()
@@ -47,7 +47,7 @@ final class SameValueLinterTest extends TestCase
             ->getMock();
         $fileMapFilter->method('getFilesMap')->willReturn($filesMap);
 
-        return new SameValueLinter($fileManipulator, $fileMapFilter);
+        return new SameValueLinter($fileMapFilter, $fileManipulator);
     }
 
     /**

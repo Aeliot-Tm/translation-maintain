@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
+namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 
-trait GlueKeysTrait
+final class KeysLinker
 {
-    private function glueKeys(array $array, string $prefix = null): \Generator
+    public function glueKeys(array $array, string $prefix = null): \Generator
     {
         $prefix = null === $prefix ? '' : $prefix.'.';
         foreach ($array as $key => $value) {
