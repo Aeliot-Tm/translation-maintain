@@ -30,6 +30,7 @@ So, you can use it in CI testing scripts easy. Reports of each linter will be re
 - _Auxiliary linters:_
   - **empty_value** - then check if translation is empty string. Note: value trimmed before the testing. So, string that consists of spaces is empty too.
   - **file_transformed** - then check if translation files transformed (has normalised structure).
+  - **invalid_value** - then check if translation value does not match configured pattern. Example: `/[\x00-\x07]/`.
   - **key_pattern** - then check if translation keys match configured pattern. Example: `/^[a-zA-Z0-9_.-]+$/`.
   - **same_value** - detect translations with the same values in all files of one locale of one domain.
 

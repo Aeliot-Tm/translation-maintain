@@ -5,6 +5,8 @@ parameters:
 
 aeliot_trans_maintain:
     insert_missed_keys: '%env(TRANS_MAINTAIN_INSERT_MISSED_KEYS)%'
+    linter:
+        value_invalid_pattern: '/[\x00-\x07]/'
     translation_api:
         google:
             key: '%env(GOOGLE_TRANSLATE_API_KEY)%'

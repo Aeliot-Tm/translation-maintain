@@ -16,8 +16,9 @@ final class AeliotTransMaintainExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
+        $container->setParameter('aeliot_trans_maintain.linter.value.invalid_pattern', $config['linter']['value_invalid_pattern'] ?? null);
         $container->setParameter('aeliot_trans_maintain.yaml.indent', $config['yaml']['indent']);
-        $container->setParameter('aeliot_trans_maintain.yaml.key_pattern', $config['yaml']['key_pattern']);
+        $container->setParameter('aeliot_trans_maintain.yaml.key_pattern', $config['linter']['key_valid_pattern'] ?? $config['yaml']['key_pattern'] ?? null);
         $container->setParameter('aeliot_trans_maintain.insert_missed_keys', $config['insert_missed_keys']);
 
         $this->defineGoogleCloudTranslate($config, $container);
