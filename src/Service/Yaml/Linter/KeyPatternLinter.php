@@ -11,6 +11,8 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
 
 final class KeyPatternLinter implements LinterInterface
 {
+    use EmptyPresetsTrait;
+
     private FileMapFilter $fileMapFilter;
     private KeysParser $keysParser;
     private ?string $keyPattern;
@@ -25,11 +27,6 @@ final class KeyPatternLinter implements LinterInterface
     public function getKey(): string
     {
         return 'key_pattern';
-    }
-
-    public function getPresets(): array
-    {
-        return [];
     }
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag

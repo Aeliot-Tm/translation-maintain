@@ -11,6 +11,7 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
 
 final class SameValueLinter implements LinterInterface
 {
+    use EmptyPresetsTrait;
     use GlueKeysTrait;
 
     private FileManipulator $fileManipulator;
@@ -25,11 +26,6 @@ final class SameValueLinter implements LinterInterface
     public function getKey(): string
     {
         return 'same_value';
-    }
-
-    public function getPresets(): array
-    {
-        return [];
     }
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag

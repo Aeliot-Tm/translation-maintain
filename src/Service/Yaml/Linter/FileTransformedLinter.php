@@ -11,6 +11,8 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\FileTransformedStateDetector;
 
 final class FileTransformedLinter implements LinterInterface
 {
+    use EmptyPresetsTrait;
+
     private FileMapFilter $fileMapFilter;
     private FileTransformedStateDetector $fileTransformedStateDetector;
 
@@ -25,14 +27,6 @@ final class FileTransformedLinter implements LinterInterface
     public function getKey(): string
     {
         return 'file_transformed';
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getPresets(): array
-    {
-        return [];
     }
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag

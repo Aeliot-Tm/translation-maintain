@@ -11,6 +11,7 @@ use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
 
 final class EmptyValueLinter implements LinterInterface
 {
+    use EmptyPresetsTrait;
     use GlueKeysTrait;
 
     private FileManipulator $fileManipulator;
@@ -25,11 +26,6 @@ final class EmptyValueLinter implements LinterInterface
     public function getKey(): string
     {
         return 'empty_value';
-    }
-
-    public function getPresets(): array
-    {
-        return [];
     }
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag
