@@ -59,7 +59,11 @@ final class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('indent')->defaultValue(4)->cannotBeEmpty()->isRequired()->info('The amount of spaces to use for indentation of nested nodes')->end()
-                        ->scalarNode('key_pattern')->defaultNull()->info('Deprecated! Use: "linter: { key_valid_pattern: \'\' }"')->setDeprecated()->end()
+                        ->scalarNode('key_pattern')
+                            ->defaultNull()
+                            ->info('Pattern to match keys. Example: /^[a-zA-Z0-9_.-]+$/')
+                            ->setDeprecated('aeliot-tm/translation-maintain', '2.7.0', 'Use: "linter: { key_valid_pattern: \'\' }"')
+                        ->end()
                     ->end()
                 ->end()
             ->end();
