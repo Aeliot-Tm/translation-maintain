@@ -6,11 +6,11 @@ CHANGELOG
 * Features:
   * Add linter `same_value` which detects translation keys with the same value.
   * Add linter `invalid_value` which detects translation values matching some configured pattern.
-  * Mark configuration `yaml: { key_pattern: '' }` deprecated.
-    Use `linter: { key_valid_pattern: '' }` instead of it.
 * Minors:
   * Add docker configuration for development purposes.
   * Configured CS Fixer.
+  * Mark configuration `yaml: { key_pattern: '' }` deprecated.
+    Use `linter: { key_valid_pattern: '' }` instead of it.
   * Refactored gluing of yaml tree to single level array.
   * Refactored rendering of linters' reports.
   * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
@@ -46,24 +46,26 @@ CHANGELOG
 -----
 * Features:
   * Add files allocation functionality to the transform command.
+  * Add detector (linter) of empty values of translations.
+  * Make Google Translation model configurable.
+* Minors:
   * Rename example files (add locale to the file name).
   * Add alias for the Lint YAML command: `aeliot_trans_maintain:yaml:lint`.
   * Move commands which works with YAML files to the separate namespace.
-  * Add detector (linter) of empty values of translations.
   * Move public constants of `\Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry` to `\Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface`.
   * Simplify report line definitions through the defining of columns order and headers in the single place of each report line model.
-  * Make Google Translation model configurable.
   * Use `.env` files to load parameters for the development kernel.
 
 2.5.1
 -----
-* Features:
+* Minors:
   * Make lint reports easier to understand.
 
 2.5.0
 -----
 * Features:
   * Add linter "file_transformed" for check if file structure is normalised for all YAML files.
+* Minors:
   * Updated parameter data type declaration.
   * Updated phpDocs.
   * Add ability to call commands in the isolated dev environment (without installing into application).
@@ -100,6 +102,7 @@ CHANGELOG
 -----
 * Features:
   * Implemented additional cases for YAML keys transformation.
+* Minors:
   * Extract BrachInjector from key transformer.
   * Update merging of omitted translation keys to YAML files.
 
@@ -116,7 +119,7 @@ CHANGELOG
 
 2.0.1
 -----
-* Features:
+* Minors:
   * Changed duplicated keys repost header.
 * Bug fixes:
   * Fixed creation of empty directories.
