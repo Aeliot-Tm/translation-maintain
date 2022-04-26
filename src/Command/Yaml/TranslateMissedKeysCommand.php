@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Command;
+namespace Aeliot\Bundle\TransMaintain\Command\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Exception\ApiLimitOutOfBoundsException;
 use Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Translator;
