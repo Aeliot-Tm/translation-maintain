@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Model\KeysMissedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
@@ -33,7 +32,7 @@ final class KeysMissedLinter implements LinterInterface
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
-        $bag = new ReportBag(KeysMissedLine::class);
+        $bag = $this->createReportBag();
         $domainsFiles = $this->filesFinder->getFilesMap();
         foreach ($domainsFiles as $domain => $localesFiles) {
             if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
@@ -61,11 +60,24 @@ final class KeysMissedLinter implements LinterInterface
 
                 if ($omittedLocales) {
                     sort($omittedLocales);
-                    $bag->addLine(new KeysMissedLine($domain, $translationId, $omittedLocales));
+                    $bag->addLine($domain, $translationId, $omittedLocales);
                 }
             }
         }
 
         return $bag;
+    }
+
+    private function createReportBag(): ReportBag
+    {
+        return new ReportBag(
+            [
+                'domain' => ['string'],
+                'translation_id' => ['string'],
+                'omitted_locales' => ['array'],
+            ],
+            'All locales of all domains are in the sync state. There are no missed translation keys',
+            'Missed translation keys'
+        );
     }
 }

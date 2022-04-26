@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
@@ -35,7 +34,7 @@ final class KeysDuplicatedLinter implements LinterInterface
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
-        $bag = new ReportBag(KeysDuplicatedLine::class);
+        $bag = $this->createReportBag();
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
@@ -56,11 +55,24 @@ final class KeysDuplicatedLinter implements LinterInterface
                 sort($duplicatedKeys);
 
                 foreach ($duplicatedKeys as $translationId) {
-                    $bag->addLine(new KeysDuplicatedLine($domain, $locale, $translationId));
+                    $bag->addLine($domain, $locale, $translationId);
                 }
             }
         }
 
         return $bag;
+    }
+
+    private function createReportBag(): ReportBag
+    {
+        return new ReportBag(
+            [
+                'domain' => ['string'],
+                'locale' => ['string'],
+                'duplicated_translation_id' => ['string'],
+            ],
+            'There are no duplicated keys',
+            'Duplicated translation keys'
+        );
     }
 }

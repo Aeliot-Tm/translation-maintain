@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Model\EmptyValueLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
@@ -35,7 +34,7 @@ final class EmptyValueLinter implements LinterInterface
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
-        $bag = new ReportBag(EmptyValueLine::class);
+        $bag = $this->createReportBag();
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
@@ -57,10 +56,23 @@ final class EmptyValueLinter implements LinterInterface
 
             foreach ($empty as $translationId => $locales) {
                 sort($locales);
-                $bag->addLine(new EmptyValueLine($domain, $translationId, $locales));
+                $bag->addLine($domain, $translationId, $locales);
             }
         }
 
         return $bag;
+    }
+
+    private function createReportBag(): ReportBag
+    {
+        return new ReportBag(
+            [
+                'domain' => ['string'],
+                'translation_id' => ['string'],
+                'locales' => ['array'],
+            ],
+            'There is no key with empty value',
+            'Translation keys with empty values'
+        );
     }
 }

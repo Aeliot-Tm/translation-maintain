@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Model\InvalidValueLine;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser;
@@ -18,8 +17,11 @@ final class InvalidValueLinter implements LinterInterface
     private FileToSingleLevelArrayParser $fileParser;
     private ?string $invalidValuePattern;
 
-    public function __construct(FileToSingleLevelArrayParser $fileParser, FileMapFilter $fileMapFilter, ?string $valueInvalidPattern)
-    {
+    public function __construct(
+        FileToSingleLevelArrayParser $fileParser,
+        FileMapFilter $fileMapFilter,
+        ?string $valueInvalidPattern
+    ) {
         $this->fileMapFilter = $fileMapFilter;
         $this->fileParser = $fileParser;
         $this->invalidValuePattern = $valueInvalidPattern;
@@ -36,7 +38,7 @@ final class InvalidValueLinter implements LinterInterface
             throw new \LogicException('Value forbidden pattern is not configured yet');
         }
 
-        $bag = new ReportBag(InvalidValueLine::class);
+        $bag = $this->createReportBag();
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
@@ -54,11 +56,24 @@ final class InvalidValueLinter implements LinterInterface
                 sort($invalidValueKeys);
 
                 foreach ($invalidValueKeys as $translationId) {
-                    $bag->addLine(new InvalidValueLine($domain, $locale, $translationId));
+                    $bag->addLine($domain, $locale, $translationId);
                 }
             }
         }
 
         return $bag;
+    }
+
+    private function createReportBag(): ReportBag
+    {
+        return new ReportBag(
+            [
+                'domain' => ['string'],
+                'locale' => ['string'],
+                'translation_id' => ['string'],
+            ],
+            'There is no value which is match forbidden pattern',
+            'Translation values which is match forbidden pattern'
+        );
     }
 }

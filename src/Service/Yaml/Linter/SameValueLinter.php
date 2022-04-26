@@ -6,7 +6,6 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
-use Aeliot\Bundle\TransMaintain\Model\SameValueLine;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileManipulator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
 
@@ -35,7 +34,7 @@ final class SameValueLinter implements LinterInterface
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
-        $bag = new ReportBag(SameValueLine::class);
+        $bag = $this->createReportBag();
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
@@ -44,7 +43,7 @@ final class SameValueLinter implements LinterInterface
                 $values = [];
                 $pairs = array_merge(
                     ...array_map(
-                        fn (string $x): array => iterator_to_array($this->glueKeys($this->fileManipulator->parse($x))),
+                        fn(string $x): array => iterator_to_array($this->glueKeys($this->fileManipulator->parse($x))),
                         $files
                     )
                 );
@@ -64,11 +63,25 @@ final class SameValueLinter implements LinterInterface
 
                 foreach ($same as $translation => $translationIds) {
                     sort($translationIds);
-                    $bag->addLine(new SameValueLine($domain, $locale, $translation, $translationIds));
+                    $bag->addLine($domain, $locale, $translation, $translationIds);
                 }
             }
         }
 
         return $bag;
+    }
+
+    private function createReportBag(): ReportBag
+    {
+        return new ReportBag(
+            [
+                'domain' => ['string'],
+                'locale' => ['string'],
+                'translation' => ['string'],
+                'translation_ids' => ['array'],
+            ],
+            'There is no keys with same value',
+            'Translation keys with same values'
+        );
     }
 }

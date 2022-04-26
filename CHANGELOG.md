@@ -21,6 +21,17 @@ CHANGELOG
   * Change naming:
     * language_id -> translation_id
     * language -> locale
+  * Refactored linters' [ReportBag](src/Model/ReportBag.php) class.
+  * Removed linters' reports line classes:
+    * `Aeliot\Bundle\TransMaintain\Model\AbstractLine`
+    * `Aeliot\Bundle\TransMaintain\Model\EmptyValueLine`
+    * `Aeliot\Bundle\TransMaintain\Model\FilesMissedLine`
+    * `Aeliot\Bundle\TransMaintain\Model\FilesTransformedLine`
+    * `Aeliot\Bundle\TransMaintain\Model\InvalidValueLine`
+    * `Aeliot\Bundle\TransMaintain\Model\KeysDuplicatedLine`
+    * `Aeliot\Bundle\TransMaintain\Model\KeysMissedLine`
+    * `Aeliot\Bundle\TransMaintain\Model\KeysPatternLine`
+    * `Aeliot\Bundle\TransMaintain\Model\SameValueLine`
 
 2.6.0
 -----
