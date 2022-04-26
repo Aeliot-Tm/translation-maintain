@@ -13,6 +13,7 @@ CHANGELOG
   * Configured CS Fixer.
   * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
   * Refactored gluing of yaml tree to single level array.
+  * Switch name and alias of YAML lint command.
 * Bug fixes:
   * Fix registering of missed translation.
   * Remove not used dependencies.

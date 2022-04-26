@@ -21,7 +21,7 @@ final class LintCommand extends Command
 
     public function __construct(LinterRegistry $linterRegistry, ?string $yamlKeyPattern)
     {
-        parent::__construct('aeliot_trans_maintain:lint:yaml');
+        parent::__construct('aeliot_trans_maintain:yaml:lint');
 
         $this->linterRegistry = $linterRegistry;
         $this->yamlKeyPattern = $yamlKeyPattern;
@@ -50,7 +50,7 @@ final class LintCommand extends Command
         $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterInterface::PRESET_BASE]);
         $this->addOption('domain', 'd', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter domains');
         $this->addOption('locale', 'l', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter locales');
-        $this->setAliases(['aeliot_trans_maintain:yaml:lint']);
+        $this->setAliases(['aeliot_trans_maintain:lint:yaml']);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
