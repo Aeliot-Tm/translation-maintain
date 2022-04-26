@@ -73,7 +73,7 @@ final class KeyPatternLinter implements LinterInterface
                 $summary[$translationId][] = $locale;
             }
         }
-        asort($summary);
+        ksort($summary);
 
         return $summary;
     }

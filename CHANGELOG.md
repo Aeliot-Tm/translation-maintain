@@ -17,6 +17,7 @@ CHANGELOG
   * Switch name and alias of YAML lint command.
 * Bug fixes:
   * Fix registering of missed translation.
+  * Fix sorting of translation Ids during keys pattern matching.
   * Remove not used dependencies.
 * Backward compatibility breaks:
   * Removed deprecated constants:
