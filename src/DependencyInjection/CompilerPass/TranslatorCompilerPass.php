@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\DependencyInjection\CompilerPass;
 
 use Aeliot\Bundle\TransMaintain\Service\KernelVersionDetector;
-use Aeliot\Bundle\TransMaintain\Service\LegacyTranslator;
-use Aeliot\Bundle\TransMaintain\Service\Translator;
+use Aeliot\Bundle\TransMaintain\Service\Translator\LegacyTranslator;
+use Aeliot\Bundle\TransMaintain\Service\Translator\Translator;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

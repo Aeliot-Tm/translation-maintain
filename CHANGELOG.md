@@ -22,6 +22,7 @@ CHANGELOG
   * Change naming:
     * language_id -> translation_id
     * language -> locale
+  * Move Translator decorators to the separate namespace.
   * Refactored linters' [ReportBag](src/Model/ReportBag.php) class.
   * Removed linters' report line classes:
     * `Aeliot\Bundle\TransMaintain\Model\AbstractLine`
