@@ -33,29 +33,24 @@ final class EmptyValueLinter implements LinterInterface
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
-            $empty = [];
-            foreach ($localesFiles as $locale => $files) {
-                foreach ($files as $file) {
-                    foreach ($this->fileParser->parse($file) as $translationId => $value) {
-                        if ('' === trim($value)) {
-                            if (!\array_key_exists($translationId, $empty)) {
-                                $empty[$translationId] = [];
-                            }
-                            $empty[$translationId][] = $locale;
-                        }
-                    }
-                }
-            }
-
-            ksort($empty);
-
-            foreach ($empty as $translationId => $locales) {
-                sort($locales);
-                $bag->addLine($domain, $translationId, $locales);
-            }
+            $translationIsWithLocales = $this->getTranslationIsWithLocalesForEmptyValues($localesFiles);
+            $this->addLines($bag, $domain, $translationIsWithLocales);
         }
 
         return $bag;
+    }
+
+    /**
+     * @param array<string,array<string>> $translationIsWithLocales
+     */
+    private function addLines(ReportBag $bag, string $domain, array $translationIsWithLocales): void
+    {
+        ksort($translationIsWithLocales);
+
+        foreach ($translationIsWithLocales as $translationId => $locales) {
+            sort($locales);
+            $bag->addLine($domain, $translationId, $locales);
+        }
     }
 
     private function createReportBag(): ReportBag
@@ -69,5 +64,29 @@ final class EmptyValueLinter implements LinterInterface
             'There is no key with empty value',
             'Translation keys with empty values'
         );
+    }
+
+    /**
+     * @param array<string,array<string>> $localesFiles
+     *
+     * @return array<string,array<string>>
+     */
+    private function getTranslationIsWithLocalesForEmptyValues(array $localesFiles): array
+    {
+        $translationIsWithLocales = [];
+        foreach ($localesFiles as $locale => $files) {
+            foreach ($files as $file) {
+                foreach ($this->fileParser->parse($file) as $translationId => $value) {
+                    if ('' === trim($value)) {
+                        if (!\array_key_exists($translationId, $translationIsWithLocales)) {
+                            $translationIsWithLocales[$translationId] = [];
+                        }
+                        $translationIsWithLocales[$translationId][] = $locale;
+                    }
+                }
+            }
+        }
+
+        return $translationIsWithLocales;
     }
 }

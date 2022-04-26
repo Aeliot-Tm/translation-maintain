@@ -34,22 +34,7 @@ final class SameValueLinter implements LinterInterface
 
         foreach ($domainsFiles as $domain => $localesFiles) {
             foreach ($localesFiles as $locale => $files) {
-                $same = [];
-                $values = [];
-                foreach ($files as $file) {
-                    foreach ($this->fileParser->parse($file) as $translationId => $translation) {
-                        if (!\array_key_exists($translation, $values)) {
-                            $values[$translation] = $translationId;
-                        } else {
-                            if (!\array_key_exists($translation, $same)) {
-                                $same[$translation] = [$values[$translation]];
-                            }
-
-                            $same[$translation][] = $translationId;
-                        }
-                    }
-                }
-
+                $same = $this->getTranslationKeysWithSameValues($files);
                 $this->addLines($bag, $domain, $locale, $same);
             }
         }
@@ -57,7 +42,10 @@ final class SameValueLinter implements LinterInterface
         return $bag;
     }
 
-    private function addLines(ReportBag $bag, $domain, $locale, array $same): void
+    /**
+     * @param array<string,array<string>> $same
+     */
+    private function addLines(ReportBag $bag, string $domain, string $locale, array $same): void
     {
         ksort($same);
 
@@ -79,5 +67,31 @@ final class SameValueLinter implements LinterInterface
             'There is no keys with same value',
             'Translation keys with same values'
         );
+    }
+
+    /**
+     * @param string[] $files
+     *
+     * @return array<string,array<string>>
+     */
+    private function getTranslationKeysWithSameValues(array $files): array
+    {
+        $same = [];
+        $values = [];
+        foreach ($files as $file) {
+            foreach ($this->fileParser->parse($file) as $translationId => $translation) {
+                if (!\array_key_exists($translation, $values)) {
+                    $values[$translation] = $translationId;
+                } else {
+                    if (!\array_key_exists($translation, $same)) {
+                        $same[$translation] = [$values[$translation]];
+                    }
+
+                    $same[$translation][] = $translationId;
+                }
+            }
+        }
+
+        return $same;
     }
 }

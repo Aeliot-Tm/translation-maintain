@@ -37,28 +37,25 @@ final class KeysDuplicatedLinter implements LinterInterface
 
         foreach ($domainsFiles as $domain => $localesFiles) {
             foreach ($localesFiles as $locale => $files) {
-                $values = [];
-                $duplicatedKeys = [];
-                foreach ($files as $file) {
-                    foreach ($this->fileParser->parse($file) as $translationId => $value) {
-                        if (\array_key_exists($translationId, $values)) {
-                            $duplicatedKeys[] = $translationId;
-                        } else {
-                            $values[$translationId] = $value;
-                        }
-                    }
-                }
-
-                $duplicatedKeys = array_unique($duplicatedKeys);
-                sort($duplicatedKeys);
-
-                foreach ($duplicatedKeys as $translationId) {
-                    $bag->addLine($domain, $locale, $translationId);
-                }
+                $duplicatedKeys = $this->getDuplicatedKeys($files);
+                $this->addLines($bag, $domain, $locale, $duplicatedKeys);
             }
         }
 
         return $bag;
+    }
+
+    /**
+     * @param string[] $duplicatedKeys
+     */
+    private function addLines(ReportBag $bag, string $domain, string $locale, array $duplicatedKeys): void
+    {
+        $duplicatedKeys = array_unique($duplicatedKeys);
+        sort($duplicatedKeys);
+
+        foreach ($duplicatedKeys as $translationId) {
+            $bag->addLine($domain, $locale, $translationId);
+        }
     }
 
     private function createReportBag(): ReportBag
@@ -72,5 +69,27 @@ final class KeysDuplicatedLinter implements LinterInterface
             'There are no duplicated keys',
             'Duplicated translation keys'
         );
+    }
+
+    /**
+     * @param string[] $files
+     *
+     * @return string[]
+     */
+    private function getDuplicatedKeys(array $files): array
+    {
+        $values = [];
+        $duplicatedKeys = [];
+        foreach ($files as $file) {
+            foreach ($this->fileParser->parse($file) as $translationId => $value) {
+                if (\array_key_exists($translationId, $values)) {
+                    $duplicatedKeys[] = $translationId;
+                } else {
+                    $values[$translationId] = $value;
+                }
+            }
+        }
+
+        return $duplicatedKeys;
     }
 }

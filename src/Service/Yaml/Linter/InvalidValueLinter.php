@@ -43,25 +43,24 @@ final class InvalidValueLinter implements LinterInterface
 
         foreach ($domainsFiles as $domain => $localesFiles) {
             foreach ($localesFiles as $locale => $files) {
-                $invalidValueKeys = [];
-
-                foreach ($files as $file) {
-                    foreach ($this->fileParser->parse($file) as $translationId => $value) {
-                        if (preg_match($this->invalidValuePattern, $value)) {
-                            $invalidValueKeys[] = $translationId;
-                        }
-                    }
-                }
-
-                sort($invalidValueKeys);
-
-                foreach ($invalidValueKeys as $translationId) {
-                    $bag->addLine($domain, $locale, $translationId);
-                }
+                $invalidValueKeys = $this->getInvalidValueKeys($files);
+                $this->addLInes($bag, $domain, $locale, $invalidValueKeys);
             }
         }
 
         return $bag;
+    }
+
+    /**
+     * @param string[] $invalidValueKeys
+     */
+    private function addLInes(ReportBag $bag, string $domain, string $locale, array $invalidValueKeys): void
+    {
+        sort($invalidValueKeys);
+
+        foreach ($invalidValueKeys as $translationId) {
+            $bag->addLine($domain, $locale, $translationId);
+        }
     }
 
     private function createReportBag(): ReportBag
@@ -75,5 +74,25 @@ final class InvalidValueLinter implements LinterInterface
             'There is no value which is match forbidden pattern',
             'Translation values which is match forbidden pattern'
         );
+    }
+
+    /**
+     * @param string[] $files
+     *
+     * @return string[]
+     */
+    private function getInvalidValueKeys(array $files): array
+    {
+        $invalidValueKeys = [];
+
+        foreach ($files as $file) {
+            foreach ($this->fileParser->parse($file) as $translationId => $value) {
+                if (preg_match($this->invalidValuePattern, $value)) {
+                    $invalidValueKeys[] = $translationId;
+                }
+            }
+        }
+
+        return $invalidValueKeys;
     }
 }

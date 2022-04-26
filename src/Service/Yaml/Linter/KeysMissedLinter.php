@@ -47,16 +47,7 @@ final class KeysMissedLinter implements LinterInterface
             $allOmittedKeys = $this->keysParser->mergeKeys($omittedKeys);
 
             foreach ($allOmittedKeys as $translationId) {
-                $omittedLocales = [];
-                foreach ($omittedKeys as $locale => $keys) {
-                    if (\in_array($translationId, $keys, true)) {
-                        $omittedLocales[] = $locale;
-                    }
-                }
-
-                if ($filterDto->locales) {
-                    $omittedLocales = array_intersect($omittedLocales, $filterDto->locales);
-                }
+                $omittedLocales = $this->getOmittedLocales($omittedKeys, (string) $translationId, $filterDto->locales);
 
                 if ($omittedLocales) {
                     sort($omittedLocales);
@@ -79,5 +70,27 @@ final class KeysMissedLinter implements LinterInterface
             'All locales of all domains are in the sync state. There are no missed translation keys',
             'Missed translation keys'
         );
+    }
+
+    /**
+     * @param array<string,array<string>> $omittedKeys
+     * @param string[]|null $filteredLocales
+     *
+     * @return string[]
+     */
+    private function getOmittedLocales(array $omittedKeys, string $translationId, ?array $filteredLocales): array
+    {
+        $omittedLocales = [];
+        foreach ($omittedKeys as $locale => $keys) {
+            if (\in_array($translationId, $keys, true)) {
+                $omittedLocales[] = $locale;
+            }
+        }
+
+        if ($filteredLocales) {
+            $omittedLocales = array_intersect($omittedLocales, $filteredLocales);
+        }
+
+        return $omittedLocales;
     }
 }
