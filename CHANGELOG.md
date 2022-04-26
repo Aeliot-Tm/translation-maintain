@@ -11,8 +11,9 @@ CHANGELOG
 * Minors:
   * Add docker configuration for development purposes.
   * Configured CS Fixer.
-  * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
   * Refactored gluing of yaml tree to single level array.
+  * Refactored rendering of linters' reports.
+  * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
   * Switch name and alias of YAML lint command.
 * Bug fixes:
   * Fix registering of missed translation.
@@ -26,6 +27,8 @@ CHANGELOG
     * language -> locale
   * Move Translator decorators to the separate namespace.
   * Refactored linters' [ReportBag](src/Model/ReportBag.php) class.
+  * Removed class `\Aeliot\Bundle\TransMaintain\Report\Builder\ConsoleOutputTableBuilder`.
+    Use service `\Aeliot\Bundle\TransMaintain\Service\ReportBagConsoleRenderer` instead of it.
   * Removed linters' report line classes:
     * `Aeliot\Bundle\TransMaintain\Model\AbstractLine`
     * `Aeliot\Bundle\TransMaintain\Model\EmptyValueLine`
