@@ -7,7 +7,6 @@ use PhpCsFixer\Finder;
 $finder = (new Finder())
     ->in('src')
     ->in('tests')
-    ->filter(static fn (SplFileInfo $x): bool => !preg_match('~src/DependencyInjection$~', $x->getPath()))
     ->append([
         '.php-cs-fixer.dist.php',
         '.php-cs-fixer-finder.php',
