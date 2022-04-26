@@ -18,11 +18,11 @@ final class InvalidValueLinter implements LinterInterface
     private FileToSingleLevelArrayParser $fileParser;
     private ?string $invalidValuePattern;
 
-    public function __construct(FileToSingleLevelArrayParser $fileParser, FileMapFilter $fileMapFilter, ?string $invalidValuePattern)
+    public function __construct(FileToSingleLevelArrayParser $fileParser, FileMapFilter $fileMapFilter, ?string $valueInvalidPattern)
     {
         $this->fileMapFilter = $fileMapFilter;
         $this->fileParser = $fileParser;
-        $this->invalidValuePattern = $invalidValuePattern;
+        $this->invalidValuePattern = $valueInvalidPattern;
     }
 
     public function getKey(): string
