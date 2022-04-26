@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class CSV implements \Iterator
+/**
+ * @internal
+ */
+class CSV implements \Iterator
 {
     private string $path;
     /**
@@ -29,19 +32,14 @@ final class CSV implements \Iterator
         return $this->innerGenerator->current();
     }
 
-    public function next(): void
-    {
-        $this->innerGenerator->next();
-    }
-
     public function key(): int
     {
         return $this->innerGenerator->key();
     }
 
-    public function valid(): bool
+    public function next(): void
     {
-        return $this->innerGenerator && $this->innerGenerator->valid();
+        $this->innerGenerator->next();
     }
 
     public function rewind(): void
@@ -55,6 +53,11 @@ final class CSV implements \Iterator
             fclose($this->handler);
         }
         $this->innerGenerator = null;
+    }
+
+    public function valid(): bool
+    {
+        return $this->innerGenerator && $this->innerGenerator->valid();
     }
 
     private function open(): void
