@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-final class CsvReader implements \Iterator
+final class CSV implements \Iterator
 {
     private string $path;
     /**

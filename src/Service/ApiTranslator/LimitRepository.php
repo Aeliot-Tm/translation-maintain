@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\ApiTranslator;
 
 use Aeliot\Bundle\TransMaintain\Model\ApiLimitReport;
-use Aeliot\Bundle\TransMaintain\Model\CsvReader;
+use Aeliot\Bundle\TransMaintain\Model\CSV;
 use Symfony\Component\Filesystem\Filesystem;
 
 final class LimitRepository
@@ -23,8 +23,8 @@ final class LimitRepository
             return null;
         }
 
-        $reader = new CsvReader($this->path);
-        foreach ($reader as $row) {
+        $csv = new CSV($this->path);
+        foreach ($csv as $row) {
             if ($this->isSeeked($row, $uniqueId, $startDate)) {
                 return new ApiLimitReport($row);
             }
@@ -40,8 +40,8 @@ final class LimitRepository
         $table = [];
         $isFound = false;
         if (file_exists($this->path)) {
-            $reader = new CsvReader($this->path);
-            foreach ($reader as $row) {
+            $csv = new CSV($this->path);
+            foreach ($csv as $row) {
                 if ($this->isSeeked($row, $report->uniqueKey, $report->startDate)) {
                     $table[] = $report->jsonSerialize();
                     $isFound = true;
