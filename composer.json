@@ -41,7 +41,6 @@
   },
   "scripts": {
     "test": [
-      "tests/console lint:container",
       "vendor/bin/phpunit",
       "vendor/bin/php-cs-fixer fix -vv --using-cache=no"
     ]
