@@ -5,6 +5,9 @@ CHANGELOG
 -----
 * Features:
   * Add linter `same_value` which detects translation keys with the same value.
+  * Add linter `invalid_value` which detects translation values matching some configured pattern.
+  * Mark configuration `yaml: { key_pattern: '' }` deprecated.
+    Use `linter: { key_valid_pattern: '' }` instead of it.
 * Minors:
   * Add docker configuration for development purposes.
   * Configured CS Fixer.

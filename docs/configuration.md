@@ -16,6 +16,9 @@ aeliot_trans_maintain:
 ```yaml
 aeliot_trans_maintain:
     insert_missed_keys: 'no'    # Switch on/off decorator for the standard translator and define mode of inserting missed keys.
+    linter:
+        key_valid_pattern: ~        # Pattern to match valid translation keys. Example: /^[a-zA-Z0-9_.-]+$/
+        value_invalid_pattern: ~    # Pattern to match invalid translations. Example: /[\x00-\x07]/
     translation_api:
         google:
             key: ~              # Your key to the Google Cloud Translate API
@@ -23,7 +26,7 @@ aeliot_trans_maintain:
             model: 'base'       # Used model of translation
     yaml:
         indent: 4               # Size of indents in YAML files
-        key_pattern: ~          # Pattern to match keys. Example: /^[a-zA-Z0-9_.-]+$/
+        key_pattern: ~          # Deprecated! Use: "linter: { key_valid_pattern: '' }"
 ```
 
 #### Accepted keys for the option `insert_missed_keys`:

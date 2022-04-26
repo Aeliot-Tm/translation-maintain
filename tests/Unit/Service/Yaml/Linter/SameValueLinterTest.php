@@ -17,7 +17,7 @@ final class SameValueLinterTest extends TestCase
      * @dataProvider getDataForTestCorrectFiles
      *
      * @param array<string,array<string,array<int,string>>> $filesMap
-     * @param array<string,mixed>                           $fileTranslations
+     * @param array<string,mixed> $fileTranslations
      */
     public function testNothingDetected(array $filesMap, array $fileTranslations): void
     {
@@ -54,7 +54,7 @@ final class SameValueLinterTest extends TestCase
      * @dataProvider getDataForTestFilesWithSameValues
      *
      * @param array<string,array<string,array<int,string>>> $filesMap
-     * @param array<string,mixed>                           $fileTranslations
+     * @param array<string,mixed> $fileTranslations
      */
     public function testSameValuesDetected(array $expected, array $filesMap, array $fileTranslations): void
     {

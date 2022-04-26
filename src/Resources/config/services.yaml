@@ -3,6 +3,7 @@ services:
         autowire: true
         autoconfigure: true
         bind:
+            $valueInvalidPattern: '%aeliot_trans_maintain.linter.value.invalid_pattern%'
             $yamlKeyPattern: '%aeliot_trans_maintain.yaml.key_pattern%'
             $yamlIndent: '%aeliot_trans_maintain.yaml.indent%'
 
