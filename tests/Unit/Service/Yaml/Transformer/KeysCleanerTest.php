@@ -22,5 +22,6 @@ final class KeysCleanerTest extends TestCase
     {
         yield [['a' => '*', 'b' => '*'], ['"a"' => '*', "'b'" => '*']];
         yield [['a' => ['b' => '*', 'c' => '*']], ['"a"' => ['"b"' => '*', "'c'" => '*']]];
+        yield [['a"b"c' => '*'], ['a"b"c' => '*']];
     }
 }

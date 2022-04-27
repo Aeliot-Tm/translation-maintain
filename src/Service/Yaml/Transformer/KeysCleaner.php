@@ -27,9 +27,9 @@ final class KeysCleaner implements TransformerInterface
     private function normaliseKey(string $rawKey): string
     {
         $key = $rawKey;
-        if (preg_match('/([\'"])(.+)([\'"])/', $rawKey, $matches)) {
+        if (preg_match('/^([\'"])(.+)([\'"])$/', $key, $matches)) {
             if ($matches[1] !== $matches[3]) {
-                return $rawKey;
+                return $key;
             }
 
             $key = $matches[2];

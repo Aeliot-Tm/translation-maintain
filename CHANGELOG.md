@@ -16,6 +16,7 @@ CHANGELOG
   * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
   * Switch name and alias of YAML lint command.
 * Bug fixes:
+  * Fix braking of translation keys by cleaner when comma is inside key.
   * Fix registering of missed translation.
   * Fix sorting of translation Ids during keys pattern matching.
   * Remove not used dependencies.
