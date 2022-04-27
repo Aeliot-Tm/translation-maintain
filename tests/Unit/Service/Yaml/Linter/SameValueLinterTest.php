@@ -6,13 +6,14 @@ namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\ReportLineInterface;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\SameValueLinter;
 use PHPUnit\Framework\TestCase;
 
 final class SameValueLinterTest extends TestCase
 {
+    use MockFileMapFilterTrait;
+    use MockFileToSingleLevelArrayParserTrait;
+
     /**
      * @dataProvider getDataForTestCorrectFiles
      *
@@ -64,27 +65,15 @@ final class SameValueLinterTest extends TestCase
         ];
     }
 
+    /**
+     * @param array<string,array<string,array<int,string>>> $filesMap
+     * @param array<string,mixed> $fileTranslations
+     */
     private function createLinter(array $filesMap, array $fileTranslations): SameValueLinter
     {
-        $fileManipulator = $this->getMockBuilder(FileToSingleLevelArrayParser::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $method = $fileManipulator->method('parse');
-        foreach ($fileTranslations as $file => $translations) {
-            $method->with($file)->willReturn($translations);
-        }
+        $fileMapFilter = $this->mockFileMapFilter($filesMap, $this);
+        $fileParser = $this->mockFileToSingleLevelArrayParser($fileTranslations, $this);
 
-        $fileMapFilter = $this->getMockBuilder(FileMapFilter::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $fileMapFilter->method('getFilesMap')->willReturn($filesMap);
-
-        return new SameValueLinter($fileMapFilter, $fileManipulator);
+        return new SameValueLinter($fileMapFilter, $fileParser);
     }
 }

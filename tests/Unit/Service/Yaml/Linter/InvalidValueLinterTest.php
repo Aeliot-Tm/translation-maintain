@@ -13,6 +13,9 @@ use PHPUnit\Framework\TestCase;
 
 final class InvalidValueLinterTest extends TestCase
 {
+    use MockFileMapFilterTrait;
+    use MockFileToSingleLevelArrayParserTrait;
+
     /**
      * @dataProvider getDataForTestFilesWithSameValues
      *
@@ -50,26 +53,14 @@ final class InvalidValueLinterTest extends TestCase
         ];
     }
 
+    /**
+     * @param array<string,array<string,array<int,string>>> $filesMap
+     * @param array<string,mixed> $fileTranslations
+     */
     private function createLinter(array $filesMap, array $fileTranslations, string $pattern): InvalidValueLinter
     {
-        $fileParser = $this->getMockBuilder(FileToSingleLevelArrayParser::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $method = $fileParser->method('parse');
-        foreach ($fileTranslations as $file => $translations) {
-            $method->with($file)->willReturn($translations);
-        }
-
-        $fileMapFilter = $this->getMockBuilder(FileMapFilter::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $fileMapFilter->method('getFilesMap')->willReturn($filesMap);
+        $fileMapFilter = $this->mockFileMapFilter($filesMap, $this);
+        $fileParser = $this->mockFileToSingleLevelArrayParser($fileTranslations, $this);
 
         return new InvalidValueLinter($fileParser, $fileMapFilter, $pattern);
     }
