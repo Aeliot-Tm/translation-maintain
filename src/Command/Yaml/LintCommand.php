@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Command\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Report\Builder\ConsoleOutputTableBuilder;
+use Aeliot\Bundle\TransMaintain\Service\ReportBagConsoleRenderer;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\LinterInterface;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\LinterRegistry;
 use Symfony\Component\Console\Command\Command;
@@ -17,13 +17,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class LintCommand extends Command
 {
     private LinterRegistry $linterRegistry;
+    private ReportBagConsoleRenderer $reportBagConsoleRenderer;
     private ?string $yamlKeyPattern;
 
-    public function __construct(LinterRegistry $linterRegistry, ?string $yamlKeyPattern)
-    {
-        parent::__construct('aeliot_trans_maintain:lint:yaml');
+    public function __construct(
+        LinterRegistry $linterRegistry,
+        ReportBagConsoleRenderer $reportBagConsoleRenderer,
+        ?string $yamlKeyPattern
+    ) {
+        parent::__construct('aeliot_trans_maintain:yaml:lint');
 
         $this->linterRegistry = $linterRegistry;
+        $this->reportBagConsoleRenderer = $reportBagConsoleRenderer;
         $this->yamlKeyPattern = $yamlKeyPattern;
     }
 
@@ -50,19 +55,18 @@ final class LintCommand extends Command
         $this->addArgument('linter', InputArgument::IS_ARRAY, 'List of linters', [LinterInterface::PRESET_BASE]);
         $this->addOption('domain', 'd', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter domains');
         $this->addOption('locale', 'l', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter locales');
-        $this->setAliases(['aeliot_trans_maintain:yaml:lint']);
+        $this->setAliases(['aeliot_trans_maintain:lint:yaml']);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $hasProblems = false;
         $filterDto = $this->createFilterDto($input);
-        $reportBuilder = new ConsoleOutputTableBuilder($output);
         foreach ($this->getLinters($input) as $linter) {
             /** @var LinterInterface $linter */
             $reportBag = $linter->lint($filterDto);
             $hasProblems = $hasProblems || !$reportBag->isEmpty();
-            $reportBuilder->render($reportBag);
+            $this->reportBagConsoleRenderer->render($reportBag, $output);
         }
 
         return (int) $hasProblems;

@@ -4,25 +4,13 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 
-use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\GlueKeysTrait;
-
 final class KeysParser
 {
-    use GlueKeysTrait;
+    private FileToSingleLevelArrayParser $fileParser;
 
-    private FileManipulator $fileManipulator;
-
-    public function __construct(FileManipulator $fileManipulator)
+    public function __construct(FileToSingleLevelArrayParser $fileParser)
     {
-        $this->fileManipulator = $fileManipulator;
-    }
-
-    private function getKeys(array $values): array
-    {
-        $keys = array_keys($values);
-        sort($keys);
-
-        return $keys;
+        $this->fileParser = $fileParser;
     }
 
     public function getOmittedKeys(array $parsedKeys): array
@@ -60,11 +48,19 @@ final class KeysParser
     {
         $values = [];
         foreach ($files as $file) {
-            foreach ($this->glueKeys($this->fileManipulator->parse($file)) as $key => $value) {
+            foreach ($this->fileParser->parse($file) as $key => $value) {
                 $values[$key] = $value;
             }
         }
 
         return $values;
+    }
+
+    private function getKeys(array $values): array
+    {
+        $keys = array_keys($values);
+        sort($keys);
+
+        return $keys;
     }
 }

@@ -2,27 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Report\Builder;
+namespace Aeliot\Bundle\TransMaintain\Service;
 
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class ConsoleOutputTableBuilder
+final class ReportBagConsoleRenderer
 {
-    private OutputInterface $output;
-
-    public function __construct(OutputInterface $output)
+    public function render(ReportBag $reportBag, OutputInterface $output): void
     {
-        $this->output = $output;
-    }
-
-    public function render(ReportBag $reportBag): void
-    {
-        $this->output->writeln($reportBag->getPriorMessage());
+        $output->writeln($reportBag->getPriorMessage());
 
         if (!$reportBag->isEmpty()) {
-            $table = new Table($this->output);
+            $table = new Table($output);
             $table->setHeaders($reportBag->getHeaders());
             foreach ($reportBag->getLines() as $line) {
                 $table->addRow($line->jsonSerialize());

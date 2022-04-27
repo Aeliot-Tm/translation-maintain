@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aeliot\Bundle\TransMaintain\Service;
+namespace Aeliot\Bundle\TransMaintain\Service\Translator;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\Translation\MessageCatalogueInterface;

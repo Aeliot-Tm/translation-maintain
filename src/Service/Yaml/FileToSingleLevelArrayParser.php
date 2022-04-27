@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 
-use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\GlueKeysTrait;
-
 final class FileToSingleLevelArrayParser
 {
-    use GlueKeysTrait;
-
     private FileManipulator $fileManipulator;
+    private KeysLinker $keysLinker;
 
-    public function __construct(FileManipulator $fileManipulator)
+    public function __construct(FileManipulator $fileManipulator, KeysLinker $keysLinker)
     {
         $this->fileManipulator = $fileManipulator;
+        $this->keysLinker = $keysLinker;
     }
 
     public function parse(string $path): array
     {
-        return iterator_to_array($this->glueKeys($this->fileManipulator->parse($path)));
+        return iterator_to_array($this->keysLinker->glueKeys($this->fileManipulator->parse($path)));
     }
 }

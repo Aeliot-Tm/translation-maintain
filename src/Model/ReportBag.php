@@ -4,46 +4,57 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 final class ReportBag
 {
+    /**
+     * @var string[]
+     */
+    private array $columns;
+    private int $columnsCount;
+
     /**
      * @var ReportLineInterface[]
      */
     private array $lines = [];
+    private string $messageEmptyReport;
+    private string $messageReportWithErrors;
+    private OptionsResolver $resolver;
 
     /**
-     * @var class-string
+     * @param array<string,array<string>> $columnsConfig
      */
-    private string $reportLineClass;
-
-    /**
-     * @param class-string $reportLineClass
-     */
-    public function __construct(string $reportLineClass)
+    public function __construct(array $columnsConfig, string $messageEmptyReport, string $messageReportWithErrors)
     {
-        $this->reportLineClass = $reportLineClass;
+        if (!$columnsConfig) {
+            throw new \InvalidArgumentException('Columns are not configured');
+        }
+        $this->columns = array_keys($columnsConfig);
+        $this->messageEmptyReport = $messageEmptyReport;
+        $this->messageReportWithErrors = $messageReportWithErrors;
+
+        $this->columnsCount = \count($this->columns);
+        $this->resolver = new OptionsResolver();
+
+        $this->resolver->setDefaults(array_fill_keys($this->columns, null));
+        foreach ($columnsConfig as $column => $allowedTypes) {
+            $this->resolver->setAllowedTypes($column, $allowedTypes);
+        }
     }
 
-    public function addLine(ReportLineInterface $line): void
+    public function addLine(...$values): void
     {
-        if (!is_a($line, $this->reportLineClass)) {
-            $message = sprintf(
-                'Invalid report line passed "%s". Expected "%s"',
-                \get_class($line),
-                $this->reportLineClass
-            );
-            throw new \InvalidArgumentException($message);
+        if (\count($values) !== $this->columnsCount) {
+            throw new \InvalidArgumentException('Invalid values count');
         }
 
-        $this->lines[] = $line;
+        $this->lines[] = new ReportLine($this->resolver->resolve(array_combine($this->columns, $values)));
     }
 
     public function getHeaders(): array
     {
-        /** @var ReportLineInterface $reportLineClass */
-        $reportLineClass = $this->reportLineClass;
-
-        return $reportLineClass::getHeaders();
+        return $this->columns;
     }
 
     /**
@@ -57,13 +68,11 @@ final class ReportBag
     public function getPriorMessage(): string
     {
         $prefix = 'Translation files linter report: ';
-        /** @var ReportLineInterface $reportLineClass */
-        $reportLineClass = $this->reportLineClass;
         if ($this->isEmpty()) {
-            return sprintf('%s<info>%s</info>', $prefix, $reportLineClass::getEmptyReportMessage());
+            return sprintf('%s<info>%s</info>', $prefix, $this->messageEmptyReport);
         }
 
-        return sprintf('%s<fg=black;bg=yellow>%s</>', $prefix, $reportLineClass::getReportWithErrorsMessage());
+        return sprintf('%s<fg=black;bg=yellow>%s</>', $prefix, $this->messageReportWithErrors);
     }
 
     public function isEmpty(): bool
