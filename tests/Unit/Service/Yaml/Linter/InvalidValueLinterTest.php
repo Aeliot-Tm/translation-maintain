@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Model\ReportLineInterface;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\InvalidValueLinter;
 use PHPUnit\Framework\TestCase;
 
 final class InvalidValueLinterTest extends TestCase
 {
+    use ConvertReportBagToArrayTrait;
     use MockFileMapFilterTrait;
     use MockFileToSingleLevelArrayParserTrait;
 
@@ -31,10 +29,7 @@ final class InvalidValueLinterTest extends TestCase
         $linter = $this->createLinter($filesMap, $fileTranslations, $pattern);
         $bag = $linter->lint(new LintYamlFilterDto());
 
-        self::assertSame(
-            $expected,
-            array_map(static fn (ReportLineInterface $x): array => $x->jsonSerialize(), $bag->getLines())
-        );
+        self::assertSame($expected, $this->convertReportBagToArrayTrait($bag));
     }
 
     public function getDataForTestFilesWithSameValues(): \Generator
