@@ -33,7 +33,7 @@ final class EmptyValueLinter implements LinterInterface
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
-            $translationIsWithLocales = $this->getTranslationIsWithLocalesForEmptyValues($localesFiles);
+            $translationIsWithLocales = $this->getTranslationIdsWithLocalesForEmptyValues($localesFiles);
             $this->addLines($bag, $domain, $translationIsWithLocales);
         }
 
@@ -71,7 +71,7 @@ final class EmptyValueLinter implements LinterInterface
      *
      * @return array<string,array<string>>
      */
-    private function getTranslationIsWithLocalesForEmptyValues(array $localesFiles): array
+    private function getTranslationIdsWithLocalesForEmptyValues(array $localesFiles): array
     {
         $translationIsWithLocales = [];
         foreach ($localesFiles as $locale => $files) {
