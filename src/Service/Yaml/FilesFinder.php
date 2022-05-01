@@ -51,6 +51,8 @@ final class FilesFinder
     }
 
     /**
+     * @deprecated Use {@see \Aeliot\Bundle\TransMaintain\Service\LocalesDetector::getLocales() }
+     *
      * @return array<int,string>
      */
     public function getLocales(): array

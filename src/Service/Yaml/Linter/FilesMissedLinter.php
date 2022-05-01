@@ -6,18 +6,18 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Model\ReportBag;
+use Aeliot\Bundle\TransMaintain\Service\LocalesDetector;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FilesFinder;
 
 final class FilesMissedLinter implements LinterInterface
 {
-    private FilesFinder $filesFinder;
     private FileMapFilter $fileMapFilter;
+    private LocalesDetector $localesDetector;
 
-    public function __construct(FilesFinder $filesFinder, FileMapFilter $fileMapFilter)
+    public function __construct(FileMapFilter $fileMapFilter, LocalesDetector $localesDetector)
     {
-        $this->filesFinder = $filesFinder;
         $this->fileMapFilter = $fileMapFilter;
+        $this->localesDetector = $localesDetector;
     }
 
     public function getKey(): string
@@ -34,7 +34,7 @@ final class FilesMissedLinter implements LinterInterface
     {
         $bag = $this->createReportBag();
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
-        $mentionedLocales = $this->filesFinder->getLocales();
+        $mentionedLocales = $this->localesDetector->getLocales();
         foreach ($domainsFiles as $domain => $localesFiles) {
             if ($omittedLocales = array_diff($mentionedLocales, array_keys($localesFiles))) {
                 $bag->addLine($domain, $omittedLocales);
