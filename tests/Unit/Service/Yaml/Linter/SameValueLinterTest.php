@@ -43,7 +43,11 @@ final class SameValueLinterTest extends TestCase
 
     public function getDataForTestCorrectFiles(): \Generator
     {
-        yield [[], []];
+        yield [
+
+            ['messages' => ['en' => ['messages.en.yaml']]],
+            ['messages.en.yaml' => ['key.a' => 'value_a', 'key.b' => 'value_b']],
+        ];
     }
 
     public function getDataForTestFilesWithSameValues(): \Generator

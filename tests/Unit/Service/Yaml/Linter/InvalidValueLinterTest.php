@@ -15,6 +15,19 @@ final class InvalidValueLinterTest extends TestCase
     use MockFileToSingleLevelArrayParserTrait;
 
     /**
+     * @dataProvider getDataForTestCorrectFiles
+     *
+     * @param array<string,array<string,array<int,string>>> $filesMap
+     * @param array<string,mixed> $fileTranslations
+     */
+    public function testNothingDetected(array $filesMap, array $fileTranslations, string $pattern): void
+    {
+        $linter = $this->createLinter($filesMap, $fileTranslations, $pattern);
+        $bag = $linter->lint(new LintYamlFilterDto());
+        self::assertTrue($bag->isEmpty());
+    }
+
+    /**
      * @dataProvider getDataForTestFilesWithSameValues
      *
      * @param array<string,array<string,array<int,string>>> $filesMap
@@ -30,6 +43,15 @@ final class InvalidValueLinterTest extends TestCase
         $bag = $linter->lint(new LintYamlFilterDto());
 
         self::assertSame($expected, $this->convertReportBagToArrayTrait($bag));
+    }
+
+    public function getDataForTestCorrectFiles(): \Generator
+    {
+        yield [
+            ['messages' => ['en' => ['messages.en.yaml']]],
+            ['messages.en.yaml' => ['valid.key.a' => 'value_a', 'valid.key.b' => 'value_b']],
+            '/[\xa0]/',
+        ];
     }
 
     public function getDataForTestFilesWithSameValues(): \Generator
