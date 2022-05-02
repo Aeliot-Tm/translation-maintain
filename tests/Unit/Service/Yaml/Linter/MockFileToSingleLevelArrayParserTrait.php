@@ -24,10 +24,9 @@ trait MockFileToSingleLevelArrayParserTrait
             ->disallowMockingUnknownTypes()
             ->getMock();
 
-        $method = $fileManipulator->method('parse');
-        foreach ($fileTranslations as $file => $translations) {
-            $method->with($file)->willReturn($translations);
-        }
+        $fileManipulator->method('parse')->willReturnCallback(function (string $path) use ($fileTranslations) {
+            return $fileTranslations[$path];
+        });
 
         return $fileManipulator;
     }
