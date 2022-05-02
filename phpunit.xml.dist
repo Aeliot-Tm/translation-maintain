@@ -24,7 +24,6 @@
     </logging>
 
     <coverage cacheDirectory="report/coverage/cache"
-              processUncoveredFiles="true"
               pathCoverage="true"
               ignoreDeprecatedCodeUnits="true">
         <include>
