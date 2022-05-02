@@ -6,6 +6,7 @@ namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\EmptyValueLinter;
+use Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\MockFileToSingleLevelArrayParserTrait;
 use PHPUnit\Framework\TestCase;
 
 final class EmptyValueLinterTest extends TestCase

@@ -8,6 +8,7 @@ use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\KeysMissedLinter;
 use Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\MockFilesFinderTrait;
+use Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\MockFileToSingleLevelArrayParserTrait;
 use PHPUnit\Framework\TestCase;
 
 final class KeysMissedLinterTest extends TestCase
