@@ -20,7 +20,7 @@ RUN  pecl install xdebug \
 # Memory limit
 RUN echo "memory_limit = 1G" >> /usr/local/etc/php/php.ini
 
-WORKDIR /app
+WORKDIR /app/translation-maintain
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --filename composer --install-dir=/bin \
