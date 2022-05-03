@@ -13,50 +13,63 @@ final class KeysParser
         $this->fileParser = $fileParser;
     }
 
-    public function getOmittedKeys(array $parsedKeys): array
+    /**
+     * @param array<string,array<string>> $localesKeys
+     *
+     * @return array<string,array<string>>
+     */
+    public function getOmittedKeys(array $localesKeys): array
     {
-        $allDomainKeys = $this->mergeKeys($parsedKeys);
-        $locales = array_keys($parsedKeys);
-        sort($locales);
-        $omittedKeys = array_fill_keys($locales, null);
-        foreach ($parsedKeys as $locale => $localeKeys) {
-            $omittedKeys[$locale] = array_diff($allDomainKeys, $localeKeys);
+        $allDomainKeys = $this->mergeKeys($localesKeys);
+        ksort($localesKeys);
+        $omittedKeys = [];
+        foreach ($localesKeys as $locale => $localeKeys) {
+            $omittedKeys[$locale] = array_values(array_diff($allDomainKeys, $localeKeys));
         }
 
         return $omittedKeys;
     }
 
+    /**
+     * @param array<string,array<string>> $localesFiles
+     *
+     * @return array<string,array<string>>
+     */
     public function getParsedKeys(array $localesFiles): array
     {
         $keys = [];
         foreach ($localesFiles as $locale => $files) {
-            $keys[$locale] = $this->getKeys($this->parseFiles($files));
+            $keys[$locale] = $this->getSortedKeys($this->parseFiles($files));
         }
 
         return $keys;
     }
 
-    public function mergeKeys(array $keys): array
+    /**
+     * @param array<string,array<string>> $localesKeys
+     *
+     * @return string[]
+     */
+    public function mergeKeys(array $localesKeys): array
     {
-        $merged = array_unique(array_merge(...array_values($keys)));
+        $merged = array_unique(array_merge(...array_values($localesKeys)));
         sort($merged);
 
         return $merged;
     }
 
+    /**
+     * @param string[] $files
+     *
+     * @return array<string,string>
+     */
     public function parseFiles(array $files): array
     {
-        $values = [];
-        foreach ($files as $file) {
-            foreach ($this->fileParser->parse($file) as $key => $value) {
-                $values[$key] = $value;
-            }
-        }
-
-        return $values;
+        // THINK: sort result
+        return array_merge(...array_map(fn (string $x): array => $this->fileParser->parse($x), array_values($files)));
     }
 
-    private function getKeys(array $values): array
+    private function getSortedKeys(array $values): array
     {
         $keys = array_keys($values);
         sort($keys);

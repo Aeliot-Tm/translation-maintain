@@ -5,14 +5,29 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
-use Aeliot\Bundle\TransMaintain\Model\ReportLineInterface;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\InvalidValueLinter;
+use Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\MockFileToSingleLevelArrayParserTrait;
 use PHPUnit\Framework\TestCase;
 
 final class InvalidValueLinterTest extends TestCase
 {
+    use ConvertReportBagToArrayTrait;
+    use MockFileMapFilterTrait;
+    use MockFileToSingleLevelArrayParserTrait;
+
+    /**
+     * @dataProvider getDataForTestCorrectFiles
+     *
+     * @param array<string,array<string,array<int,string>>> $filesMap
+     * @param array<string,mixed> $fileTranslations
+     */
+    public function testNothingDetected(array $filesMap, array $fileTranslations, string $pattern): void
+    {
+        $linter = $this->createLinter($filesMap, $fileTranslations, $pattern);
+        $bag = $linter->lint(new LintYamlFilterDto());
+        self::assertTrue($bag->isEmpty());
+    }
+
     /**
      * @dataProvider getDataForTestFilesWithSameValues
      *
@@ -28,10 +43,16 @@ final class InvalidValueLinterTest extends TestCase
         $linter = $this->createLinter($filesMap, $fileTranslations, $pattern);
         $bag = $linter->lint(new LintYamlFilterDto());
 
-        self::assertSame(
-            $expected,
-            array_map(static fn (ReportLineInterface $x): array => $x->jsonSerialize(), $bag->getLines())
-        );
+        self::assertSame($expected, $this->convertReportBagToArrayTrait($bag));
+    }
+
+    public function getDataForTestCorrectFiles(): \Generator
+    {
+        yield [
+            ['messages' => ['en' => ['messages.en.yaml']]],
+            ['messages.en.yaml' => ['valid.key.a' => 'value_a', 'valid.key.b' => 'value_b']],
+            '/[\xa0]/',
+        ];
     }
 
     public function getDataForTestFilesWithSameValues(): \Generator
@@ -50,26 +71,14 @@ final class InvalidValueLinterTest extends TestCase
         ];
     }
 
+    /**
+     * @param array<string,array<string,array<int,string>>> $filesMap
+     * @param array<string,mixed> $fileTranslations
+     */
     private function createLinter(array $filesMap, array $fileTranslations, string $pattern): InvalidValueLinter
     {
-        $fileParser = $this->getMockBuilder(FileToSingleLevelArrayParser::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $method = $fileParser->method('parse');
-        foreach ($fileTranslations as $file => $translations) {
-            $method->with($file)->willReturn($translations);
-        }
-
-        $fileMapFilter = $this->getMockBuilder(FileMapFilter::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
-        $fileMapFilter->method('getFilesMap')->willReturn($filesMap);
+        $fileMapFilter = $this->mockFileMapFilter($filesMap, $this);
+        $fileParser = $this->mockFileToSingleLevelArrayParser($fileTranslations, $this);
 
         return new InvalidValueLinter($fileParser, $fileMapFilter, $pattern);
     }

@@ -66,6 +66,7 @@ services:
 
     Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Translator: ~
 
+    Aeliot\Bundle\TransMaintain\Service\LocalesDetector: ~
     Aeliot\Bundle\TransMaintain\Service\ReportBagConsoleRenderer: ~
 
     Google\Cloud\Translate\V2\TranslateClient:

@@ -57,6 +57,12 @@ final class ReportBagTest extends TestCase
         (new ReportBag($columnConfig, 'message A', 'message B'))->addLine(...$lineValues);
     }
 
+    public function testLineColumnNames(): void
+    {
+        //TODO implement testing if report line columns is same to configured
+        $this->markTestSkipped('Test not implemented yet');
+    }
+
     public function testLineIsReportLineInterface(): void
     {
         $bag = new ReportBag(['a' => 'string'], 'message A', 'message B');
