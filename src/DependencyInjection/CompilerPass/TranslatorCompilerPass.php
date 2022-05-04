@@ -30,7 +30,9 @@ final class TranslatorCompilerPass implements CompilerPassInterface
             $translatorWrapper->setAutowired(true);
             $translatorWrapper->setAutoconfigured(true);
             $translatorWrapper->setArgument('$decoratedTranslator', new Reference('translator.default.inner'));
+            $translatorWrapper->setArgument('$translationReader', new Reference('translation.reader'));
             $translatorWrapper->setArgument('$position', new Parameter('aeliot_trans_maintain.insert_missed_keys'));
+            $translatorWrapper->setArgument('$separateDirectory', new Parameter('aeliot_trans_maintain.missed_keys.directory'));
             $container->setDefinition($class, $translatorWrapper);
         }
     }

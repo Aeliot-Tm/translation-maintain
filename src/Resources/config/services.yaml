@@ -23,6 +23,7 @@ services:
         arguments:
             $inserters: !tagged 'aeliot_trans_maintain.yaml.inserter'
             $position: '%aeliot_trans_maintain.insert_missed_keys%'
+            $separateDirectory: '%aeliot_trans_maintain.missed_keys.directory%'
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\Inserter\:
         resource: '../../Service/Yaml/Inserter/*'

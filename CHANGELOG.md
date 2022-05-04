@@ -6,11 +6,14 @@ CHANGELOG
 * Features:
   * Add linter `same_value` which detects translation keys with the same value.
   * Add linter `invalid_value` which detects translation values matching some configured pattern.
+  * Implement saving of detected missed translation to separate directory by wrapped Translator.
 * Minors:
   * Add docker configuration for development purposes.
   * Add bash command `bin/dev/remove_reports` for development purposes.
   * Add suggestion to install package symfony/translation.
   * Configured CS Fixer.
+  * Mark configuration `insert_missed_keys: ''` deprecated.
+    Use `missed_keys: { insert_position: '' }` instead of it.
   * Mark configuration `yaml: { key_pattern: '' }` deprecated.
     Use `linter: { key_valid_pattern: '' }` instead of it.
   * Refactored gluing of yaml tree to single level array.

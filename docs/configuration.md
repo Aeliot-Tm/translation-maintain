@@ -15,10 +15,13 @@ aeliot_trans_maintain:
 
 ```yaml
 aeliot_trans_maintain:
-    insert_missed_keys: 'no'    # Switch on/off decorator for the standard translator and define mode of inserting missed keys.
+    insert_missed_keys: 'no'        # Deprecated! Use: "missed_keys: { insert_position: '' }"
     linter:
         key_valid_pattern: ~        # Pattern to match valid translation keys. Example: /^[a-zA-Z0-9_.-]+$/
         value_invalid_pattern: ~    # Pattern to match invalid translations. Example: /[\x00-\x07]/
+    missed_keys:
+        directory: ~                # Path to directory where missed translation values will be saved.
+        insert_position: 'no'       # Switch on/off decorator for the standard translator and define mode of inserting missed keys.
     translation_api:
         google:
             key: ~              # Your key to the Google Cloud Translate API
@@ -29,15 +32,15 @@ aeliot_trans_maintain:
         key_pattern: ~          # Deprecated! Use: "linter: { key_valid_pattern: '' }"
 ```
 
-#### Accepted keys for the option `insert_missed_keys`:
+#### Permitted positions for missed keys:
 
 - **no** - then decoration of base translation will be switched off. It will not look for missed translation keys.
-- **end** - then missed keys will be inserted to the end of file. Mode suitable for now.
+- **end** - then missed keys will be inserted to the end of file.
 - **merge** - then keys will be split by dots and merged into the keys tree (translation file will be transformed file after the insertion).
 
 It is recommended to use values: "no" or "end".
 
-### Usage of Environment variable:
+### Using of Environment variables:
 
 Example:
 
@@ -48,7 +51,8 @@ parameters:
     env(GOOGLE_TRANSLATE_API_KEY): ~
 
 aeliot_trans_maintain:
-    insert_missed_keys: '%env(TRANS_MAINTAIN_INSERT_MISSED_KEYS)%'
+    missed_keys:
+        insert_position: '%env(TRANS_MAINTAIN_INSERT_MISSED_KEYS)%'
     translation_api:
         google:
             key: '%env(GOOGLE_TRANSLATE_API_KEY)%'
@@ -57,7 +61,7 @@ aeliot_trans_maintain:
 After that you can easily switch on/off translator decorator and inserting of missed translation keys by adding/changing of parameter 
 `TRANS_MAINTAIN_INSERT_MISSED_KEYS=end` in .env.local file in the project folder.
 
-You can get more information about the using of environment variables in the [official document](https://symfony.com/doc/current/configuration/env_var_processors.html).
+You can get more information about the using of environment variables in the [Symfony documentation](https://symfony.com/doc/current/configuration/env_var_processors.html).
 
 
 ---
