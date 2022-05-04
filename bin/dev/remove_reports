@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+find ./report -type f \( ! -name "*.gitkeep" \) -delete
+find ./report -type d \( ! \( -wholename "./report" -or -wholename "./report/coverage" -or -wholename "*/coverage/cache" -or -wholename "*/coverage/html" -or -wholename "*/coverage/xml" \) \) \
+ | sort -r \
+ | xargs -I {} -t \
+ rm -rf $1{}
