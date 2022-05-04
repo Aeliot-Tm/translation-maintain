@@ -22,7 +22,7 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
     private ?string $separateDirectory;
 
     /**
-     * @var TranslatorInterface & TranslatorBagInterface
+     * @var TranslatorInterface|TranslatorBagInterface|\Symfony\Component\Translation\Translator|\Symfony\Bundle\FrameworkBundle\Translation\Translator
      */
     private $translator;
     private TranslationReaderInterface $translationReader;
