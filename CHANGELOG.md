@@ -8,6 +8,7 @@ CHANGELOG
   * Add linter `invalid_value` which detects translation values matching some configured pattern.
 * Minors:
   * Add docker configuration for development purposes.
+  * Add bash command `bin/dev/remove_reports` for development purposes.
   * Configured CS Fixer.
   * Mark configuration `yaml: { key_pattern: '' }` deprecated.
     Use `linter: { key_valid_pattern: '' }` instead of it.
