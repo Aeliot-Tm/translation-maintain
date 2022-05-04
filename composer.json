@@ -44,5 +44,8 @@
       "vendor/bin/phpunit",
       "vendor/bin/php-cs-fixer fix -vv --using-cache=no"
     ]
+  },
+  "suggest": {
+    "symfony/translation": "Can wrap provided of Translator and log missed translations"
   }
 }
