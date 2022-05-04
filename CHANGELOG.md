@@ -20,6 +20,7 @@ CHANGELOG
   * Refactored rendering of linters' reports.
   * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
   * Switch name and alias of YAML lint command.
+  * Updated package "symfony/translation" version in dev dependencies.
 * Bug fixes:
   * Fix braking of translation keys by cleaner when comma is inside key.
   * Fix registering of missed translation.

@@ -37,7 +37,7 @@
     "phpunit/phpunit": "^9.5",
     "symfony/dotenv": "^5.3",
     "symfony/framework-bundle": ">=3.4",
-    "symfony/translation": "^5.3"
+    "symfony/translation": "^3.4||^4.4||^5.0"
   },
   "scripts": {
     "test": [
@@ -46,6 +46,6 @@
     ]
   },
   "suggest": {
-    "symfony/translation": "Can wrap provided of Translator and log missed translations"
+    "symfony/translation": "Can wrap provided of Translator and log missed translations. Tested with versions: 3.4, 4.4 and 5.3."
   }
 }
