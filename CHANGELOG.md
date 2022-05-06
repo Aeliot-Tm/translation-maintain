@@ -134,7 +134,7 @@ CHANGELOG
 2.0.1
 -----
 * Minors:
-  * Changed duplicated keys repost header.
+  * Changed duplicated keys report header.
 * Bug fixes:
   * Fixed creation of empty directories.
 
