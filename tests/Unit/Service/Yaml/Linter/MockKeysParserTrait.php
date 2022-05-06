@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 
-use Aeliot\Bundle\TransMaintain\Service\Yaml\FileMapFilter;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

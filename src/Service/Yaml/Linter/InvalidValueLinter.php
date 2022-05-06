@@ -85,11 +85,9 @@ final class InvalidValueLinter implements LinterInterface
     {
         $invalidValueKeys = [];
 
-        foreach ($files as $file) {
-            foreach ($this->fileParser->parse($file) as $translationId => $value) {
-                if (preg_match($this->invalidValuePattern, $value)) {
-                    $invalidValueKeys[] = $translationId;
-                }
+        foreach ($this->fileParser->parseFiles($files) as $translationId => $value) {
+            if (preg_match($this->invalidValuePattern, $value)) {
+                $invalidValueKeys[] = $translationId;
             }
         }
 

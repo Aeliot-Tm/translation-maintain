@@ -48,19 +48,6 @@ final class KeysParserTest extends TestCase
         self::assertSame($expected, (new KeysParser($fileToSingleLevelArrayParser))->mergeKeys($localesKeys));
     }
 
-    /**
-     * @dataProvider getDataForTestParseFiles
-     *
-     * @param array<string,string> $expected
-     * @param string[] $files
-     * @param array<string,mixed> $fileTranslations
-     */
-    public function testParseFiles(array $expected, array $files, array $fileTranslations): void
-    {
-        $fileToSingleLevelArrayParser = $this->mockFileToSingleLevelArrayParser($fileTranslations, $this);
-        self::assertSame($expected, (new KeysParser($fileToSingleLevelArrayParser))->parseFiles($files));
-    }
-
     public function getDataForTestGetOmittedKeys(): \Generator
     {
         yield [
@@ -95,18 +82,6 @@ final class KeysParserTest extends TestCase
         yield [
             ['a', 'b', 'f'],
             ['en' => ['a', 'b'], 'fr' => ['a', 'f']],
-        ];
-    }
-
-    public function getDataForTestParseFiles(): \Generator
-    {
-        yield [
-            ['a' => '*', 'c' => '*', 'b' => '*'],
-            ['/var/a/message.en.yaml', '/var/b/message.en.yaml'],
-            [
-                '/var/a/message.en.yaml' => ['a' => '*', 'c' => '*'],
-                '/var/b/message.en.yaml' => ['b' => '*'],
-            ],
         ];
     }
 }

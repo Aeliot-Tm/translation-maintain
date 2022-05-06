@@ -15,6 +15,16 @@ final class FileMapBuilder
      */
     public function buildFilesMap(iterable $files): array
     {
+        return $this->sort($this->buildMap($files));
+    }
+
+    /**
+     * @param iterable<SplFileInfo> $files
+     *
+     * @return array<string,array<string,array<int,string>>>
+     */
+    private function buildMap(iterable $files): array
+    {
         $map = [];
         foreach ($files as $file) {
             $parts = explode('.', $file->getFilenameWithoutExtension());
@@ -27,6 +37,17 @@ final class FileMapBuilder
                 $map[$domain][$locale] = [];
             }
             $map[$domain][$locale][] = $file->getRealPath();
+        }
+
+        return $map;
+    }
+
+    private function sort(array $map): array
+    {
+        ksort($map);
+        foreach ($map as $domain => $localesFiles) {
+            ksort($localesFiles);
+            $map[$domain] = $localesFiles;
         }
 
         return $map;

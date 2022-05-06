@@ -20,7 +20,21 @@ final class FileToSingleLevelArrayParserTest extends TestCase
      */
     public function testParse(array $expected, array $value): void
     {
-        self::assertSame($expected, $this->createParser($value)->parse('some_path'));
+        $parser = new FileToSingleLevelArrayParser($this->mockFileManipulatorSingle($value, $this), new KeysLinker());
+        self::assertSame($expected, $parser->parse('some_path'));
+    }
+
+    /**
+     * @dataProvider getDataForTestParseFiles
+     *
+     * @param array<string,string> $expected
+     * @param string[] $files
+     * @param array<string,mixed> $fileTranslations
+     */
+    public function testParseFiles(array $expected, array $files, array $fileTranslations): void
+    {
+        $parser = new FileToSingleLevelArrayParser($this->mockFileManipulatorMultiple($fileTranslations, $this), new KeysLinker());
+        self::assertSame($expected, $parser->parseFiles($files));
     }
 
     public function getDataForTestParse(): \Generator
@@ -31,11 +45,15 @@ final class FileToSingleLevelArrayParserTest extends TestCase
         ];
     }
 
-    /**
-     * @param array<string,array<string,array<int,string>>> $value
-     */
-    private function createParser(array $value): FileToSingleLevelArrayParser
+    public function getDataForTestParseFiles(): \Generator
     {
-        return new FileToSingleLevelArrayParser($this->mockFileManipulatorSingle($value, $this), new KeysLinker());
+        yield [
+            ['a' => '*', 'b' => '*', 'c' => '*'],
+            ['/var/a/message.en.yaml', '/var/b/message.en.yaml'],
+            [
+                '/var/a/message.en.yaml' => ['a' => '*', 'c' => '*'],
+                '/var/b/message.en.yaml' => ['b' => '*'],
+            ],
+        ];
     }
 }

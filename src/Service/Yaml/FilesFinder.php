@@ -25,10 +25,7 @@ final class FilesFinder
      */
     public function getDomains(): array
     {
-        $domains = array_keys($this->getFilesMap());
-        sort($domains);
-
-        return $domains;
+        return array_keys($this->getFilesMap());
     }
 
     /**

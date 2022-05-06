@@ -4,7 +4,8 @@ parameters:
     env(GOOGLE_TRANSLATE_API_KEY): ~
 
 aeliot_trans_maintain:
-    insert_missed_keys: '%env(TRANS_MAINTAIN_INSERT_MISSED_KEYS)%'
+    missed_keys:
+        insert_position: '%env(TRANS_MAINTAIN_INSERT_MISSED_KEYS)%'
     linter:
         value_invalid_pattern: '/[\x00-\x07]/'
     translation_api:

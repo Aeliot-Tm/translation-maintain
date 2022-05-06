@@ -6,7 +6,6 @@ namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Transformer;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\BranchInjector;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysTransformer;
-use Generator;
 use PHPUnit\Framework\TestCase;
 
 final class KeysTransformerTest extends TestCase
@@ -19,7 +18,7 @@ final class KeysTransformerTest extends TestCase
         self::assertEquals($expected, (new KeysTransformer(new BranchInjector()))->transform($income));
     }
 
-    public function getDataForTestTransform(): Generator
+    public function getDataForTestTransform(): \Generator
     {
         // explode keys
         yield [['a' => ['b' => '*']], ['a.b' => '*']];

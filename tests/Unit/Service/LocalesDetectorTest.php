@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service;
 
 use Aeliot\Bundle\TransMaintain\Service\LocalesDetector;

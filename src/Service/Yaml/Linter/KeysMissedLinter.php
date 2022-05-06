@@ -33,6 +33,7 @@ final class KeysMissedLinter implements LinterInterface
     public function lint(LintYamlFilterDto $filterDto): ReportBag
     {
         $bag = $this->createReportBag();
+        // NOTE: don't use filtered files map! It may lead to incorrect interpreting single locale of domain.
         $domainsFiles = $this->filesFinder->getFilesMap();
         foreach ($domainsFiles as $domain => $localesFiles) {
             if ($filterDto->domains && !\in_array($domain, $filterDto->domains, true)) {
@@ -50,7 +51,6 @@ final class KeysMissedLinter implements LinterInterface
                 $omittedLocales = $this->getOmittedLocales($omittedKeys, (string) $translationId, $filterDto->locales);
 
                 if ($omittedLocales) {
-                    sort($omittedLocales);
                     $bag->addLine($domain, $translationId, $omittedLocales);
                 }
             }

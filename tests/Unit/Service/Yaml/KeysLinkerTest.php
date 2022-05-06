@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeysLinker;
-use Generator;
 use PHPUnit\Framework\TestCase;
 
 final class KeysLinkerTest extends TestCase
@@ -22,7 +21,7 @@ final class KeysLinkerTest extends TestCase
     }
 
     /**
-     * @return Generator<array<array<string,mixed>>
+     * @return \Generator<array<array<string,mixed>>
      */
     public function getDataForTestGlueKeys(): \Generator
     {

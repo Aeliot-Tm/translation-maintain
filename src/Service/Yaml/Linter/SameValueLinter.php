@@ -47,10 +47,7 @@ final class SameValueLinter implements LinterInterface
      */
     private function addLines(ReportBag $bag, string $domain, string $locale, array $same): void
     {
-        ksort($same);
-
         foreach ($same as $translation => $translationIds) {
-            sort($translationIds);
             $bag->addLine($domain, $locale, $translation, $translationIds);
         }
     }
@@ -78,19 +75,19 @@ final class SameValueLinter implements LinterInterface
     {
         $same = [];
         $values = [];
-        foreach ($files as $file) {
-            foreach ($this->fileParser->parse($file) as $translationId => $translation) {
-                if (!\array_key_exists($translation, $values)) {
-                    $values[$translation] = $translationId;
-                } else {
-                    if (!\array_key_exists($translation, $same)) {
-                        $same[$translation] = [$values[$translation]];
-                    }
-
-                    $same[$translation][] = $translationId;
+        foreach ($this->fileParser->parseFiles($files) as $translationId => $translation) {
+            if (!\array_key_exists($translation, $values)) {
+                $values[$translation] = $translationId;
+            } else {
+                if (!\array_key_exists($translation, $same)) {
+                    $same[$translation] = [$values[$translation]];
                 }
+
+                $same[$translation][] = $translationId;
             }
         }
+        unset($values);
+        ksort($same);
 
         return $same;
     }

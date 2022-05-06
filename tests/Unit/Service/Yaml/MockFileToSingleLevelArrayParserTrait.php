@@ -28,6 +28,13 @@ trait MockFileToSingleLevelArrayParserTrait
             return $fileTranslations[$path];
         });
 
+        $fileManipulator->method('parseFiles')->willReturnCallback(function (array $files) use ($fileTranslations) {
+            $yaml = array_merge(...array_values(array_intersect_key($fileTranslations, array_flip($files))));
+            ksort($yaml);
+
+            return $yaml;
+        });
+
         return $fileManipulator;
     }
 }
