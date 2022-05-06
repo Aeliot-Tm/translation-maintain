@@ -3,6 +3,7 @@ services:
         autowire: true
         autoconfigure: true
         bind:
+            $separateDirectory: '%aeliot_trans_maintain.missed_keys.directory%'
             $valueInvalidPattern: '%aeliot_trans_maintain.linter.value.invalid_pattern%'
             $yamlKeyPattern: '%aeliot_trans_maintain.yaml.key_pattern%'
             $yamlIndent: '%aeliot_trans_maintain.yaml.indent%'
@@ -23,7 +24,6 @@ services:
         arguments:
             $inserters: !tagged 'aeliot_trans_maintain.yaml.inserter'
             $position: '%aeliot_trans_maintain.insert_missed_keys%'
-            $separateDirectory: '%aeliot_trans_maintain.missed_keys.directory%'
 
     Aeliot\Bundle\TransMaintain\Service\Yaml\Inserter\:
         resource: '../../Service/Yaml/Inserter/*'
@@ -67,6 +67,7 @@ services:
 
     Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Translator: ~
 
+    Aeliot\Bundle\TransMaintain\Service\FileMapBuilder: ~
     Aeliot\Bundle\TransMaintain\Service\LocalesDetector: ~
     Aeliot\Bundle\TransMaintain\Service\ReportBagConsoleRenderer: ~
 

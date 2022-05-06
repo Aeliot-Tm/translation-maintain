@@ -7,6 +7,7 @@ CHANGELOG
   * Add linter `same_value` which detects translation keys with the same value.
   * Add linter `invalid_value` which detects translation values matching some configured pattern.
   * Implement saving of detected missed translation to separate directory by wrapped Translator.
+  * Implement command for the testing if missed translations logged.
 * Minors:
   * Add docker configuration for development purposes.
   * Add bash command `bin/dev/remove_reports` for development purposes.

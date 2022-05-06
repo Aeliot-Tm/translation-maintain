@@ -19,6 +19,7 @@ final class ReportBag
      */
     private array $lines = [];
     private string $messageEmptyReport;
+    private string $messagePrefix = 'Translation files linter report: ';
     private string $messageReportWithErrors;
     private OptionsResolver $resolver;
 
@@ -67,16 +68,20 @@ final class ReportBag
 
     public function getPriorMessage(): string
     {
-        $prefix = 'Translation files linter report: ';
         if ($this->isEmpty()) {
-            return sprintf('%s<info>%s</info>', $prefix, $this->messageEmptyReport);
+            return sprintf('%s<info>%s</info>', $this->messagePrefix, $this->messageEmptyReport);
         }
 
-        return sprintf('%s<fg=black;bg=yellow>%s</>', $prefix, $this->messageReportWithErrors);
+        return sprintf('%s<fg=black;bg=yellow>%s</>', $this->messagePrefix, $this->messageReportWithErrors);
     }
 
     public function isEmpty(): bool
     {
         return !$this->lines;
+    }
+
+    public function setMessagePrefix(string $messagePrefix): void
+    {
+        $this->messagePrefix = $messagePrefix;
     }
 }
