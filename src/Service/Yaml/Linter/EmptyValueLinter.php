@@ -33,21 +33,21 @@ final class EmptyValueLinter implements LinterInterface
         $domainsFiles = $this->fileMapFilter->getFilesMap($filterDto);
 
         foreach ($domainsFiles as $domain => $localesFiles) {
-            $translationIsWithLocales = $this->getTranslationIdsWithLocalesForEmptyValues($localesFiles);
-            $this->addLines($bag, $domain, $translationIsWithLocales);
+            $translationIdsWithLocales = $this->getTranslationIdsWithLocalesForEmptyValues($localesFiles);
+            $this->addLines($bag, $domain, $translationIdsWithLocales);
         }
 
         return $bag;
     }
 
     /**
-     * @param array<string,array<string>> $translationIsWithLocales
+     * @param array<string,array<string>> $translationIdsWithLocales
      */
-    private function addLines(ReportBag $bag, string $domain, array $translationIsWithLocales): void
+    private function addLines(ReportBag $bag, string $domain, array $translationIdsWithLocales): void
     {
-        ksort($translationIsWithLocales);
+        ksort($translationIdsWithLocales);
 
-        foreach ($translationIsWithLocales as $translationId => $locales) {
+        foreach ($translationIdsWithLocales as $translationId => $locales) {
             sort($locales);
             $bag->addLine($domain, $translationId, $locales);
         }
@@ -73,20 +73,20 @@ final class EmptyValueLinter implements LinterInterface
      */
     private function getTranslationIdsWithLocalesForEmptyValues(array $localesFiles): array
     {
-        $translationIsWithLocales = [];
+        $translationIdsWithLocales = [];
         foreach ($localesFiles as $locale => $files) {
             foreach ($files as $file) {
                 foreach ($this->fileParser->parse($file) as $translationId => $value) {
                     if ('' === trim($value)) {
-                        if (!\array_key_exists($translationId, $translationIsWithLocales)) {
-                            $translationIsWithLocales[$translationId] = [];
+                        if (!\array_key_exists($translationId, $translationIdsWithLocales)) {
+                            $translationIdsWithLocales[$translationId] = [];
                         }
-                        $translationIsWithLocales[$translationId][] = $locale;
+                        $translationIdsWithLocales[$translationId][] = $locale;
                     }
                 }
             }
         }
 
-        return $translationIsWithLocales;
+        return $translationIdsWithLocales;
     }
 }
