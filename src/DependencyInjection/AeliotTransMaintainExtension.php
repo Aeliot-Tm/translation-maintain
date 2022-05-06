@@ -6,6 +6,7 @@ namespace Aeliot\Bundle\TransMaintain\DependencyInjection;
 
 use Aeliot\Bundle\TransMaintain\Service\ApiTranslator\FacadesRegistry;
 use Aeliot\Bundle\TransMaintain\Service\KernelVersionDetector;
+use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -19,7 +20,8 @@ final class AeliotTransMaintainExtension extends Extension
         $container->setParameter('aeliot_trans_maintain.linter.value.invalid_pattern', $config['linter']['value_invalid_pattern'] ?? null);
         $container->setParameter('aeliot_trans_maintain.yaml.indent', $config['yaml']['indent']);
         $container->setParameter('aeliot_trans_maintain.yaml.key_pattern', $config['linter']['key_valid_pattern'] ?? $config['yaml']['key_pattern'] ?? null);
-        $container->setParameter('aeliot_trans_maintain.insert_missed_keys', $config['insert_missed_keys']);
+        $container->setParameter('aeliot_trans_maintain.insert_missed_keys', $config['insert_missed_keys'] ?? $config['missed_keys']['insert_position'] ?? KeyRegister::NO);
+        $container->setParameter('aeliot_trans_maintain.missed_keys.directory', $config['missed_keys']['directory']);
 
         $this->defineGoogleCloudTranslate($config, $container);
         $this->defineTranslationApiParameters($config['translation_api'] ?? [], $container);

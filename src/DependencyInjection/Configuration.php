@@ -61,10 +61,31 @@ final class Configuration implements ConfigurationInterface
 
     private function addInsertMissedKeysNode(NodeBuilder $builder): void
     {
+        $this->addInsertMissedKeysPositionNode($builder, 'insert_missed_keys', true);
+
+        $children = $builder
+            ->arrayNode('missed_keys')
+            ->addDefaultsIfNotSet()
+            ->children();
+
+        $this->addInsertMissedKeysPositionNode($children, 'insert_position', false);
+
+        $children
+            ->scalarNode('directory')
+            ->defaultNull()
+            ->info('Directory for the separate saving of missed translation IDs');
+    }
+
+    private function addInsertMissedKeysPositionNode(NodeBuilder $builder, string $name, bool $deprecated): void
+    {
         $node = $builder
-            ->scalarNode('insert_missed_keys')
-            ->defaultValue(KeyRegister::NO)
+            ->scalarNode($name)
+            ->defaultNull()
             ->info('Decorate default translator for inserting of missed keys.');
+
+        if ($deprecated) {
+            $node->setDeprecated('aeliot-tm/translation-maintain', '2.7.0', 'Use: "missed_keys: { insert_position: \'\' }"');
+        }
 
         $node
             ->validate()

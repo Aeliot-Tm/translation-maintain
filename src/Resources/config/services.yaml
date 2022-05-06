@@ -3,6 +3,7 @@ services:
         autowire: true
         autoconfigure: true
         bind:
+            $separateDirectory: '%aeliot_trans_maintain.missed_keys.directory%'
             $valueInvalidPattern: '%aeliot_trans_maintain.linter.value.invalid_pattern%'
             $yamlKeyPattern: '%aeliot_trans_maintain.yaml.key_pattern%'
             $yamlIndent: '%aeliot_trans_maintain.yaml.indent%'
@@ -66,6 +67,7 @@ services:
 
     Aeliot\Bundle\TransMaintain\Service\ApiTranslator\Translator: ~
 
+    Aeliot\Bundle\TransMaintain\Service\FileMapBuilder: ~
     Aeliot\Bundle\TransMaintain\Service\LocalesDetector: ~
     Aeliot\Bundle\TransMaintain\Service\ReportBagConsoleRenderer: ~
 

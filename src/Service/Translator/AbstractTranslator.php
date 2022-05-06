@@ -6,23 +6,34 @@ namespace Aeliot\Bundle\TransMaintain\Service\Translator;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\Translation\MessageCatalogueInterface;
+use Symfony\Component\Translation\Reader\TranslationReaderInterface;
 use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagInterface
 {
     private KeyRegister $keyRegister;
-    private string $position;
+
     /**
-     * @var TranslatorInterface|TranslatorBagInterface
+     * @var string[]
+     */
+    private array $loadedLocales = [];
+    private string $position;
+    private ?string $separateDirectory;
+
+    /**
+     * @var TranslatorInterface|TranslatorBagInterface|\Symfony\Component\Translation\Translator|\Symfony\Bundle\FrameworkBundle\Translation\Translator
      */
     private $translator;
+    private TranslationReaderInterface $translationReader;
 
-    public function __construct($decoratedTranslator, string $position, KeyRegister $keyRegister)
+    public function __construct($decoratedTranslator, string $position, ?string $separateDirectory, KeyRegister $keyRegister, TranslationReaderInterface $translationReader)
     {
         $this->keyRegister = $keyRegister;
         $this->position = $position;
         $this->translator = $decoratedTranslator;
+        $this->separateDirectory = $separateDirectory;
+        $this->translationReader = $translationReader;
     }
 
     public function __call($name, $arguments)
@@ -65,7 +76,14 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
 
     public function getCatalogue($locale = null)
     {
-        return $this->translator->getCatalogue(...\func_get_args());
+        $catalogue = $this->translator->getCatalogue(...\func_get_args());
+        $loadedLocale = $locale ?? $this->getLocale();
+        if ($this->separateDirectory && !\in_array($loadedLocale, $this->loadedLocales, true)) {
+            $this->translationReader->read($this->separateDirectory, $catalogue);
+            $this->loadedLocales[] = $loadedLocale;
+        }
+
+        return $catalogue;
     }
 
     private function register(string $id, ?string $domain = null, ?string $locale = null): void

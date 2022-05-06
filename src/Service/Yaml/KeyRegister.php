@@ -31,18 +31,21 @@ final class KeyRegister
     private array $inserters = [];
     private LoggerInterface $logger;
     private string $position;
+    private ?string $separateDirectory;
 
     public function __construct(
         iterable $inserters,
         string $position,
         DirectoryProvider $directoryProvider,
         FileManipulator $fileManipulator,
+        ?string $separateDirectory,
         ?LoggerInterface $logger = null
     ) {
         $this->directoryProvider = $directoryProvider;
         $this->fileManipulator = $fileManipulator;
         $this->logger = $logger ?? new NullLogger();
         $this->position = $position;
+        $this->separateDirectory = $separateDirectory;
 
         foreach ($inserters as $inserter) {
             $this->addInserter($inserter);
@@ -82,6 +85,10 @@ final class KeyRegister
 
     private function locatePath(string $domain, string $locale): string
     {
+        if ($this->separateDirectory) {
+            return $this->separateDirectory.'/'.$domain.'.'.$locale.'.'.self::EXTENSIONS[0];
+        }
+
         foreach ($this->directoryProvider->getAll() as $dir) {
             foreach (self::EXTENSIONS as $extension) {
                 if ($this->fileManipulator->exists($filePath = $dir.'/'.$domain.'.'.$locale.'.'.$extension)) {

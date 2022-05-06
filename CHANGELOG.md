@@ -6,16 +6,22 @@ CHANGELOG
 * Features:
   * Add linter `same_value` which detects translation keys with the same value.
   * Add linter `invalid_value` which detects translation values matching some configured pattern.
+  * Implement saving of detected missed translation to separate directory by wrapped Translator.
+  * Implement command for the testing if missed translations logged.
 * Minors:
   * Add docker configuration for development purposes.
   * Add bash command `bin/dev/remove_reports` for development purposes.
+  * Add suggestion to install package symfony/translation.
   * Configured CS Fixer.
+  * Mark configuration `insert_missed_keys: ''` deprecated.
+    Use `missed_keys: { insert_position: '' }` instead of it.
   * Mark configuration `yaml: { key_pattern: '' }` deprecated.
     Use `linter: { key_valid_pattern: '' }` instead of it.
   * Refactored gluing of yaml tree to single level array.
   * Refactored rendering of linters' reports.
   * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
   * Switch name and alias of YAML lint command.
+  * Updated package "symfony/translation" version in dev dependencies.
 * Bug fixes:
   * Fix braking of translation keys by cleaner when comma is inside key.
   * Fix registering of missed translation.
