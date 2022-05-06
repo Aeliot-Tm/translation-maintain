@@ -17,6 +17,8 @@ CHANGELOG
     Use `missed_keys: { insert_position: '' }` instead of it.
   * Mark configuration `yaml: { key_pattern: '' }` deprecated.
     Use `linter: { key_valid_pattern: '' }` instead of it.
+  * Mark method `\Aeliot\Bundle\TransMaintain\Service\Yaml\KeysParser::parseFiles()` as deprecated.
+    Use `\Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser::parseFiles()` instead of it.
   * Refactored gluing of yaml tree to single level array.
   * Refactored rendering of linters' reports.
   * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.

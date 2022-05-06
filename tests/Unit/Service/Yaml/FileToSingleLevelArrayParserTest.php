@@ -23,11 +23,35 @@ final class FileToSingleLevelArrayParserTest extends TestCase
         self::assertSame($expected, $this->createParser($value)->parse('some_path'));
     }
 
+    /**
+     * @dataProvider getDataForTestParseFiles
+     *
+     * @param array<string,string> $expected
+     * @param string[] $files
+     * @param array<string,mixed> $fileTranslations
+     */
+    public function testParseFiles(array $expected, array $files, array $fileTranslations): void
+    {
+        self::assertSame($expected, $this->createParser($fileTranslations)->parseFiles($files));
+    }
+
     public function getDataForTestParse(): \Generator
     {
         yield [
             ['a.b' => '*', 'a.c' => '*', 'a.d.e' => '*'],
             ['a' => ['b' => '*', 'c' => '*', 'd' => ['e' => '*']]],
+        ];
+    }
+
+    public function getDataForTestParseFiles(): \Generator
+    {
+        yield [
+            ['a' => '*', 'b' => '*', 'c' => '*'],
+            ['/var/a/message.en.yaml', '/var/b/message.en.yaml'],
+            [
+                '/var/a/message.en.yaml' => ['a' => '*', 'c' => '*'],
+                '/var/b/message.en.yaml' => ['b' => '*'],
+            ],
         ];
     }
 

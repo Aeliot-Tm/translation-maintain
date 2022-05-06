@@ -38,7 +38,7 @@ final class KeysParser
     {
         $keys = [];
         foreach ($localesFiles as $locale => $files) {
-            $keys[$locale] = array_keys($this->parseFiles($files));
+            $keys[$locale] = array_keys($this->fileParser->parseFiles($files));
         }
 
         return $keys;
@@ -58,15 +58,14 @@ final class KeysParser
     }
 
     /**
+     * @deprecated since version 2.7.0. Use {@see \Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser::parseFiles() }
+     *
      * @param string[] $files
      *
      * @return array<string,string>
      */
     public function parseFiles(array $files): array
     {
-        $yaml = array_merge(...array_map(fn (string $x): array => $this->fileParser->parse($x), array_values($files)));
-        ksort($yaml);
-
-        return $yaml;
+        return $this->fileParser->parseFiles($files);
     }
 }

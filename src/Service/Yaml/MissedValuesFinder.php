@@ -7,11 +7,13 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 final class MissedValuesFinder
 {
     private FilesFinder $filesFinder;
+    private FileToSingleLevelArrayParser $fileParser;
     private KeysParser $keysParser;
 
-    public function __construct(FilesFinder $filesFinder, KeysParser $keysParser)
+    public function __construct(FilesFinder $filesFinder, FileToSingleLevelArrayParser $fileParser, KeysParser $keysParser)
     {
         $this->filesFinder = $filesFinder;
+        $this->fileParser = $fileParser;
         $this->keysParser = $keysParser;
     }
 
@@ -28,7 +30,7 @@ final class MissedValuesFinder
         $allOmittedKeys = $this->keysParser->mergeKeys($omittedKeys);
 
         $values = array_intersect_key(
-            $this->keysParser->parseFiles($domainsFiles[$domain][$sourceLocale]),
+            $this->fileParser->parseFiles($domainsFiles[$domain][$sourceLocale]),
             array_flip($allOmittedKeys)
         );
 

@@ -19,4 +19,17 @@ final class FileToSingleLevelArrayParser
     {
         return iterator_to_array($this->keysLinker->glueKeys($this->fileManipulator->parse($path)));
     }
+
+    /**
+     * @param string[] $files
+     *
+     * @return array<string,string>
+     */
+    public function parseFiles(array $files): array
+    {
+        $yaml = array_merge(...array_map(fn (string $x): array => $this->parse($x), array_values($files)));
+        ksort($yaml);
+
+        return $yaml;
+    }
 }
