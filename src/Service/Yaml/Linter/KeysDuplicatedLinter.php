@@ -50,9 +50,6 @@ final class KeysDuplicatedLinter implements LinterInterface
      */
     private function addLines(ReportBag $bag, string $domain, string $locale, array $duplicatedKeys): void
     {
-        $duplicatedKeys = array_unique($duplicatedKeys);
-        sort($duplicatedKeys);
-
         foreach ($duplicatedKeys as $translationId) {
             $bag->addLine($domain, $locale, $translationId);
         }
@@ -89,6 +86,9 @@ final class KeysDuplicatedLinter implements LinterInterface
                 }
             }
         }
+        unset($values);
+        $duplicatedKeys = array_unique($duplicatedKeys);
+        sort($duplicatedKeys);
 
         return $duplicatedKeys;
     }
