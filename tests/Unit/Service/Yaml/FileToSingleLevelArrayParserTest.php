@@ -20,7 +20,8 @@ final class FileToSingleLevelArrayParserTest extends TestCase
      */
     public function testParse(array $expected, array $value): void
     {
-        self::assertSame($expected, $this->createParser($value)->parse('some_path'));
+        $parser = new FileToSingleLevelArrayParser($this->mockFileManipulatorSingle($value, $this), new KeysLinker());
+        self::assertSame($expected, $parser->parse('some_path'));
     }
 
     /**
@@ -32,7 +33,8 @@ final class FileToSingleLevelArrayParserTest extends TestCase
      */
     public function testParseFiles(array $expected, array $files, array $fileTranslations): void
     {
-        self::assertSame($expected, $this->createParser($fileTranslations)->parseFiles($files));
+        $parser = new FileToSingleLevelArrayParser($this->mockFileManipulatorMultiple($fileTranslations, $this), new KeysLinker());
+        self::assertSame($expected, $parser->parseFiles($files));
     }
 
     public function getDataForTestParse(): \Generator
@@ -53,13 +55,5 @@ final class FileToSingleLevelArrayParserTest extends TestCase
                 '/var/b/message.en.yaml' => ['b' => '*'],
             ],
         ];
-    }
-
-    /**
-     * @param array<string,array<string,array<int,string>>> $value
-     */
-    private function createParser(array $value): FileToSingleLevelArrayParser
-    {
-        return new FileToSingleLevelArrayParser($this->mockFileManipulatorSingle($value, $this), new KeysLinker());
     }
 }
