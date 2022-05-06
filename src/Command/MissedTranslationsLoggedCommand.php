@@ -49,12 +49,8 @@ final class MissedTranslationsLoggedCommand extends Command
         $hasProblems = false;
         $bag = $this->createReportBag();
 
-        $domainsFiles = $this->fileMapBuilder->buildFilesMap($this->getFiles());
-        ksort($domainsFiles);
-
-        foreach ($domainsFiles as $domain => $localesFiles) {
+        foreach ($this->fileMapBuilder->buildFilesMap($this->getFiles()) as $domain => $localesFiles) {
             $locales = array_keys($localesFiles);
-            sort($locales);
             $bag->addLine($domain, $locales);
             $hasProblems = true;
         }

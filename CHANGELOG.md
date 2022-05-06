@@ -20,6 +20,7 @@ CHANGELOG
   * Refactored gluing of yaml tree to single level array.
   * Refactored rendering of linters' reports.
   * Rename class `\Aeliot\Bundle\TransMaintain\Model\CsvReader` to `\Aeliot\Bundle\TransMaintain\Model\CSV`.
+  * Sort translations files map.
   * Switch name and alias of YAML lint command.
   * Updated package "symfony/translation" version in dev dependencies.
 * Bug fixes:

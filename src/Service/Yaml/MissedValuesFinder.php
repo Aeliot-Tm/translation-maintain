@@ -40,8 +40,6 @@ final class MissedValuesFinder
             $values = array_intersect_key($values, array_flip($filterKeys));
         }
 
-        ksort($values);
-
         return $values;
     }
 }

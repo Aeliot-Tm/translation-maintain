@@ -50,7 +50,6 @@ final class KeysMissedLinter implements LinterInterface
                 $omittedLocales = $this->getOmittedLocales($omittedKeys, (string) $translationId, $filterDto->locales);
 
                 if ($omittedLocales) {
-                    sort($omittedLocales);
                     $bag->addLine($domain, $translationId, $omittedLocales);
                 }
             }

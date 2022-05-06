@@ -21,7 +21,6 @@ final class KeysParser
     public function getOmittedKeys(array $localesKeys): array
     {
         $allDomainKeys = $this->mergeKeys($localesKeys);
-        ksort($localesKeys);
         $omittedKeys = [];
         foreach ($localesKeys as $locale => $localeKeys) {
             $omittedKeys[$locale] = array_values(array_diff($allDomainKeys, $localeKeys));
@@ -39,7 +38,7 @@ final class KeysParser
     {
         $keys = [];
         foreach ($localesFiles as $locale => $files) {
-            $keys[$locale] = $this->getSortedKeys($this->parseFiles($files));
+            $keys[$locale] = array_keys($this->parseFiles($files));
         }
 
         return $keys;
@@ -65,15 +64,9 @@ final class KeysParser
      */
     public function parseFiles(array $files): array
     {
-        // THINK: sort result
-        return array_merge(...array_map(fn (string $x): array => $this->fileParser->parse($x), array_values($files)));
-    }
+        $yaml = array_merge(...array_map(fn (string $x): array => $this->fileParser->parse($x), array_values($files)));
+        ksort($yaml);
 
-    private function getSortedKeys(array $values): array
-    {
-        $keys = array_keys($values);
-        sort($keys);
-
-        return $keys;
+        return $yaml;
     }
 }
