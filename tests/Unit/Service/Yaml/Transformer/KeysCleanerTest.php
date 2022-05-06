@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Transformer;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Transformer\KeysCleaner;
-use Generator;
 use PHPUnit\Framework\TestCase;
 
 final class KeysCleanerTest extends TestCase
@@ -18,7 +17,7 @@ final class KeysCleanerTest extends TestCase
         self::assertEquals($expected, (new KeysCleaner())->transform($income));
     }
 
-    public function getDataForTestTransform(): Generator
+    public function getDataForTestTransform(): \Generator
     {
         yield [['a' => '*', 'b' => '*'], ['"a"' => '*', "'b'" => '*']];
         yield [['a' => ['b' => '*', 'c' => '*']], ['"a"' => ['"b"' => '*', "'c'" => '*']]];
