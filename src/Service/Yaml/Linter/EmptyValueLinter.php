@@ -45,10 +45,7 @@ final class EmptyValueLinter implements LinterInterface
      */
     private function addLines(ReportBag $bag, string $domain, array $translationIdsWithLocales): void
     {
-        ksort($translationIdsWithLocales);
-
         foreach ($translationIdsWithLocales as $translationId => $locales) {
-            sort($locales);
             $bag->addLine($domain, $translationId, $locales);
         }
     }
@@ -75,17 +72,17 @@ final class EmptyValueLinter implements LinterInterface
     {
         $translationIdsWithLocales = [];
         foreach ($localesFiles as $locale => $files) {
-            foreach ($files as $file) {
-                foreach ($this->fileParser->parse($file) as $translationId => $value) {
-                    if ('' === trim($value)) {
-                        if (!\array_key_exists($translationId, $translationIdsWithLocales)) {
-                            $translationIdsWithLocales[$translationId] = [];
-                        }
-                        $translationIdsWithLocales[$translationId][] = $locale;
+            foreach ($this->fileParser->parseFiles($files) as $translationId => $value) {
+                if ('' === trim($value)) {
+                    if (!\array_key_exists($translationId, $translationIdsWithLocales)) {
+                        $translationIdsWithLocales[$translationId] = [];
                     }
+                    $translationIdsWithLocales[$translationId][] = $locale;
                 }
             }
         }
+
+        ksort($translationIdsWithLocales);
 
         return $translationIdsWithLocales;
     }
