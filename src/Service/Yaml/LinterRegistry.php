@@ -11,7 +11,7 @@ final class LinterRegistry
     private const PRESETS = [LinterInterface::PRESET_ALL, LinterInterface::PRESET_BASE];
 
     /**
-     * @var array<array<LinterInterface>>
+     * @var array<string,array<LinterInterface>>
      */
     private array $linters;
 
