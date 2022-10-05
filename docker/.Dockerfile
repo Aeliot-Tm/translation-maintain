@@ -1,9 +1,8 @@
-FROM php:7.4-fpm
+FROM php:7.4-cli
 RUN apt-get --allow-releaseinfo-change update && apt-get install -y \
         libxml2-dev \
         libzip-dev \
         unzip  \
-        git \
     && docker-php-ext-install -j$(nproc) xml \
     && docker-php-ext-install -j$(nproc) zip
 
@@ -20,11 +19,15 @@ RUN  pecl install xdebug \
 # Memory limit
 RUN echo "memory_limit = 1G" >> /usr/local/etc/php/php.ini
 
-WORKDIR /app/translation-maintain
-
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --filename composer --install-dir=/bin \
-    && php -r "unlink('composer-setup.php');"
+    && php -r "unlink('composer-setup.php');" \
+
+WORKDIR /srv/app
+
+COPY bin src tests translations .env .php-cs-fixer.dist.php composer.* phpunit.xml.dist ./
+
+RUN composer install
 
 RUN usermod -u 1000 www-data
 
