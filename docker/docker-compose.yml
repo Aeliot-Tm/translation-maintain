@@ -3,10 +3,12 @@ version: '3.1'
 services:
   tramaint-php:
     build:
-      dockerfile: .Dockerfile
-      context: .
+      context: ..
+      dockerfile: docker/.Dockerfile
       args:
         PHP_XDEBUG_PORT: ${PHP_XDEBUG_PORT:-9003}
     restart: on-failure
+    ports:
+      - 9003:9003
     volumes:
-      - ./../../:/app:delegated
+      - ../:/srv/app
