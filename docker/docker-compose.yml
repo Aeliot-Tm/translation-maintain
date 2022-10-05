@@ -5,8 +5,8 @@ services:
     build:
       dockerfile: .Dockerfile
       context: .
+      args:
+        PHP_XDEBUG_PORT: ${PHP_XDEBUG_PORT:-9003}
     restart: on-failure
-    environment:
-      PHP_XDEBUG_PORT: 9003
     volumes:
       - ./../../:/app:delegated

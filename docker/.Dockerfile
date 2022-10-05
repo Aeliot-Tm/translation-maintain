@@ -7,8 +7,8 @@ RUN apt-get --allow-releaseinfo-change update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) xml \
     && docker-php-ext-install -j$(nproc) zip
 
-# # Xdebug
-ENV PHP_XDEBUG_PORT 9003
+# xDebug
+ARG PHP_XDEBUG_PORT
 RUN  pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
