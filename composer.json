@@ -27,13 +27,19 @@
     "symfony/yaml": ">=3.4"
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
     "dg/bypass-finals": "^1.1",
     "friendsofphp/php-cs-fixer": "^3.8",
+    "phpstan/extension-installer": "^1.1",
+    "phpstan/phpstan": "^1.8",
+    "phpstan/phpstan-symfony": "^1.2",
     "phpunit/phpunit": "^9.5",
     "symfony/dotenv": "^5.3",
     "symfony/framework-bundle": ">=3.4",

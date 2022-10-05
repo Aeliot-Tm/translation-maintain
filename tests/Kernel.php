@@ -32,12 +32,17 @@ final class Kernel extends SymfonyKernel
 
     public function getCacheDir(): string
     {
-        return sys_get_temp_dir().'/Aeliot/TransMaintain/cache';
+        return \dirname($this->getProjectDir()).'/var/cache/'.$this->environment;
     }
 
     public function getLogDir(): string
     {
-        return sys_get_temp_dir().'/Aeliot/TransMaintain/logs';
+        return \dirname($this->getProjectDir()).'/var/log';
+    }
+
+    public function getProjectDir(): string
+    {
+        return __DIR__;
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader): void
