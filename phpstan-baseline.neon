@@ -1,0 +1,1036 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Ternary operator condition is always true\\.$#"
+			count: 1
+			path: src/Command/Yaml/ExportMissedTranslationsCommand.php
+
+		-
+			message: "#^If condition is always true\\.$#"
+			count: 2
+			path: src/Command/Yaml/LintCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:checkOptions\\(\\) has parameter \\$domains with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:checkOptions\\(\\) has parameter \\$locales with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:filterByDomains\\(\\) has parameter \\$domains with no type specified\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:filterByDomains\\(\\) has parameter \\$files with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:filterByDomains\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:filterByLocales\\(\\) has parameter \\$locales with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:filterByLocales\\(\\) has parameter \\$localesFiles with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:filterByLocales\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TransformCommand\\:\\:getFiles\\(\\) return type has no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: src/Command/Yaml/TransformCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TranslateMissedKeysCommand\\:\\:merge\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TranslateMissedKeysCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TranslateMissedKeysCommand\\:\\:merge\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TranslateMissedKeysCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TranslateMissedKeysCommand\\:\\:merge\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TranslateMissedKeysCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TranslateMissedKeysCommand\\:\\:save\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TranslateMissedKeysCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TranslateMissedKeysCommand\\:\\:translateBatch\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TranslateMissedKeysCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Command\\\\Yaml\\\\TranslateMissedKeysCommand\\:\\:translateBatch\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/Yaml/TranslateMissedKeysCommand.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\DependencyInjection\\\\AeliotTransMaintainExtension\\:\\:defineGoogleCloudTranslate\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DependencyInjection/AeliotTransMaintainExtension.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\DependencyInjection\\\\AeliotTransMaintainExtension\\:\\:defineTranslationApiParameters\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DependencyInjection/AeliotTransMaintainExtension.php
+
+		-
+			message: "#^Binary operation \"\\.\" between array\\|bool\\|float\\|int\\|string\\|null and '/Resources…' results in an error\\.$#"
+			count: 1
+			path: src/DependencyInjection/CompilerPass/DirectoryProviderCompilerPass.php
+
+		-
+			message: "#^Parameter \\#1 \\$path of function dirname expects string, array\\|bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/DependencyInjection/CompilerPass/DirectoryProviderCompilerPass.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\DependencyInjection\\\\CompilerPass\\\\TranslatorCompilerPass\\:\\:getClass\\(\\) is unused\\.$#"
+			count: 1
+			path: src/DependencyInjection/CompilerPass/TranslatorCompilerPass.php
+
+		-
+			message: "#^Negated boolean expression is always true\\.$#"
+			count: 1
+			path: src/DependencyInjection/CompilerPass/TranslatorCompilerPass.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: src/DependencyInjection/CompilerPass/TranslatorCompilerPass.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\ApiLimitReport\\:\\:__construct\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/ApiLimitReport.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\ApiLimitReport\\:\\:jsonSerialize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/ApiLimitReport.php
+
+		-
+			message: "#^Class Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\CSV implements generic interface Iterator but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Model/CSV.php
+
+		-
+			message: "#^Comparison operation \"\\<\" between int\\<1, max\\> and 1 is always false\\.$#"
+			count: 1
+			path: src/Model/CSV.php
+
+		-
+			message: "#^If condition is always true\\.$#"
+			count: 1
+			path: src/Model/CSV.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\CSV\\:\\:current\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/CSV.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:getKeyChain\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:getSelectedNPoint\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:getSelectedYPoint\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:getYaml\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:setSelectedNPoint\\(\\) has parameter \\$selectedNPoint with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:setSelectedYPoint\\(\\) has parameter \\$selectedYPoint with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:setYaml\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Property Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:\\$selectedNPoint type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Property Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:\\$selectedYPoint type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Property Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\Layer\\:\\:\\$yaml type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Layer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\ReportBag\\:\\:addLine\\(\\) has parameter \\$values with no type specified\\.$#"
+			count: 1
+			path: src/Model/ReportBag.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\ReportBag\\:\\:getHeaders\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/ReportBag.php
+
+		-
+			message: "#^Parameter \\#1 \\$options of method Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolver\\:\\:resolve\\(\\) expects array, array\\<string, mixed\\>\\|false given\\.$#"
+			count: 1
+			path: src/Model/ReportBag.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\ApiTranslator\\\\FacadesRegistry\\:\\:__construct\\(\\) has parameter \\$facades with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/FacadesRegistry.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\ApiTranslator\\\\LimitKeeper\\:\\:__construct\\(\\) has parameter \\$limits with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/LimitKeeper.php
+
+		-
+			message: "#^Property Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\ApiTranslator\\\\LimitKeeper\\:\\:\\$limits type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/LimitKeeper.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\ApiTranslator\\\\LimitRepository\\:\\:isSeeked\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/LimitRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$fp of function fclose expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/LimitRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$fp of function fputcsv expects resource, resource\\|false given\\.$#"
+			count: 2
+			path: src/Service/ApiTranslator/LimitRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$input of function array_keys expects array, array\\|false given\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/LimitRepository.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\ApiTranslator\\\\ServiceUniqueIdProvider\\:\\:__construct\\(\\) has parameter \\$keys with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/ServiceUniqueIdProvider.php
+
+		-
+			message: "#^Property Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\ApiTranslator\\\\ServiceUniqueIdProvider\\:\\:\\$keys type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/ApiTranslator/ServiceUniqueIdProvider.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\DirectoryProvider\\:\\:__construct\\(\\) has parameter \\$dirs with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: src/Service/DirectoryProvider.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\FileMapBuilder\\:\\:sort\\(\\) has parameter \\$map with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/FileMapBuilder.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\FileMapBuilder\\:\\:sort\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/FileMapBuilder.php
+
+		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 2
+			path: src/Service/KernelVersionDetector.php
+
+		-
+			message: "#^Negated boolean expression is always true\\.$#"
+			count: 1
+			path: src/Service/KernelVersionDetector.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Service/KernelVersionDetector.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: src/Service/KernelVersionDetector.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:getCatalogue\\(\\)\\.$#"
+			count: 2
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:getLocale\\(\\)\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:setLocale\\(\\)\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:trans\\(\\)\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:transChoice\\(\\)\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__call\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__call\\(\\) has parameter \\$arguments with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__call\\(\\) has parameter \\$name with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__construct\\(\\) has parameter \\$decoratedTranslator with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:getLocale\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:setLocale\\(\\) has parameter \\$locale with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:trans\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:transChoice\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:transChoice\\(\\) has parameter \\$domain with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:transChoice\\(\\) has parameter \\$id with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:transChoice\\(\\) has parameter \\$locale with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:transChoice\\(\\) has parameter \\$number with no type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:transChoice\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Parameter \\#2 \\$catalogue of method Symfony\\\\Component\\\\Translation\\\\Reader\\\\TranslationReaderInterface\\:\\:read\\(\\) expects Symfony\\\\Component\\\\Translation\\\\MessageCatalogue, Symfony\\\\Component\\\\Translation\\\\MessageCatalogueInterface given\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createChildLayer\\(\\) has parameter \\$nPoint with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createChildLayer\\(\\) has parameter \\$yPoint with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createNestedValue\\(\\) has parameter \\$path with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createNestedValue\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createNestedValue\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createParentLayer\\(\\) has parameter \\$nPoint with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createParentLayer\\(\\) has parameter \\$yPoint with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:createParentLayer\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:getFirstKey\\(\\) has parameter \\$branch with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:getFirstKey\\(\\) should return string but returns int\\|string\\|false\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:inject\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:inject\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/BranchInjector.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator\\:\\:dump\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/FileManipulator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/FileManipulator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/FileToSingleLevelArrayParser.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Inserter\\\\Aggregator\\:\\:insert\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Inserter/Aggregator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Inserter\\\\Aggregator\\:\\:insert\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Inserter/Aggregator.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Inserter\\\\InserterInterface\\:\\:insert\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Inserter/InserterInterface.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Inserter\\\\InserterInterface\\:\\:insert\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Inserter/InserterInterface.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Inserter\\\\Merger\\:\\:insert\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Inserter/Merger.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Inserter\\\\Merger\\:\\:insert\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Inserter/Merger.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeyRegister\\:\\:__construct\\(\\) has parameter \\$inserters with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: src/Service/Yaml/KeyRegister.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeyRegister\\:\\:createNestedValue\\(\\) has parameter \\$path with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/KeyRegister.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeyRegister\\:\\:createNestedValue\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Service/Yaml/KeyRegister.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeyRegister\\:\\:createNestedValue\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/KeyRegister.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeysLinker\\:\\:glueKeys\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/KeysLinker.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\EmptyValueLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/EmptyValueLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\FileTransformedLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/FileTransformedLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\FilesMissedLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/FilesMissedLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\InvalidValueLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/InvalidValueLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeyPatternLinter\\:\\:getKeysSummary\\(\\) has parameter \\$parsedKeys with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/KeyPatternLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeyPatternLinter\\:\\:getKeysSummary\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/KeyPatternLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeyPatternLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/KeyPatternLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeysDuplicatedLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/KeysDuplicatedLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeysMissedLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/KeysMissedLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\LinterInterface\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/LinterInterface.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\SameValueLinter\\:\\:getPresets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Linter/SameValueLinter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\LinterRegistry\\:\\:__construct\\(\\) has parameter \\$linters with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: src/Service/Yaml/LinterRegistry.php
+
+		-
+			message: "#^Property Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\LinterRegistry\\:\\:\\$linters \\(array\\<string, array\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\LinterInterface\\>\\>\\) does not accept array\\<int\\|string, array\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\LinterInterface\\>\\>\\.$#"
+			count: 1
+			path: src/Service/Yaml/LinterRegistry.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\MissedValuesFinder\\:\\:findMissedTranslations\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/MissedValuesFinder.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\TransformationConveyor\\:\\:__construct\\(\\) has parameter \\$transformers with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: src/Service/Yaml/TransformationConveyor.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\TransformationConveyor\\:\\:transform\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/TransformationConveyor.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\TransformationConveyor\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/TransformationConveyor.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\KeysCleaner\\:\\:transform\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/KeysCleaner.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\KeysCleaner\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/KeysCleaner.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\KeysSorter\\:\\:transform\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/KeysSorter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\KeysSorter\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/KeysSorter.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\KeysTransformer\\:\\:transform\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/KeysTransformer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\KeysTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/KeysTransformer.php
+
+		-
+			message: "#^Parameter \\#2 \\$key of method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\BranchInjector\\:\\:inject\\(\\) expects string, int\\|string given\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/KeysTransformer.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\TransformerInterface\\:\\:transform\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/TransformerInterface.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Transformer\\\\TransformerInterface\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/Transformer/TransformerInterface.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\YamlContentHandler\\:\\:dump\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/YamlContentHandler.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\YamlContentHandler\\:\\:parseFile\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Service/Yaml/YamlContentHandler.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Integration\\\\Service\\\\Yaml\\\\FileTransformedStateDetectorTest\\:\\:getDataForTest\\(\\) return type has no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: tests/Integration/Service/Yaml/FileTransformedStateDetectorTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testCountLines\\(\\) has parameter \\$columnConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testCountLines\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testGetHeaders\\(\\) has parameter \\$columnConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testGetHeaders\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testInvalidLineValuesCount\\(\\) has parameter \\$columnConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testInvalidLineValuesCount\\(\\) has parameter \\$lineValues with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testInvalidValueType\\(\\) has parameter \\$columnConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Model\\\\ReportBagTest\\:\\:testInvalidValueType\\(\\) has parameter \\$lineValues with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$columnsConfig of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\ReportBag constructor expects array\\<string, array\\<string\\>\\>, array\\<string, string\\> given\\.$#"
+			count: 2
+			path: tests/Unit/Model/ReportBagTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/LocalesDetectorTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$filesFinder of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\LocalesDetector constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/LocalesDetectorTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/LocalesDetectorTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\BranchInjectorTest\\:\\:testInjectionReturnFalse\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/BranchInjectorTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\BranchInjectorTest\\:\\:testInjectionReturnFalse\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/BranchInjectorTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\BranchInjectorTest\\:\\:testSuccessfulInjection\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/BranchInjectorTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\BranchInjectorTest\\:\\:testSuccessfulInjection\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/BranchInjectorTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\BranchInjectorTest\\:\\:testSuccessfulInjection\\(\\) has parameter \\$yaml with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/BranchInjectorTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\FileMapFilterTest\\:\\:createFileMapFilter\\(\\) has parameter \\$filesMap with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/FileMapFilterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/FileMapFilterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$filesFinder of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/FileMapFilterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/FileMapFilterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 3
+			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileManipulator of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 2
+			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
+
+		-
+			message: "#^PHPDoc tag @return has invalid value \\(\\\\Generator\\<array\\<array\\<string,mixed\\>\\>\\)\\: Unexpected token \"\\*/\", expected '\\>' at offset 62$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/KeysLinkerTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/KeysParserTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileParser of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeysParser constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 3
+			path: tests/Unit/Service/Yaml/KeysParserTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/KeysParserTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\EmptyValueLinterTest\\:\\:testDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 2
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileMapFilter of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\EmptyValueLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$fileParser of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\EmptyValueLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\FilesMissedLinterTest\\:\\:testDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 2
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileMapFilter of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\FilesMissedLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$localesDetector of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\FilesMissedLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\LocalesDetector, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\LocalesDetector\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\InvalidValueLinterTest\\:\\:testSameValuesDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 2
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileParser of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\InvalidValueLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$fileMapFilter of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\InvalidValueLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\KeyPatternLinterTest\\:\\:testDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 2
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileMapFilter of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeyPatternLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$keysParser of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeyPatternLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeysParser, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeysParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\KeysDuplicatedLinterTest\\:\\:testDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 2
+			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileMapFilter of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeysDuplicatedLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$fileParser of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\KeysDuplicatedLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\KeysMissedLinterTest\\:\\:testDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysMissedLinterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysMissedLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileParser of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeysParser constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysMissedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysMissedLinterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\SameValueLinterTest\\:\\:testSameValuesDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
+			count: 2
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$fileMapFilter of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\SameValueLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$fileParser of class Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\Linter\\\\SameValueLinter constructor expects Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Transformer\\\\KeysCleanerTest\\:\\:testTransform\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Transformer/KeysCleanerTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Transformer\\\\KeysCleanerTest\\:\\:testTransform\\(\\) has parameter \\$income with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Transformer/KeysCleanerTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Transformer\\\\KeysSorterTest\\:\\:testTransform\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Transformer/KeysSorterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Transformer\\\\KeysSorterTest\\:\\:testTransform\\(\\) has parameter \\$income with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Transformer/KeysSorterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Transformer\\\\KeysTransformerTest\\:\\:testTransform\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Transformer/KeysTransformerTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Transformer\\\\KeysTransformerTest\\:\\:testTransform\\(\\) has parameter \\$income with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Transformer/KeysTransformerTest.php
