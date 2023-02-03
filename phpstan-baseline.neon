@@ -1,16 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Ternary operator condition is always true\\.$#"
-			count: 1
-			path: src/Command/Yaml/ExportMissedTranslationsCommand.php
-
-		-
-			message: "#^If condition is always true\\.$#"
-			count: 2
-			path: src/Command/Yaml/LintCommand.php
-
-		-
 			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\DependencyInjection\\\\CompilerPass\\\\TranslatorCompilerPass\\:\\:getClass\\(\\) is unused\\.$#"
 			count: 1
 			path: src/DependencyInjection/CompilerPass/TranslatorCompilerPass.php
@@ -26,22 +16,7 @@ parameters:
 			path: src/DependencyInjection/CompilerPass/TranslatorCompilerPass.php
 
 		-
-			message: "#^Class Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\CSV implements generic interface Iterator but does not specify its types\\: TKey, TValue$#"
-			count: 1
-			path: src/Model/CSV.php
-
-		-
 			message: "#^Comparison operation \"\\<\" between int\\<1, max\\> and 1 is always false\\.$#"
-			count: 1
-			path: src/Model/CSV.php
-
-		-
-			message: "#^If condition is always true\\.$#"
-			count: 1
-			path: src/Model/CSV.php
-
-		-
-			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Model\\\\CSV\\:\\:current\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/CSV.php
 
@@ -96,59 +71,19 @@ parameters:
 			path: src/Service/Translator/AbstractTranslator.php
 
 		-
-			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__call\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/Translator/AbstractTranslator.php
-
-		-
-			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__call\\(\\) has parameter \\$arguments with no type specified\\.$#"
-			count: 1
-			path: src/Service/Translator/AbstractTranslator.php
-
-		-
-			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__call\\(\\) has parameter \\$name with no type specified\\.$#"
-			count: 1
-			path: src/Service/Translator/AbstractTranslator.php
-
-		-
 			message: "#^Parameter \\#2 \\$catalogue of method Symfony\\\\Component\\\\Translation\\\\Reader\\\\TranslationReaderInterface\\:\\:read\\(\\) expects Symfony\\\\Component\\\\Translation\\\\MessageCatalogue, Symfony\\\\Component\\\\Translation\\\\MessageCatalogueInterface given\\.$#"
 			count: 1
 			path: src/Service/Translator/AbstractTranslator.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$fileMapFilter contains unresolvable type\\.$#"
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Service/LocalesDetectorTest.php
 
 		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
-			path: tests/Unit/Service/LocalesDetectorTest.php
-
-		-
-			message: "#^PHPDoc tag @var for variable \\$fileMapFilter contains unresolvable type\\.$#"
-			count: 1
 			path: tests/Unit/Service/Yaml/FileMapFilterTest.php
-
-		-
-			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
-			count: 1
-			path: tests/Unit/Service/Yaml/FileMapFilterTest.php
-
-		-
-			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParserTest\\:\\:mockFileManipulatorMultiple\\(\\) should return Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator but returns PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\.$#"
-			count: 1
-			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
-
-		-
-			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParserTest\\:\\:mockFileManipulatorSingle\\(\\) should return Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator but returns PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\.$#"
-			count: 1
-			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
-
-		-
-			message: "#^PHPDoc tag @return contains unresolvable type\\.$#"
-			count: 1
-			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
 
 		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
@@ -156,21 +91,71 @@ parameters:
 			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
 
 		-
-			message: "#^PHPDoc tag @return has invalid value \\(\\\\Generator\\<array\\<array\\<string,mixed\\>\\>\\)\\: Unexpected token \"\\*/\", expected '\\>' at offset 62$#"
-			count: 1
-			path: tests/Unit/Service/Yaml/KeysLinkerTest.php
-
-		-
-			message: "#^PHPDoc tag @var for variable \\$fileManipulator contains unresolvable type\\.$#"
-			count: 1
-			path: tests/Unit/Service/Yaml/KeysParserTest.php
-
-		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Service/Yaml/KeysParserTest.php
 
 		-
-			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\Linter\\\\KeysDuplicatedLinterTest\\:\\:testDetected\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/EmptyValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\LocalesDetector\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/FilesMissedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/InvalidValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\KeysParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeyPatternLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysDuplicatedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysMissedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileMapFilter\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php

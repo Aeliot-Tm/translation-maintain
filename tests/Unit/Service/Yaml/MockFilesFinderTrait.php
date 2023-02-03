@@ -15,7 +15,6 @@ trait MockFilesFinderTrait
      */
     private function mockFilesFinder(array $filesMap, TestCase $testCase): FilesFinder
     {
-        /** @var MockObject&FilesFinder $fileMapFilter */
         $fileMapFilter = $testCase->getMockBuilder(FilesFinder::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()

@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 trait MockFileManipulatorTrait
 {
-    /**
-     * @return MockObject&FileManipulator
-     */
-    private function createFileManipulatorMock(TestCase $testCase): MockObject
+    private function createFileManipulatorMock(TestCase $testCase): FileManipulator
     {
         return $testCase->getMockBuilder(FileManipulator::class)
             ->disableOriginalConstructor()
@@ -28,9 +25,11 @@ trait MockFileManipulatorTrait
      */
     private function mockFileManipulatorSingle(array $value, TestCase $testCase): FileManipulator
     {
+        /** @var MockObject $fileMapFilter */
         $fileMapFilter = $this->createFileManipulatorMock($testCase);
         $fileMapFilter->method('parse')->willReturn($value);
 
+        /** @var FileManipulator $fileMapFilter */
         return $fileMapFilter;
     }
 
@@ -39,11 +38,13 @@ trait MockFileManipulatorTrait
      */
     private function mockFileManipulatorMultiple(array $fileTranslations, TestCase $testCase): FileManipulator
     {
+        /** @var MockObject $fileMapFilter */
         $fileMapFilter = $this->createFileManipulatorMock($testCase);
         $fileMapFilter->method('parse')->willReturnCallback(function (string $path) use ($fileTranslations) {
             return $fileTranslations[$path];
         });
 
+        /** @var FileManipulator $fileMapFilter */
         return $fileMapFilter;
     }
 }

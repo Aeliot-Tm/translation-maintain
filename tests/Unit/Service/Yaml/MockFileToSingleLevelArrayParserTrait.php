@@ -15,7 +15,6 @@ trait MockFileToSingleLevelArrayParserTrait
      */
     private function mockFileToSingleLevelArrayParser(array $fileTranslations, TestCase $testCase): FileToSingleLevelArrayParser
     {
-        /** @var MockObject&FileToSingleLevelArrayParser $fileManipulator */
         $fileManipulator = $testCase->getMockBuilder(FileToSingleLevelArrayParser::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()
