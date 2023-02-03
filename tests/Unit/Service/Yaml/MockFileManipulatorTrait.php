@@ -29,7 +29,7 @@ trait MockFileManipulatorTrait
         $fileMapFilter = $this->createFileManipulatorMock($testCase);
         $fileMapFilter->method('parse')->willReturn($value);
 
-        /** @var FileManipulator $fileMapFilter */
+        /* @var FileManipulator $fileMapFilter */
         return $fileMapFilter;
     }
 
@@ -44,7 +44,7 @@ trait MockFileManipulatorTrait
             return $fileTranslations[$path];
         });
 
-        /** @var FileManipulator $fileMapFilter */
+        /* @var FileManipulator $fileMapFilter */
         return $fileMapFilter;
     }
 }
