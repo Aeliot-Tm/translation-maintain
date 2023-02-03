@@ -15,7 +15,6 @@ trait MockKeysParserTrait
      */
     private function mockKeysParser(array $returns, TestCase $testCase): KeysParser
     {
-        /** @var MockObject&KeysParser $fileMapFilter */
         $fileMapFilter = $testCase->getMockBuilder(KeysParser::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()

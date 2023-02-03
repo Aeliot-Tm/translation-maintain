@@ -6,12 +6,17 @@ namespace Aeliot\Bundle\TransMaintain\Model;
 
 /**
  * @internal
+ *
+ * @template TKey as int
+ * @template-covariant TValue as array<string, string|null>
+ *
+ * @implements \Iterator<TKey, TValue>
  */
 class CSV implements \Iterator
 {
     private string $path;
     /**
-     * @var resource
+     * @var resource|null
      */
     private $handler;
     private ?\Generator $innerGenerator;

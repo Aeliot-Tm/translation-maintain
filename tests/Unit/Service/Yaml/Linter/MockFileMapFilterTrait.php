@@ -15,7 +15,6 @@ trait MockFileMapFilterTrait
      */
     private function mockFileMapFilter(array $filesMap, TestCase $testCase): FileMapFilter
     {
-        /** @var MockObject&FileMapFilter $fileMapFilter */
         $fileMapFilter = $testCase->getMockBuilder(FileMapFilter::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()

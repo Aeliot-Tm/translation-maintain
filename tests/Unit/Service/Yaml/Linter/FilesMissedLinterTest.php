@@ -88,10 +88,8 @@ final class FilesMissedLinterTest extends TestCase
 
     /**
      * @param string[] $locales
-     *
-     * @return MockObject&LocalesDetector
      */
-    private function mockLocalesDetector(array $locales, TestCase $testCase): MockObject
+    private function mockLocalesDetector(array $locales, TestCase $testCase): LocalesDetector
     {
         $localesDetector = $testCase->getMockBuilder(LocalesDetector::class)
             ->disableOriginalConstructor()

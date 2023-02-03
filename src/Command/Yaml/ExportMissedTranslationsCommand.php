@@ -34,7 +34,7 @@ final class ExportMissedTranslationsCommand extends Command
     {
         $domain = $input->getArgument('domain');
         $sourceLocale = $input->getArgument('source_locale');
-        $targetLocale = $input->hasArgument('target_locale') ? $input->getArgument('target_locale') : null;
+        $targetLocale = $input->getArgument('target_locale');
 
         $values = $this->missedValuesFinder->findMissedTranslations($domain, $sourceLocale, $targetLocale);
         $output->writeln(Yaml::dump($values));

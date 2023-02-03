@@ -41,6 +41,12 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
         $this->translationReader = $translationReader;
     }
 
+    /**
+     * @param string $name
+     * @param array<mixed> $arguments
+     *
+     * @return mixed
+     */
     public function __call($name, $arguments)
     {
         if (method_exists($this, $name)) {

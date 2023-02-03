@@ -75,12 +75,8 @@ final class LintCommand extends Command
     private function createFilterDto(InputInterface $input): LintYamlFilterDto
     {
         $filterDto = new LintYamlFilterDto();
-        if ($input->hasOption('domain')) {
-            $filterDto->domains = $input->getOption('domain');
-        }
-        if ($input->hasOption('locale')) {
-            $filterDto->locales = $input->getOption('locale');
-        }
+        $filterDto->domains = $input->getOption('domain') ?: null;
+        $filterDto->locales = $input->getOption('locale') ?: null;
 
         return $filterDto;
     }
