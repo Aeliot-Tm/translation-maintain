@@ -53,11 +53,14 @@ final class TransformCommand extends Command
         return 0;
     }
 
+    /**
+     * @return iterable<array<string>>
+     */
     private function getFiles(InputInterface $input): iterable
     {
         $isProcessAll = (bool) $input->getOption('all');
-        $domains = $input->getOption('domain');
-        $locales = $input->getOption('locale');
+        $domains = $input->getOption('domain') ?: [];
+        $locales = $input->getOption('locale') ?: [];
         if ($pathIn = (string) $input->getArgument('file')) {
             if ($isProcessAll || $domains || $locales) {
                 throw new InvalidCommandParametersException('Do not pass any option when pass arguments', 1);
@@ -79,6 +82,10 @@ final class TransformCommand extends Command
         }
     }
 
+    /**
+     * @param string[] $domains
+     * @param string[] $locales
+     */
     private function checkOptions(bool $isProcessAll, array $domains, array $locales): void
     {
         if ($isProcessAll && ($domains || $locales)) {
@@ -89,11 +96,23 @@ final class TransformCommand extends Command
         }
     }
 
-    private function filterByDomains(array $files, $domains): array
+    /**
+     * @param array<string,array<string,array<int,string>>> $files
+     * @param string[] $domains
+     *
+     * @return array<string,array<string,array<int,string>>>
+     */
+    private function filterByDomains(array $files, array $domains): array
     {
         return $domains ? array_intersect_key($files, array_flip($domains)) : $files;
     }
 
+    /**
+     * @param array<string,array<int,string>> $localesFiles
+     * @param string[] $locales
+     *
+     * @return array<string,array<int,string>>
+     */
     private function filterByLocales(array $localesFiles, array $locales): array
     {
         return $locales ? array_intersect_key($localesFiles, array_flip($locales)) : $localesFiles;

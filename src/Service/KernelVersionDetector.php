@@ -31,7 +31,7 @@ final class KernelVersionDetector
     {
         $packages = [];
         if (file_exists($path)) {
-            $packages = (json_decode(file_get_contents($path), true, 512, \JSON_THROW_ON_ERROR)['packages'] ?? []);
+            $packages = json_decode(file_get_contents($path), true, 512, \JSON_THROW_ON_ERROR)['packages'] ?? [];
             $packages = array_filter($packages, static fn (array $x): bool => $x['name'] === $packageName);
         }
 

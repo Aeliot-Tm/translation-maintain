@@ -12,6 +12,9 @@ final class DirectoryProvider
      */
     private array $dirs;
 
+    /**
+     * @param iterable<int,string> $dirs
+     */
     public function __construct(string $defaultPath, iterable $dirs)
     {
         $this->defaultPath = $defaultPath;

@@ -71,6 +71,9 @@ final class FileMapFilterTest extends TestCase
         ];
     }
 
+    /**
+     * @param array<string,array<string,array<int,string>>> $filesMap
+     */
     private function createFileMapFilter(array $filesMap): FileMapFilter
     {
         return new FileMapFilter($this->mockFilesFinder($filesMap, $this));

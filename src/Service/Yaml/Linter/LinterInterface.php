@@ -14,6 +14,9 @@ interface LinterInterface
 
     public function getKey(): string;
 
+    /**
+     * @return string[]
+     */
     public function getPresets(): array;
 
     public function lint(LintYamlFilterDto $filterDto): ReportBag;

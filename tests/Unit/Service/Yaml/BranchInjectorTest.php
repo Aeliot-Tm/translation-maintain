@@ -12,7 +12,9 @@ final class BranchInjectorTest extends TestCase
     /**
      * @dataProvider getDataForSuccessfulInjectionTest
      *
-     * @param string|array $value
+     * @param array<string,mixed> $expected
+     * @param array<string,mixed> $yaml
+     * @param string|array<string,mixed> $value
      */
     public function testSuccessfulInjection(array $expected, array $yaml, string $key, $value): void
     {
@@ -23,7 +25,8 @@ final class BranchInjectorTest extends TestCase
     /**
      * @dataProvider getDataForInjectionReturnFalseTest
      *
-     * @param string|array $value
+     * @param array<string,mixed> $yaml
+     * @param string|array<string,mixed> $value
      */
     public function testInjectionReturnFalse(array $yaml, string $key, $value): void
     {

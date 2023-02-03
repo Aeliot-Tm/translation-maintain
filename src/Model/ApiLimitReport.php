@@ -11,6 +11,9 @@ final class ApiLimitReport implements \JsonSerializable
     public int $offset = 0;
     public string $service;
 
+    /**
+     * @param array{ unique_key: string, start_date: string, offset: int, service: string }|null $row
+     */
     public function __construct(?array $row)
     {
         if ($row) {
@@ -21,6 +24,9 @@ final class ApiLimitReport implements \JsonSerializable
         }
     }
 
+    /**
+     * @return array{ unique_key: string, start_date: string, offset: int, service: string }
+     */
     public function jsonSerialize(): array
     {
         return [

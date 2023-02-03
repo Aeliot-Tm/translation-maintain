@@ -31,6 +31,7 @@ final class SameValueLinterTest extends TestCase
     /**
      * @dataProvider getDataForTestFilesWithSameValues
      *
+     * @param array<array<string,string>> $expected
      * @param array<string,array<string,array<int,string>>> $filesMap
      * @param array<string,mixed> $fileTranslations
      */

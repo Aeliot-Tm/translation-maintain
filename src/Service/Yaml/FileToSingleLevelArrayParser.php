@@ -15,6 +15,9 @@ final class FileToSingleLevelArrayParser
         $this->keysLinker = $keysLinker;
     }
 
+    /**
+     * @return array<string,string>
+     */
     public function parse(string $path): array
     {
         return iterator_to_array($this->keysLinker->glueKeys($this->fileManipulator->parse($path)));

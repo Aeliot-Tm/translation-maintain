@@ -12,11 +12,10 @@ trait MockKeysParserTrait
 {
     /**
      * @param array<string,array<string,mixed>> $returns
-     *
-     * @return MockObject&KeysParser
      */
-    private function mockKeysParser(array $returns, TestCase $testCase): MockObject
+    private function mockKeysParser(array $returns, TestCase $testCase): KeysParser
     {
+        /** @var MockObject&KeysParser $fileMapFilter */
         $fileMapFilter = $testCase->getMockBuilder(KeysParser::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()

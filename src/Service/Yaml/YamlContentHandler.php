@@ -15,6 +15,9 @@ final class YamlContentHandler
         $this->yamlIndent = $yamlIndent;
     }
 
+    /**
+     * @param array<string,mixed> $yaml
+     */
     public function dump(array $yaml): string
     {
         // THINK: how to escape single words?
@@ -23,6 +26,9 @@ final class YamlContentHandler
         return Yaml::dump($yaml, 100, $this->yamlIndent, $dumpFlags);
     }
 
+    /**
+     * @return array<string,mixed>|null
+     */
     public function parseFile(string $filename): ?array
     {
         /*

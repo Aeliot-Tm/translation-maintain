@@ -11,6 +11,9 @@ final class KeysCleanerTest extends TestCase
 {
     /**
      * @dataProvider getDataForTestTransform
+     *
+     * @param array<string,mixed> $expected
+     * @param array<string,mixed> $income
      */
     public function testTransform(array $expected, array $income): void
     {

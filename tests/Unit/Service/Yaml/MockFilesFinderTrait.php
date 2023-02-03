@@ -12,11 +12,10 @@ trait MockFilesFinderTrait
 {
     /**
      * @param array<string,array<string,array<int,string>>> $filesMap
-     *
-     * @return MockObject&FilesFinder
      */
-    private function mockFilesFinder(array $filesMap, TestCase $testCase): MockObject
+    private function mockFilesFinder(array $filesMap, TestCase $testCase): FilesFinder
     {
+        /** @var MockObject&FilesFinder $fileMapFilter */
         $fileMapFilter = $testCase->getMockBuilder(FilesFinder::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()

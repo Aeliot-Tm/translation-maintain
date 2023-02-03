@@ -19,6 +19,9 @@ final class FileTransformedStateDetectorTest extends KernelTestCase
         self::assertSame($expected, $this->stateDetector->isTransformed($filePath));
     }
 
+    /**
+     * @return iterable<array{ 0: bool, 1: string }>
+     */
     public function getDataForTest(): iterable
     {
         yield [true, __DIR__.'/../../../../examples/outgoing.en.yaml'];
@@ -27,6 +30,6 @@ final class FileTransformedStateDetectorTest extends KernelTestCase
 
     protected function setUp(): void
     {
-        $this->stateDetector = static::getContainer()->get(FileTransformedStateDetector::class);
+        $this->stateDetector = self::getContainer()->get(FileTransformedStateDetector::class);
     }
 }

@@ -25,10 +25,8 @@ trait MockFileManipulatorTrait
 
     /**
      * @param array<string,array<string,array<int,string>>> $value
-     *
-     * @return MockObject&FileManipulator
      */
-    private function mockFileManipulatorSingle(array $value, TestCase $testCase): MockObject
+    private function mockFileManipulatorSingle(array $value, TestCase $testCase): FileManipulator
     {
         $fileMapFilter = $this->createFileManipulatorMock($testCase);
         $fileMapFilter->method('parse')->willReturn($value);
@@ -38,10 +36,8 @@ trait MockFileManipulatorTrait
 
     /**
      * @param array<string,array<string,mixed>> $fileTranslations
-     *
-     * @return MockObject&FileManipulator
      */
-    private function mockFileManipulatorMultiple(array $fileTranslations, TestCase $testCase): MockObject
+    private function mockFileManipulatorMultiple(array $fileTranslations, TestCase $testCase): FileManipulator
     {
         $fileMapFilter = $this->createFileManipulatorMock($testCase);
         $fileMapFilter->method('parse')->willReturnCallback(function (string $path) use ($fileTranslations) {

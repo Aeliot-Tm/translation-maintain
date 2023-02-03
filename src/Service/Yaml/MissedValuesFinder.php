@@ -17,6 +17,9 @@ final class MissedValuesFinder
         $this->keysParser = $keysParser;
     }
 
+    /**
+     * @return array<string,string>
+     */
     public function findMissedTranslations(string $domain, string $sourceLocale, ?string $targetLocale): array
     {
         $domainsFiles = $this->filesFinder->getFilesMap();
