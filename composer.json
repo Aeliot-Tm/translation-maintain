@@ -48,10 +48,13 @@
   },
   "scripts": {
     "test": [
-      "vendor/bin/phpunit",
-      "vendor/bin/php-cs-fixer fix -vv --using-cache=no"
+      "@phpunit",
+      "@coverage",
+      "@cs-fixer-check"
     ],
-    "coverage": "vendor/bin/pccb_clover_compare -c report/coverage/clover.xml -vv"
+    "coverage": "vendor/bin/pccb_clover_compare -c report/coverage/clover.xml -vv",
+    "phpunit": "vendor/bin/phpunit",
+    "cs-fixer-check": "vendor/bin/php-cs-fixer fix -vv --dry-run --using-cache=no"
   },
   "suggest": {
     "symfony/translation": "Can wrap provided of Translator and log missed translations. Tested with versions: 3.4, 4.4 and 5.3."
