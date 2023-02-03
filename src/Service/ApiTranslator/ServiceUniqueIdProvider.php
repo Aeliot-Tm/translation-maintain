@@ -6,8 +6,14 @@ namespace Aeliot\Bundle\TransMaintain\Service\ApiTranslator;
 
 final class ServiceUniqueIdProvider
 {
+    /**
+     * @var array<string,string|null>
+     */
     private array $keys;
 
+    /**
+     * @param array<string,string|null> $keys
+     */
     public function __construct(array $keys)
     {
         $this->keys = $keys;

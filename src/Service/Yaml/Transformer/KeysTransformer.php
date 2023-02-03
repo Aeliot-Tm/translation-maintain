@@ -18,6 +18,7 @@ final class KeysTransformer implements TransformerInterface
     public function transform(array $yaml): array
     {
         foreach (array_keys($yaml) as $key) {
+            /** @var string $key */
             if (\is_array($value = $yaml[$key])) {
                 $value = $yaml[$key] = $this->transform($value);
             }

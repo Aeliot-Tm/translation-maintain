@@ -30,6 +30,9 @@ final class AeliotTransMaintainExtension extends Extension
         $loader->load('services.yaml');
     }
 
+    /**
+     * @param array<string,mixed> $config
+     */
     private function defineGoogleCloudTranslate(array $config, ContainerBuilder $container): void
     {
         $google = $config['translation_api'][FacadesRegistry::FACADE_GOOGLE];
@@ -38,6 +41,9 @@ final class AeliotTransMaintainExtension extends Extension
         $container->setParameter('aeliot_trans_maintain.translation_api.google.model', $google['model'] ?? null);
     }
 
+    /**
+     * @param array<string,mixed> $config
+     */
     private function defineTranslationApiParameters(array $config, ContainerBuilder $container): void
     {
         $google = $config[FacadesRegistry::FACADE_GOOGLE] ?? [];

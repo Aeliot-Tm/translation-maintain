@@ -20,6 +20,7 @@ final class KeysMissedLinterTest extends TestCase
     /**
      * @dataProvider getDataForTestDetected
      *
+     * @param array<array<string,string>> $expected
      * @param array<string,array<string,array<int,string>>> $filesMap
      * @param array<string,mixed> $fileTranslations
      */

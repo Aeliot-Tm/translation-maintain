@@ -17,6 +17,9 @@ final class FileManipulator
         $this->yamlContentHandler = $yamlContentHandler;
     }
 
+    /**
+     * @param array<string,mixed> $yaml
+     */
     public function dump(string $pathOut, array $yaml): void
     {
         $this->filesystem->mkdir(\dirname($pathOut));
@@ -30,6 +33,9 @@ final class FileManipulator
         return $this->filesystem->exists($path);
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     public function parse(string $pathIn): array
     {
         if (!$this->filesystem->exists($pathIn)) {

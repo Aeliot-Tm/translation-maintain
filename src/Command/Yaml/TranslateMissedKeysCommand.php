@@ -112,6 +112,12 @@ final class TranslateMissedKeysCommand extends Command
         return $requestedLocales ? array_intersect($existingLocales, $requestedLocales) : $existingLocales;
     }
 
+    /**
+     * @param array<string,mixed> $yaml
+     * @param array<string,string> $values
+     *
+     * @return array<string,mixed>
+     */
     private function merge(array $yaml, array $values): array
     {
         foreach ($values as $key => $value) {
@@ -123,6 +129,9 @@ final class TranslateMissedKeysCommand extends Command
         return $yaml;
     }
 
+    /**
+     * @param array<string,string> $values
+     */
     private function save(string $domain, string $targetLocale, array $values): void
     {
         $path = $this->filesFinder->locateFile($domain, $targetLocale);
@@ -133,6 +142,11 @@ final class TranslateMissedKeysCommand extends Command
         $this->fileManipulator->dump($path, $values);
     }
 
+    /**
+     * @param array<string,string> $values
+     *
+     * @return array{ 0:array<string,string>, 1: bool }
+     */
     private function translateBatch(array $values, string $targetLocale, ?string $sourceLocale = null): array
     {
         $isLimitReached = false;

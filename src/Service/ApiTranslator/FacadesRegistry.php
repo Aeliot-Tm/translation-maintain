@@ -15,6 +15,9 @@ final class FacadesRegistry
      */
     private array $facades = [];
 
+    /**
+     * @param iterable<TranslatorFacadeInterface> $facades
+     */
     public function __construct(iterable $facades)
     {
         foreach ($facades as $facade) {

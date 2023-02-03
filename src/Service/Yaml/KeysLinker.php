@@ -6,6 +6,9 @@ namespace Aeliot\Bundle\TransMaintain\Service\Yaml;
 
 final class KeysLinker
 {
+    /**
+     * @param array<string,mixed> $array
+     */
     public function glueKeys(array $array, string $prefix = null): \Generator
     {
         $prefix = null === $prefix ? '' : $prefix.'.';

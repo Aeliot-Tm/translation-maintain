@@ -24,7 +24,7 @@ final class ReportBag
     private OptionsResolver $resolver;
 
     /**
-     * @param array<string,array<string>> $columnsConfig
+     * @param array<string,string|array<string>> $columnsConfig
      */
     public function __construct(array $columnsConfig, string $messageEmptyReport, string $messageReportWithErrors)
     {
@@ -44,6 +44,9 @@ final class ReportBag
         }
     }
 
+    /**
+     * @param string|string[]|mixed ...$values
+     */
     public function addLine(...$values): void
     {
         if (\count($values) !== $this->columnsCount) {
@@ -53,6 +56,9 @@ final class ReportBag
         $this->lines[] = new ReportLine($this->resolver->resolve(array_combine($this->columns, $values)));
     }
 
+    /**
+     * @return string[]
+     */
     public function getHeaders(): array
     {
         return $this->columns;
