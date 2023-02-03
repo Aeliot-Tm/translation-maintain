@@ -8,6 +8,7 @@ namespace Aeliot\Bundle\TransMaintain\Model;
  * @internal
  *
  * @template TKey as int
+ *
  * @template-covariant TValue as array<string, string|null>
  *
  * @implements \Iterator<TKey, TValue>

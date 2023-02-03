@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-use LogicException;
-
 final class Layer
 {
     private const WEY_DOWN = 'down';
@@ -37,7 +35,7 @@ final class Layer
         $this->parent = $parent;
         if ($parent) {
             if (null === $parent->yaml) {
-                throw new LogicException('Passed not initiated parent');
+                throw new \LogicException('Passed not initiated parent');
             }
             $this->selectedYPoint = $parent->yaml;
             $this->yaml = &$parent->yaml;
