@@ -40,7 +40,6 @@ final class TranslatorCompilerPass implements CompilerPassInterface
             new Parameter('aeliot_trans_maintain.missed_keys.directory')
         );
         $container->setDefinition($class, $translatorWrapper);
-
     }
 
     private function getClass(ContainerBuilder $container): string

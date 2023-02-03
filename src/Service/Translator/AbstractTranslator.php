@@ -44,8 +44,6 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
     /**
      * @param string $name
      * @param array<mixed> $arguments
-     *
-     * @return mixed
      */
     public function __call($name, $arguments)
     {

@@ -7,7 +7,6 @@ namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Service\LocalesDetector;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\FilesMissedLinter;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class FilesMissedLinterTest extends TestCase

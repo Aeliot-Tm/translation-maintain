@@ -71,6 +71,11 @@ parameters:
 			path: src/Service/Translator/AbstractTranslator.php
 
 		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Translator\\\\AbstractTranslator\\:\\:__call\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Service/Translator/AbstractTranslator.php
+
+		-
 			message: "#^Parameter \\#2 \\$catalogue of method Symfony\\\\Component\\\\Translation\\\\Reader\\\\TranslationReaderInterface\\:\\:read\\(\\) expects Symfony\\\\Component\\\\Translation\\\\MessageCatalogue, Symfony\\\\Component\\\\Translation\\\\MessageCatalogueInterface given\\.$#"
 			count: 1
 			path: src/Service/Translator/AbstractTranslator.php
@@ -84,6 +89,16 @@ parameters:
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Service/Yaml/FileMapFilterTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParserTest\\:\\:mockFileManipulatorMultiple\\(\\) should return Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator but returns PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Unit\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParserTest\\:\\:mockFileManipulatorSingle\\(\\) should return Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator but returns PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/FileToSingleLevelArrayParserTest.php
 
 		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileManipulator\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
