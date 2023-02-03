@@ -1,0 +1,10 @@
+{
+    "methods": 235,
+    "conditionals": 786,
+    "statements": 1023,
+    "elements": 2044,
+    "coveredmethods": 86,
+    "coveredconditionals": 370,
+    "coveredstatements": 491,
+    "coveredelements": 947
+}
