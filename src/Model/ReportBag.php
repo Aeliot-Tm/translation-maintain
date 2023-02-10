@@ -53,7 +53,9 @@ final class ReportBag
             throw new \InvalidArgumentException('Invalid values count');
         }
 
-        $this->lines[] = new ReportLine($this->resolver->resolve(array_combine($this->columns, $values)));
+        /** @var array<int|string,mixed> $options */
+        $options = array_combine($this->columns, $values);
+        $this->lines[] = new ReportLine($this->resolver->resolve($options));
     }
 
     /**
