@@ -88,10 +88,6 @@ class CSV implements \Iterator
             }
             ++$rowNumber;
 
-            if ($rowNumber < $titleRowNumber) {
-                continue;
-            }
-
             if ($rowNumber === $titleRowNumber) {
                 $headers = $rowData;
                 continue;
