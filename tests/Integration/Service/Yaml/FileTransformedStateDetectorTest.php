@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Integration\Service\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileTransformedStateDetector;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Aeliot\Bundle\TransMaintain\Test\Integration\IntegrationTestCase;
 
-final class FileTransformedStateDetectorTest extends KernelTestCase
+final class FileTransformedStateDetectorTest extends IntegrationTestCase
 {
     private FileTransformedStateDetector $stateDetector;
 
