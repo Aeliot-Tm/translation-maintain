@@ -38,5 +38,4 @@ return (new PhpCsFixer\Config())
         'simplified_if_return' => true,
         'strict_param' => true,
     ])
-    ->setFinder($finder)
-    ->setCacheFile(__DIR__.'/var/.php_cs.cache');
+    ->setFinder($finder);
