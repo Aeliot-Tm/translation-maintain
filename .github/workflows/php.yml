@@ -81,5 +81,8 @@ jobs:
       - name: Install dependencies
         uses: ramsey/composer-install@v2
 
+      - name: WarmUp cache
+        run: php tests/console cache:warmup
+
       - name: PHPStan analyse
         run: composer run-script phpstan
