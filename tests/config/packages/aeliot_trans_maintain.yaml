@@ -2,14 +2,16 @@
 parameters:
     env(TRANS_MAINTAIN_INSERT_MISSED_KEYS): no
     env(GOOGLE_TRANSLATE_API_KEY): ~
+    google_translate_api_key: ~
+    trans_maintain_insert_missed_keys: 'no'
 
 aeliot_trans_maintain:
     missed_keys:
-        insert_position: '%env(TRANS_MAINTAIN_INSERT_MISSED_KEYS)%'
+        insert_position: '%trans_maintain_insert_missed_keys%'
     linter:
         value_invalid_pattern: '/[\x00-\x07]/'
     translation_api:
         google:
-            key: '%env(GOOGLE_TRANSLATE_API_KEY)%'
+            key: '%google_translate_api_key%'
     yaml:
         indent: 4
