@@ -1,4 +1,5 @@
-FROM php:7.4-cli
+ARG PHP_VERSION=php:7.4-cli
+FROM ${PHP_VERSION}
 RUN apt-get --allow-releaseinfo-change update && apt-get install -y \
         libxml2-dev \
         libzip-dev \
@@ -7,8 +8,9 @@ RUN apt-get --allow-releaseinfo-change update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) zip
 
 # xDebug
-ARG PHP_XDEBUG_PORT
-RUN  pecl install xdebug \
+ARG XDEBUG_VERSION=3.1.6
+ARG PHP_XDEBUG_PORT=9003
+RUN pecl install xdebug-${XDEBUG_VERSION} \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -25,9 +27,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 WORKDIR /srv/app
 
-COPY bin src tests translations .env .php-cs-fixer.dist.php composer.* phpunit.xml.dist ./
-
-RUN composer install
-
-RUN usermod -u 1000 www-data
-
+COPY composer.json composer.json
+RUN composer install --prefer-dist --no-suggest --no-interaction --no-scripts --classmap-authoritative --no-autoloader
+COPY ./ ./
+RUN composer dump-autoload
