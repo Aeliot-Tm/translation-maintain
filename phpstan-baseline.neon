@@ -66,6 +66,16 @@ parameters:
 			path: src/Service/Translator/AbstractTranslator.php
 
 		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: tests/Integration/IntegrationTestCase.php
+
+		-
+			message: "#^Ternary operator condition is always true\\.$#"
+			count: 1
+			path: tests/Integration/IntegrationTestCase.php
+
+		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Service/LocalesDetectorTest.php
@@ -147,6 +157,11 @@ parameters:
 
 		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
+			count: 1
+			path: tests/Unit/Service/Yaml/Linter/KeysMissedLinterTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FilesFinder\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Service/Yaml/Linter/KeysMissedLinterTest.php
 
