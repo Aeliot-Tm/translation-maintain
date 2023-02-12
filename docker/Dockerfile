@@ -28,6 +28,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 WORKDIR /srv/app
 
 COPY composer.json composer.json
-RUN composer install --prefer-dist --no-suggest --no-interaction --no-scripts --classmap-authoritative --no-autoloader
+RUN composer install --classmap-authoritative --no-autoloader --no-interaction --no-progress --no-scripts --no-suggest --prefer-dist
 COPY ./ ./
 RUN composer dump-autoload
