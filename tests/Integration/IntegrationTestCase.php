@@ -6,10 +6,12 @@ namespace Aeliot\Bundle\TransMaintain\Test\Integration;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 abstract class IntegrationTestCase extends KernelTestCase
 {
+    /**
+     * @var bool
+     */
     protected static $booted = false;
     protected static $container;
 
@@ -24,19 +26,13 @@ abstract class IntegrationTestCase extends KernelTestCase
             static::$booted = true;
         }
 
-        try {
-            if (!static::$container) {
-                $container = static::$kernel->getContainer();
-                static::$container = $container->has('test.service_container')
-                    ? $container->get('test.service_container')
-                    : $container;
-            }
-
-            return static::$container;
-        } catch (ServiceNotFoundException $e) {
-            $message = 'Could not find service "test.service_container".'
-                .' Try updating the "framework.test" config to "true".';
-            throw new \LogicException($message, 0, $e);
+        if (!static::$container) {
+            $container = static::$kernel->getContainer();
+            static::$container = $container->has('test.service_container')
+                ? $container->get('test.service_container')
+                : $container;
         }
+
+        return static::$container;
     }
 }
