@@ -36,22 +36,12 @@ parameters:
 			path: src/Service/Translator/AbstractTranslator.php
 
 		-
-			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:getLocale\\(\\)\\.$#"
-			count: 1
-			path: src/Service/Translator/AbstractTranslator.php
-
-		-
 			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:setLocale\\(\\)\\.$#"
 			count: 1
 			path: src/Service/Translator/AbstractTranslator.php
 
 		-
 			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:trans\\(\\)\\.$#"
-			count: 1
-			path: src/Service/Translator/AbstractTranslator.php
-
-		-
-			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:transChoice\\(\\)\\.$#"
 			count: 1
 			path: src/Service/Translator/AbstractTranslator.php
 
@@ -66,7 +56,17 @@ parameters:
 			path: src/Service/Translator/AbstractTranslator.php
 
 		-
-			message: "#^Negated boolean expression is always false\\.$#"
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:getCatalogues\\(\\)\\.$#"
+			count: 1
+			path: src/Service/Translator/TranslatorV6P0.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Translation\\\\TranslatorBagInterface\\|Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:getLocale\\(\\)\\.$#"
+			count: 1
+			path: src/Service/Translator/TranslatorV6P0.php
+
+		-
+			message: "#^Method Aeliot\\\\Bundle\\\\TransMaintain\\\\Test\\\\Integration\\\\IntegrationTestCase\\:\\:getContainer\\(\\) should return Symfony\\\\Bundle\\\\FrameworkBundle\\\\Test\\\\TestContainer but returns Symfony\\\\Component\\\\DependencyInjection\\\\ContainerInterface\\.$#"
 			count: 1
 			path: tests/Integration/IntegrationTestCase.php
 
@@ -174,3 +174,8 @@ parameters:
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\MockObject\\\\MockBuilder\\<Aeliot\\\\Bundle\\\\TransMaintain\\\\Service\\\\Yaml\\\\FileToSingleLevelArrayParser\\>\\:\\:getMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Service/Yaml/Linter/SameValueLinterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$envKey of class Symfony\\\\Component\\\\Dotenv\\\\Dotenv constructor expects string, false given\\.$#"
+			count: 1
+			path: tests/bootstrap.php

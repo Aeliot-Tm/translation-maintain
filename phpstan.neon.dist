@@ -7,6 +7,9 @@ parameters:
     excludePaths:
         analyseAndScan:
             - src/Service/Translator/LegacyTranslator.php
+            - src/Service/Translator/Translator.php
+            - src/Service/Translator/TranslatorV3P4.php
+            - src/Service/Translator/TranslatorV5P0.php
 
     paths:
         - src

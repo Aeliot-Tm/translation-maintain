@@ -13,6 +13,9 @@ abstract class IntegrationTestCase extends KernelTestCase
      * @var bool
      */
     protected static $booted = false;
+    /**
+     * @var ContainerInterface|null
+     */
     protected static $container;
 
     protected static function getContainer(): ContainerInterface
