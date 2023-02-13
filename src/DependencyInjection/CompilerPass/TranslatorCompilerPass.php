@@ -7,6 +7,7 @@ namespace Aeliot\Bundle\TransMaintain\DependencyInjection\CompilerPass;
 use Aeliot\Bundle\TransMaintain\Service\KernelVersionDetector;
 use Aeliot\Bundle\TransMaintain\Service\Translator\LegacyTranslator;
 use Aeliot\Bundle\TransMaintain\Service\Translator\Translator;
+use Aeliot\Bundle\TransMaintain\Service\Translator\TranslatorV6P0;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -45,7 +46,13 @@ final class TranslatorCompilerPass implements CompilerPassInterface
     private function getClass(ContainerBuilder $container): string
     {
         $version = (new KernelVersionDetector())->getVersion($container, 'symfony/translation');
+        if (version_compare($version, '5.0.0', '<')) {
+            return LegacyTranslator::class;
+        }
+        if (version_compare($version, '6.0.0', '<')) {
+            return Translator::class;
+        }
 
-        return version_compare($version, '5.0.0', '>=') ? Translator::class : LegacyTranslator::class;
+        return TranslatorV6P0::class;
     }
 }

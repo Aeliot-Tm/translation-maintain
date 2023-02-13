@@ -14,6 +14,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagInterface
 {
+    /**
+     * @var TranslatorInterface|TranslatorBagInterface|ComponentTranslator|FrameworkTranslator
+     */
+    protected $translator;
+
     private KeyRegister $keyRegister;
 
     /**
@@ -22,11 +27,6 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
     private array $loadedLocales = [];
     private string $position;
     private ?string $separateDirectory;
-
-    /**
-     * @var TranslatorInterface|TranslatorBagInterface|ComponentTranslator|FrameworkTranslator
-     */
-    private $translator;
     private TranslationReaderInterface $translationReader;
 
     /**
@@ -59,38 +59,6 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
     }
 
     /**
-     * @param string $id
-     * @param array<string|int,string|int> $parameters
-     * @param string|null $domain
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public function trans($id, array $parameters = [], $domain = null, $locale = null)
-    {
-        $translation = $this->translator->trans(...\func_get_args());
-        if (('' !== ($id = (string) $id)) && $translation === $id) {
-            $this->register($id, $domain, $locale);
-        }
-
-        return $translation;
-    }
-
-    /**
-     * @param string $id
-     * @param int $number
-     * @param array<string|int,string|int> $parameters
-     * @param string|null $domain
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public function transChoice($id, $number, array $parameters = [], $domain = null, $locale = null)
-    {
-        return $this->translator->transChoice(...\func_get_args());
-    }
-
-    /**
      * @param string $locale
      *
      * @return void
@@ -101,14 +69,29 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
     }
 
     /**
-     * @return string|null
+     * @param string $id
+     * @param array<string|int,string|int> $parameters
+     * @param string|null $domain
+     * @param string|null $locale
+     *
+     * @return string
      */
-    public function getLocale()
+    protected function transInner($id, array $parameters = [], $domain = null, $locale = null)
     {
-        return $this->translator->getLocale();
+        $translation = $this->translator->trans(...\func_get_args());
+        if (('' !== ($id = (string) $id)) && $translation === $id) {
+            $this->register($id, $domain, $locale);
+        }
+
+        return $translation;
     }
 
-    public function getCatalogue($locale = null)
+    /**
+     * @param string|null $locale
+     *
+     * @return MessageCatalogueInterface
+     */
+    protected function getCatalogueInner($locale = null)
     {
         $catalogue = $this->translator->getCatalogue(...\func_get_args());
         $loadedLocale = $locale ?? $this->getLocale();
