@@ -16,8 +16,13 @@ if (!class_exists(Dotenv::class)) {
 $paths = ['.env.local', '.env'];
 $paths = array_map(static fn (string $x): string => dirname(__DIR__).\DIRECTORY_SEPARATOR.$x, $paths);
 $paths = array_filter($paths, static fn (string $x): bool => file_exists($x) && is_file($x));
-$dotenv = new Dotenv('APP_ENV', 'APP_DEBUG');
-array_walk($paths, static fn (string $x) => $dotenv->bootEnv($x, 'test'));
+if (method_exists(Dotenv::class, 'bootEnv')) {
+    $dotenv = new Dotenv('APP_ENV', 'APP_DEBUG');
+    array_walk($paths, static fn (string $x) => $dotenv->bootEnv($x, 'test'));
+} else {
+    $dotenv = new Dotenv(false);
+    array_walk($paths, static fn (string $x) => $dotenv->loadEnv($x, 'APP_ENV', 'test'));
+}
 
 $_SERVER += $_ENV;
 $_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? null) ?: 'dev';

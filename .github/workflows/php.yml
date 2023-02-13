@@ -29,6 +29,14 @@ jobs:
             symfony-version: '^5.4'
             phpunit-version: '9.5.28'
             php-cs-fixer-version: '^3.8'
+          - php-version: '8.0'
+            symfony-version: '6.0.*'
+            phpunit-version: '^9.5,<10.0'
+            php-cs-fixer-version: '^3.8'
+          - php-version: '8.1'
+            symfony-version: '6.2.*'
+            phpunit-version: '^9.5,<10.0'
+            php-cs-fixer-version: '^3.8'
 
     steps:
       - uses: 'shivammathur/setup-php@v2'
@@ -39,9 +47,7 @@ jobs:
 
       - name: Set versions
         run: |
-          sed -i 's/>=3.4/${{ matrix.symfony-version }}/g' composer.json
-          sed -i 's/\^3.4||\^4.4||\^5.0/${{ matrix.symfony-version }}/g' composer.json
-          sed -i 's/\^3.4|\^4.0|\^5.0/${{ matrix.symfony-version }}/g' composer.json
+          sed -i 's/\^3.4|\^4.0|\^5.0|\^6.0/${{ matrix.symfony-version }}/g' composer.json
           sed -i 's/friendsofphp\/php-cs-fixer": "\^3.8/friendsofphp\/php-cs-fixer": "${{ matrix.php-cs-fixer-version }}/g' composer.json
           sed -i 's/\^7.5|\^9.5/${{ matrix.phpunit-version }}/g' composer.json
 
@@ -59,7 +65,7 @@ jobs:
     steps:
       - uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '7.4'
+          php-version: '8.0'
 
       - uses: actions/checkout@v3
 
@@ -74,7 +80,7 @@ jobs:
     steps:
       - uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '7.4'
+          php-version: '8.0'
 
       - uses: actions/checkout@v3
 
