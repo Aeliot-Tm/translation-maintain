@@ -32,6 +32,6 @@ trait TranslatorV3P4Trait
      */
     public function trans($id, array $parameters = [], $domain = null, $locale = null)
     {
-        return $this->transInner(...func_get_args());
+        return $this->transInner(...\func_get_args());
     }
 }
