@@ -35,7 +35,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "aeliot-tm/phpunit-codecoverage-baseline": "^1.1",
+    "aeliot-tm/phpunit-codecoverage-baseline": "^2.0",
     "dg/bypass-finals": "^1.1",
     "friendsofphp/php-cs-fixer": "^3.8",
     "phpstan/extension-installer": "^1.1",
