@@ -1,5 +1,5 @@
-ARG PHP_VERSION=php:7.4-cli
-FROM ${PHP_VERSION}
+ARG PHP_IMAGE=php:7.4-cli
+FROM ${PHP_IMAGE}
 RUN apt-get --allow-releaseinfo-change update && apt-get install -y \
         libxml2-dev \
         libzip-dev \
@@ -27,7 +27,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 WORKDIR /srv/app
 
-COPY composer.json composer.json
+COPY composer.* ./
 RUN composer install --classmap-authoritative --no-autoloader --no-interaction --no-progress --no-scripts --no-suggest --prefer-dist
 COPY ./ ./
 RUN composer dump-autoload
