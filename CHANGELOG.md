@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+2.8.0
+-----
+* Feature:
+  * Extend compatibility for all versions of `symfony/translation` since 3.4.* till 6.2.*.
+
 2.7.0
 -----
 * Features:
