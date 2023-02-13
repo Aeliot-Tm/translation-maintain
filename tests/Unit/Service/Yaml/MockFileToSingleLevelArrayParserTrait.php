@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileToSingleLevelArrayParser;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 trait MockFileToSingleLevelArrayParserTrait
 {
     /**
      * @param array<string,mixed> $fileTranslations
-     *
-     * @return MockObject&FileToSingleLevelArrayParser
      */
-    private function mockFileToSingleLevelArrayParser(array $fileTranslations, TestCase $testCase): MockObject
+    private function mockFileToSingleLevelArrayParser(array $fileTranslations, TestCase $testCase): FileToSingleLevelArrayParser
     {
         $fileManipulator = $testCase->getMockBuilder(FileToSingleLevelArrayParser::class)
             ->disableOriginalConstructor()

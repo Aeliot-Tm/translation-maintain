@@ -33,6 +33,9 @@ final class KeyRegister
     private string $position;
     private ?string $separateDirectory;
 
+    /**
+     * @param iterable<InserterInterface> $inserters
+     */
     public function __construct(
         iterable $inserters,
         string $position,

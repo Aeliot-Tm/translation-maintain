@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PHP_IMAGE: ${PHP_IMAGE:-php:7.4-cli}
+        PHP_XDEBUG_PORT: ${PHP_XDEBUG_PORT:-9003}
+        PHP_XDEBUG_VERSION: ${PHP_XDEBUG_VERSION:-3.1.6}
+    restart: on-failure
+    ports:
+      - "9003:9003"
+    volumes:
+      - ./:/srv/app

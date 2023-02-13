@@ -1,0 +1,20 @@
+includes:
+	- phpstan-baseline.neon
+
+parameters:
+    level: 7
+    reportUnmatchedIgnoredErrors: false
+    excludePaths:
+        analyseAndScan:
+            - src/Service/Translator/LegacyTranslator.php
+
+    paths:
+        - src
+        - tests
+
+    parallel:
+        processTimeout: 300.0
+
+    symfony:
+        consoleApplicationLoader: tests/console-application.php
+        containerXmlPath: var/cache/test/Aeliot_Bundle_TransMaintain_Test_KernelTestDebugContainerTmp.xml

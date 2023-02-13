@@ -1,8 +1,11 @@
 framework:
     csrf_protection: false
     test: true
+    secret: '_change_me_'
     session:
         handler_id: 'Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler'
+    translator:
+        default_path: '%kernel.project_dir%/../translations'
 
 services:
     Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler:

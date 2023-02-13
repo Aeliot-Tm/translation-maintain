@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Integration\Service\Yaml;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\FileTransformedStateDetector;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Aeliot\Bundle\TransMaintain\Test\Integration\IntegrationTestCase;
 
-final class FileTransformedStateDetectorTest extends KernelTestCase
+final class FileTransformedStateDetectorTest extends IntegrationTestCase
 {
     private FileTransformedStateDetector $stateDetector;
 
@@ -19,6 +19,9 @@ final class FileTransformedStateDetectorTest extends KernelTestCase
         self::assertSame($expected, $this->stateDetector->isTransformed($filePath));
     }
 
+    /**
+     * @return iterable<array{ 0: bool, 1: string }>
+     */
     public function getDataForTest(): iterable
     {
         yield [true, __DIR__.'/../../../../examples/outgoing.en.yaml'];
@@ -27,6 +30,6 @@ final class FileTransformedStateDetectorTest extends KernelTestCase
 
     protected function setUp(): void
     {
-        $this->stateDetector = static::getContainer()->get(FileTransformedStateDetector::class);
+        $this->stateDetector = self::getContainer()->get(FileTransformedStateDetector::class);
     }
 }

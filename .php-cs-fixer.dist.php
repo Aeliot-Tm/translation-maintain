@@ -34,11 +34,8 @@ return (new PhpCsFixer\Config())
         'no_unreachable_default_argument_value' => true,
         'no_useless_else' => true,
         'phpdoc_align' => ['align' => 'left'],
-        'phpdoc_to_param_type' => true,
         'set_type_to_cast' => true,
         'simplified_if_return' => true,
         'strict_param' => true,
-        'void_return' => true,
     ])
-    ->setFinder($finder)
-    ->setCacheFile(__DIR__.'/var/.php_cs.cache');
+    ->setFinder($finder);

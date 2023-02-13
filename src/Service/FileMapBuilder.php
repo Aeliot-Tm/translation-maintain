@@ -42,6 +42,11 @@ final class FileMapBuilder
         return $map;
     }
 
+    /**
+     * @param array<string,mixed> $map
+     *
+     * @return array<string,mixed>
+     */
     private function sort(array $map): array
     {
         ksort($map);

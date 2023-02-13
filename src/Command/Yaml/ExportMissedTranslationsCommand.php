@@ -27,14 +27,14 @@ final class ExportMissedTranslationsCommand extends Command
         $this->setDescription('Export missed translations in YAML files');
         $this->addArgument('domain', InputArgument::REQUIRED, 'Domain name');
         $this->addArgument('source_locale', InputArgument::REQUIRED, 'Locale code from data will be taken');
-        $this->addArgument('target_locale', InputArgument::OPTIONAL, 'Locale code exported for. Used for filterring if passed');
+        $this->addArgument('target_locale', InputArgument::OPTIONAL, 'Locale code exported for. Used for filtering if passed');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $domain = $input->getArgument('domain');
         $sourceLocale = $input->getArgument('source_locale');
-        $targetLocale = $input->hasArgument('target_locale') ? $input->getArgument('target_locale') : null;
+        $targetLocale = $input->getArgument('target_locale');
 
         $values = $this->missedValuesFinder->findMissedTranslations($domain, $sourceLocale, $targetLocale);
         $output->writeln(Yaml::dump($values));

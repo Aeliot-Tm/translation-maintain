@@ -15,6 +15,9 @@ final class LinterRegistry
      */
     private array $linters;
 
+    /**
+     * @param iterable<LinterInterface> $linters
+     */
     public function __construct(iterable $linters)
     {
         $this->linters = array_fill_keys(self::PRESETS, []);

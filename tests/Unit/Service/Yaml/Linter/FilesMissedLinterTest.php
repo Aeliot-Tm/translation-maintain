@@ -7,7 +7,6 @@ namespace Aeliot\Bundle\TransMaintain\Test\Unit\Service\Yaml\Linter;
 use Aeliot\Bundle\TransMaintain\Dto\LintYamlFilterDto;
 use Aeliot\Bundle\TransMaintain\Service\LocalesDetector;
 use Aeliot\Bundle\TransMaintain\Service\Yaml\Linter\FilesMissedLinter;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class FilesMissedLinterTest extends TestCase
@@ -18,6 +17,7 @@ final class FilesMissedLinterTest extends TestCase
     /**
      * @dataProvider getDataForTestDetected
      *
+     * @param array<array<string,string>> $expected
      * @param array<string,array<string,array<int,string>>> $filesMap
      * @param array<string,mixed> $fileTranslations
      */
@@ -87,10 +87,8 @@ final class FilesMissedLinterTest extends TestCase
 
     /**
      * @param string[] $locales
-     *
-     * @return MockObject&LocalesDetector
      */
-    private function mockLocalesDetector(array $locales, TestCase $testCase): MockObject
+    private function mockLocalesDetector(array $locales, TestCase $testCase): LocalesDetector
     {
         $localesDetector = $testCase->getMockBuilder(LocalesDetector::class)
             ->disableOriginalConstructor()

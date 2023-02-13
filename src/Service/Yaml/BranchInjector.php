@@ -11,6 +11,10 @@ final class BranchInjector
     use KeyParserTrait;
     use KeyValidationTrait;
 
+    /**
+     * @param array<string,mixed> $yaml
+     * @param string|array<string,mixed> $value
+     */
     public function inject(array &$yaml, string $key, $value): bool
     {
         if (!$this->isSplittable($key)) {
@@ -38,6 +42,10 @@ final class BranchInjector
         return true;
     }
 
+    /**
+     * @param array<string,mixed> $yPoint
+     * @param array<string,mixed> $nPoint
+     */
     private function createChildLayer(Layer $parent, string $key, array &$yPoint, array &$nPoint): Layer
     {
         $layer = new Layer($parent);
@@ -48,6 +56,11 @@ final class BranchInjector
         return $layer;
     }
 
+    /**
+     * @param array<string,mixed> $yaml
+     * @param array<string,mixed> $yPoint
+     * @param array<string,mixed> $nPoint
+     */
     private function createParentLayer(array &$yaml, array &$yPoint, array &$nPoint): Layer
     {
         $layer = new Layer();
@@ -58,8 +71,14 @@ final class BranchInjector
         return $layer;
     }
 
+    /**
+     * @param array<string,mixed> $branch
+     */
     private function getFirstKey(array $branch): string
     {
+        if (!$branch) {
+            throw new \LogicException('Empty branch passed');
+        }
         $keys = array_keys($branch);
 
         return reset($keys);

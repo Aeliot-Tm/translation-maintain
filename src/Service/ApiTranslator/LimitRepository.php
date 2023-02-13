@@ -25,6 +25,7 @@ final class LimitRepository
 
         $csv = new CSV($this->path);
         foreach ($csv as $row) {
+            /** @var array{unique_key: string, start_date: string, offset: int, service: string} $row */
             if ($this->isSeeked($row, $uniqueId, $startDate)) {
                 return new ApiLimitReport($row);
             }
@@ -55,14 +56,21 @@ final class LimitRepository
             $table[] = $report->jsonSerialize();
         }
 
-        $resource = fopen($this->path, 'wb');
-        fputcsv($resource, array_keys(reset($table)));
+        if (!$resource = fopen($this->path, 'wb')) {
+            throw new \RuntimeException(sprintf('Cannot open file %s', $this->path));
+        }
+        /** @var array<string,mixed> $firstRow */
+        $firstRow = reset($table);
+        fputcsv($resource, array_keys($firstRow));
         foreach ($table as $row) {
             fputcsv($resource, array_values($row));
         }
         fclose($resource);
     }
 
+    /**
+     * @param array<string,mixed> $row
+     */
     private function isSeeked(array $row, string $uniqueId, string $startDate): bool
     {
         return $row['unique_key'] === $uniqueId && $row['start_date'] === $startDate;

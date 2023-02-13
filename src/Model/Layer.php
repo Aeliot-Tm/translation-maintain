@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Aeliot\Bundle\TransMaintain\Model;
 
-use LogicException;
-
 final class Layer
 {
     private const WEY_DOWN = 'down';
@@ -13,11 +11,23 @@ final class Layer
 
     private ?bool $hasWayUp = null;
     private bool $isSameValue = true;
+
+    /**
+     * @var array<string,mixed>|null
+     */
     private ?array $selectedNPoint = null;
+
+    /**
+     * @var array<string,mixed>|null
+     */
     private ?array $selectedYPoint;
     private ?string $selectedKey = null;
     private ?self $parent;
     private string $way = self::WEY_UP;
+
+    /**
+     * @var array<string,mixed>|null
+     */
     private ?array $yaml = null;
 
     public function __construct(self $parent = null)
@@ -25,18 +35,24 @@ final class Layer
         $this->parent = $parent;
         if ($parent) {
             if (null === $parent->yaml) {
-                throw new LogicException('Passed not initiated parent');
+                throw new \LogicException('Passed not initiated parent');
             }
             $this->selectedYPoint = $parent->yaml;
             $this->yaml = &$parent->yaml;
         }
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     public function &getYaml(): array
     {
         return $this->yaml;
     }
 
+    /**
+     * @param array<string,mixed> $yaml
+     */
     public function setYaml(array &$yaml): void
     {
         $this->yaml = &$yaml;
@@ -82,21 +98,33 @@ final class Layer
         $this->selectedKey = $selectedKey;
     }
 
+    /**
+     * @return array<string,mixed>|null
+     */
     public function &getSelectedNPoint(): ?array
     {
         return $this->selectedNPoint;
     }
 
+    /**
+     * @param array<string,mixed> $selectedNPoint
+     */
     public function setSelectedNPoint(array &$selectedNPoint): void
     {
         $this->selectedNPoint = &$selectedNPoint;
     }
 
+    /**
+     * @return array<string,mixed>|null
+     */
     public function &getSelectedYPoint(): ?array
     {
         return $this->selectedYPoint;
     }
 
+    /**
+     * @param array<string,mixed> $selectedYPoint
+     */
     public function setSelectedYPoint(array &$selectedYPoint): void
     {
         $this->selectedYPoint = &$selectedYPoint;
@@ -129,6 +157,9 @@ final class Layer
         return implode('.', $chain);
     }
 
+    /**
+     * @return string[]
+     */
     private function getKeyChain(): array
     {
         $chain = ($this->parent && !$this->parent->hasWayUp()) ? $this->parent->getKeyChain() : [];

@@ -21,7 +21,7 @@ final class KeysLinkerTest extends TestCase
     }
 
     /**
-     * @return \Generator<array<array<string,mixed>>
+     * @return \Generator<array<array<string,mixed>>>
      */
     public function getDataForTestGlueKeys(): \Generator
     {

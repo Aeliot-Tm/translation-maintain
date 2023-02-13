@@ -2,35 +2,87 @@ name: PHP Composer
 
 on:
   push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build:
-
+  phpunit:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php-version: '7.4'
+            symfony-version: '3.4.*'
+            phpunit-version: '7.5.20'
+            php-cs-fixer-version: '2.19.3'
+          - php-version: '7.4'
+            symfony-version: '^4.4'
+            phpunit-version: '9.5.28'
+            php-cs-fixer-version: '2.19.3'
+          - php-version: '8.0'
+            symfony-version: '5.0.*'
+            phpunit-version: '9.5.28'
+            php-cs-fixer-version: '2.19.3'
+          - php-version: '8.0'
+            symfony-version: '^5.4'
+            phpunit-version: '9.5.28'
+            php-cs-fixer-version: '^3.8'
+
     steps:
-    - uses: actions/checkout@v2
+      - uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '${{ matrix.php-version }}'
+
+      - uses: actions/checkout@v3
+
+      - name: Set versions
+        run: |
+          sed -i 's/>=3.4/${{ matrix.symfony-version }}/g' composer.json
+          sed -i 's/\^3.4||\^4.4||\^5.0/${{ matrix.symfony-version }}/g' composer.json
+          sed -i 's/\^3.4|\^4.0|\^5.0/${{ matrix.symfony-version }}/g' composer.json
+          sed -i 's/friendsofphp\/php-cs-fixer": "\^3.8/friendsofphp\/php-cs-fixer": "${{ matrix.php-cs-fixer-version }}/g' composer.json
+          sed -i 's/\^7.5|\^9.5/${{ matrix.phpunit-version }}/g' composer.json
 
     # - name: Validate composer.json and composer.lock
     #   run: composer validate --strict
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Install dependencies
+        uses: ramsey/composer-install@v2
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Run test suite
+        run: composer run-script phpunit
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '7.4'
 
-    - name: Run test suite
-      run: composer run-script test
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: PHPStan analyse
+        run: composer run-script cs-fixer-check
+
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '7.4'
+
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: WarmUp cache
+        run: php tests/console cache:warmup
+
+      - name: PHPStan analyse
+        run: composer run-script phpstan

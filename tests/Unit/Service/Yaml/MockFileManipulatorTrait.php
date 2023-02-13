@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 trait MockFileManipulatorTrait
 {
-    /**
-     * @return MockObject&FileManipulator
-     */
-    private function createFileManipulatorMock(TestCase $testCase): MockObject
+    private function createFileManipulatorMock(TestCase $testCase): FileManipulator
     {
         return $testCase->getMockBuilder(FileManipulator::class)
             ->disableOriginalConstructor()
@@ -25,29 +22,29 @@ trait MockFileManipulatorTrait
 
     /**
      * @param array<string,array<string,array<int,string>>> $value
-     *
-     * @return MockObject&FileManipulator
      */
-    private function mockFileManipulatorSingle(array $value, TestCase $testCase): MockObject
+    private function mockFileManipulatorSingle(array $value, TestCase $testCase): FileManipulator
     {
+        /** @var MockObject $fileMapFilter */
         $fileMapFilter = $this->createFileManipulatorMock($testCase);
         $fileMapFilter->method('parse')->willReturn($value);
 
+        /* @var FileManipulator $fileMapFilter */
         return $fileMapFilter;
     }
 
     /**
      * @param array<string,array<string,mixed>> $fileTranslations
-     *
-     * @return MockObject&FileManipulator
      */
-    private function mockFileManipulatorMultiple(array $fileTranslations, TestCase $testCase): MockObject
+    private function mockFileManipulatorMultiple(array $fileTranslations, TestCase $testCase): FileManipulator
     {
+        /** @var MockObject $fileMapFilter */
         $fileMapFilter = $this->createFileManipulatorMock($testCase);
         $fileMapFilter->method('parse')->willReturnCallback(function (string $path) use ($fileTranslations) {
             return $fileTranslations[$path];
         });
 
+        /* @var FileManipulator $fileMapFilter */
         return $fileMapFilter;
     }
 }

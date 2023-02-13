@@ -20,6 +20,9 @@ final class ReportBagTest extends TestCase
 
     /**
      * @dataProvider getDataForTestCountLines
+     *
+     * @param array<string,string> $columnConfig
+     * @param array<array<string>> $values
      */
     public function testCountLines(int $expected, array $columnConfig, array $values): void
     {
@@ -30,6 +33,9 @@ final class ReportBagTest extends TestCase
 
     /**
      * @dataProvider getDataForTestGetHeaders
+     *
+     * @param array<int,string> $expected
+     * @param array<string,string> $columnConfig
      */
     public function testGetHeaders(array $expected, array $columnConfig): void
     {
@@ -38,6 +44,9 @@ final class ReportBagTest extends TestCase
 
     /**
      * @dataProvider getDataForTestInvalidLineValuesCount
+     *
+     * @param array<string,string> $columnConfig
+     * @param array<int,string> $lineValues
      */
     public function testInvalidLineValuesCount(array $columnConfig, array $lineValues): void
     {
@@ -49,6 +58,9 @@ final class ReportBagTest extends TestCase
 
     /**
      * @dataProvider getDataForTestInvalidValueType
+     *
+     * @param array<string,string> $columnConfig
+     * @param array<int,string|array<string>> $lineValues
      */
     public function testInvalidValueType(array $columnConfig, array $lineValues): void
     {

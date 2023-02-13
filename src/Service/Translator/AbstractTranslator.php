@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Service\Translator;
 
 use Aeliot\Bundle\TransMaintain\Service\Yaml\KeyRegister;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator as FrameworkTranslator;
 use Symfony\Component\Translation\MessageCatalogueInterface;
 use Symfony\Component\Translation\Reader\TranslationReaderInterface;
+use Symfony\Component\Translation\Translator as ComponentTranslator;
 use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -22,11 +24,14 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
     private ?string $separateDirectory;
 
     /**
-     * @var TranslatorInterface|TranslatorBagInterface|\Symfony\Component\Translation\Translator|\Symfony\Bundle\FrameworkBundle\Translation\Translator
+     * @var TranslatorInterface|TranslatorBagInterface|ComponentTranslator|FrameworkTranslator
      */
     private $translator;
     private TranslationReaderInterface $translationReader;
 
+    /**
+     * @param TranslatorInterface|TranslatorBagInterface|ComponentTranslator|FrameworkTranslator $decoratedTranslator
+     */
     public function __construct($decoratedTranslator, string $position, ?string $separateDirectory, KeyRegister $keyRegister, TranslationReaderInterface $translationReader)
     {
         $this->keyRegister = $keyRegister;
@@ -36,6 +41,10 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
         $this->translationReader = $translationReader;
     }
 
+    /**
+     * @param string $name
+     * @param array<mixed> $arguments
+     */
     public function __call($name, $arguments)
     {
         if (method_exists($this, $name)) {
@@ -49,6 +58,14 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
         throw new \BadMethodCallException(sprintf('Called undefined method "%s"', $name));
     }
 
+    /**
+     * @param string $id
+     * @param array<string|int,string|int> $parameters
+     * @param string|null $domain
+     * @param string|null $locale
+     *
+     * @return string
+     */
     public function trans($id, array $parameters = [], $domain = null, $locale = null)
     {
         $translation = $this->translator->trans(...\func_get_args());
@@ -59,16 +76,33 @@ abstract class AbstractTranslator implements TranslatorInterface, TranslatorBagI
         return $translation;
     }
 
+    /**
+     * @param string $id
+     * @param int $number
+     * @param array<string|int,string|int> $parameters
+     * @param string|null $domain
+     * @param string|null $locale
+     *
+     * @return string
+     */
     public function transChoice($id, $number, array $parameters = [], $domain = null, $locale = null)
     {
         return $this->translator->transChoice(...\func_get_args());
     }
 
-    public function setLocale($locale): void
+    /**
+     * @param string $locale
+     *
+     * @return void
+     */
+    public function setLocale($locale)
     {
-        $this->translator->setLocale(...\func_get_args());
+        $this->translator->setLocale($locale);
     }
 
+    /**
+     * @return string|null
+     */
     public function getLocale()
     {
         return $this->translator->getLocale();

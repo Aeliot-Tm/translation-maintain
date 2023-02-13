@@ -10,9 +10,15 @@ use Aeliot\Bundle\TransMaintain\Model\ApiLimitReport;
 final class LimitKeeper
 {
     private LimitRepository $limitRepository;
+    /**
+     * @var array<string,int>
+     */
     private array $limits;
     private ServiceUniqueIdProvider $uniqueIdProvider;
 
+    /**
+     * @param array<string,int> $limits
+     */
     public function __construct(
         LimitRepository $limitRepository,
         array $limits,
@@ -39,7 +45,7 @@ final class LimitKeeper
         $this->limitRepository->save($report);
     }
 
-    private function getLimit(string $serviceId): ?int
+    private function getLimit(string $serviceId): int
     {
         if (!\array_key_exists($serviceId, $this->limits)) {
             throw new \DomainException(sprintf('Requested not registered service "%s"', $serviceId));

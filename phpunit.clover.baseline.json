@@ -1,0 +1,9 @@
+{
+    "version": "2.0",
+    "metrics": {
+        "methods": 36.6,
+        "conditionals": 48.22,
+        "statements": 48.67,
+        "elements": 47.17
+    }
+}

@@ -62,6 +62,11 @@ final class KeyPatternLinter implements LinterInterface
         );
     }
 
+    /**
+     * @param array<string,array<string>> $parsedKeys
+     *
+     * @return array<string,array<string>>
+     */
     private function getKeysSummary(array $parsedKeys): array
     {
         $summary = [];

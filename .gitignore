@@ -6,6 +6,8 @@
 !/translations/.gitkeep
 /var
 /vendor
+.env.local
+.php-cs-fixer.cache
 .phpunit.result.cache
 composer.lock
-/.env.local
+docker-compose.override.yml

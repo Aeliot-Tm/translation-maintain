@@ -25,10 +25,12 @@ final class DirectoryProviderCompilerPass implements CompilerPassInterface
         $dirs = [];
         $version = (new KernelVersionDetector())->getVersion($container, 'symfony/http-kernel');
         if (version_compare($version, '5.0.0', '>=')) {
+            /** @var string $projectDir */
             $projectDir = $container->getParameter('kernel.project_dir');
             $dirs[] = $projectDir.'/translations';
             $isResourcesFirst = false;
         } else {
+            /** @var string $rootDir */
             $rootDir = $container->getParameter('kernel.root_dir');
             $projectDir = \dirname($rootDir);
             $dirs[] = $projectDir.'/translations';
