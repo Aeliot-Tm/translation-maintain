@@ -1,5 +1,5 @@
-ARG PHP_VERSION=php:7.4-cli
-FROM ${PHP_VERSION}
+ARG PHP_IMAGE
+FROM ${PHP_IMAGE}
 RUN apt-get --allow-releaseinfo-change update && apt-get install -y \
         libxml2-dev \
         libzip-dev \

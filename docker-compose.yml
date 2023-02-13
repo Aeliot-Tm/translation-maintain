@@ -3,8 +3,8 @@ version: '3.1'
 services:
   php:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile
+      context: .
+      dockerfile: Dockerfile
       args:
         PHP_IMAGE: ${PHP_IMAGE:-php:7.4-cli}
         PHP_XDEBUG_PORT: ${PHP_XDEBUG_PORT:-9003}
