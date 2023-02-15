@@ -14,6 +14,9 @@ final class TranslatorV6P0 extends AbstractTranslator implements LocaleAwareInte
         return $this->getCatalogueInner($locale);
     }
 
+    /**
+     * @return MessageCatalogueInterface[]
+     */
     public function getCatalogues(): array
     {
         return $this->translator->getCatalogues();

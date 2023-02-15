@@ -14,7 +14,7 @@ final class KeysParserTest extends TestCase
     /**
      * @dataProvider getDataForTestGetOmittedKeys
      *
-     * @param string[] $expected
+     * @param array<string,array<string>> $expected
      * @param array<string,array<string>> $localesKeys
      */
     public function testGetOmittedKeys(array $expected, array $localesKeys): void
