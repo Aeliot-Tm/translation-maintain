@@ -59,5 +59,10 @@ Full information about machine translation see [there](docs/machine_translation.
 
 **NOTE:** There used standard `\Symfony\Component\Yaml\Yaml` class for dumping, so it inserts single-word values without escaping.
 
+### Additional description
+
+Article on the Habr (ru): https://habr.com/ru/articles/555954/
+
+
 ---
 *You can help to implement more features :) See plans [there](TODO.md).*
