@@ -1,6 +1,9 @@
 TransMaintain
 =============
 
+[![GitHub Release](https://img.shields.io/github/v/release/Aeliot-Tm/translation-maintain?label=Release&labelColor=black)](https://packagist.org/packages/aeliot-tm/translation-maintain)
+
+
 Package which helps to keep you translations consistent. Compatible with Symfony versions since 3.4.
 
 ## Installation
