@@ -1,0 +1,10 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    restart: on-failure
+    ports:
+      - "9003:9003"
+    volumes:
+      - ./:/app
