@@ -2,7 +2,7 @@ TransMaintain
 =============
 
 [![GitHub Release](https://img.shields.io/github/v/release/Aeliot-Tm/translation-maintain?label=Release&labelColor=black)](https://packagist.org/packages/aeliot-tm/translation-maintain)
-
+[![GitHub License](https://img.shields.io/github/license/Aeliot-Tm/php-cs-fixer-baseline?label=License&labelColor=black)](LICENSE)
 
 Package which helps to keep you translations consistent. Compatible with Symfony versions since 3.4.
 
