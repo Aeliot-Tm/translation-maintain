@@ -2,6 +2,7 @@ TransMaintain
 =============
 
 [![GitHub Release](https://img.shields.io/github/v/release/Aeliot-Tm/translation-maintain?label=Release&labelColor=black)](https://packagist.org/packages/aeliot-tm/translation-maintain)
+[![WFS](https://github.com/Aeliot-Tm/translation-maintain/actions/workflows/automated_testing.yml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/translation-maintain/actions)
 [![GitHub License](https://img.shields.io/github/license/Aeliot-Tm/php-cs-fixer-baseline?label=License&labelColor=black)](LICENSE)
 
 Package which helps to keep you translations consistent. Compatible with Symfony versions since 3.4.
@@ -43,7 +44,7 @@ Full information about files transformation see [there](docs/lint/lint_yaml_comm
    ```shell
    find PATH_TO_DIRECTORY -type f \( -iname \*.yml -o -iname \*.yaml \) | sort | xargs  -I {} -t  php  bin/console aeliot_trans_maintain:yaml:transform $1{}
    ```
-   You can filter them additionally with `grep "some text in the file path"` when you add this before, after or instead of `sort` instruction. 
+   You can filter them additionally with `grep "some text in the file path"` when you add this before, after or instead of `sort` instruction.
    And don't forget to separate instructions by the pipe.
 
 Additional information about updating of YAML files see [there](docs/transform_yaml_files.md).
