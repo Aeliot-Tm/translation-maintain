@@ -3,6 +3,7 @@ TransMaintain
 
 [![GitHub Release](https://img.shields.io/github/v/release/Aeliot-Tm/translation-maintain?label=Release&labelColor=black)](https://packagist.org/packages/aeliot-tm/translation-maintain)
 [![WFS](https://github.com/Aeliot-Tm/translation-maintain/actions/workflows/automated_testing.yml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/translation-maintain/actions)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr-closed/Aeliot-Tm/php-cs-fixer-baseline?label=Pull%20Requests&labelColor=black)](https://github.com/Aeliot-Tm/php-cs-fixer-baseline/pulls?q=is%3Apr+is%3Aclosed)
 [![GitHub License](https://img.shields.io/github/license/Aeliot-Tm/php-cs-fixer-baseline?label=License&labelColor=black)](LICENSE)
 
 Package which helps to keep you translations consistent. Compatible with Symfony versions since 3.4.
