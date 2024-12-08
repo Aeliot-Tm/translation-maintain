@@ -48,6 +48,7 @@
     "symfony/translation": "^3.4|^4.0|5.0|^6.0"
   },
   "scripts": {
+    "app-cache-refresh": "rm -rf var/cache && XDEBUG_MODE=off tests/console cache:clear --env=test",
     "test": [
       "@cs-fixer-check",
       "@phpstan",
