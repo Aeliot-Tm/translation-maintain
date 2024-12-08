@@ -20,6 +20,16 @@ $rules = [
     'declare_strict_types' => true,
     // 'final_class' => true,
     'fopen_flags' => true,
+    'header_comment' => [
+        'header' => <<<'EOF'
+            This file is part of the TransMaintain.
+
+            (c) Anatoliy Melnikov <5785276@gmail.com>
+
+            This source file is subject to the MIT license that is bundled
+            with this source code in the file LICENSE.
+            EOF,
+    ],
     'is_null' => true,
     'method_chaining_indentation' => true,
     'no_superfluous_elseif' => true,
