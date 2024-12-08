@@ -60,7 +60,7 @@
     "cs-check": "@cs-fixer-check",
     "cs-fix": "@cs-fixer-fix",
     "cs-fixer-check": "@cs-fixer-fix --dry-run",
-    "cs-fixer-fix": "vendor/bin/php-cs-fixer fix -vv",
+    "cs-fixer-fix": "vendor/bin/php-cs-fixer fix --config=scripts/php-cs-fixer/config.php -vv",
     "phpstan": [
       "@phpstan-clear",
       "@phpstan-analyse"
