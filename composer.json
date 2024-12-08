@@ -57,6 +57,7 @@
     "coverage": "vendor/bin/pccb_clover_compare -c report/coverage/clover.xml -vv",
     "cs-fixer-check": "vendor/bin/php-cs-fixer fix -vv --dry-run",
     "phpstan": "vendor/bin/phpstan analyse -c scripts/phpstan/config.neon",
+    "phpstan-clear": "vendor/bin/phpstan clear-result-cache -c scripts/phpstan/config.neon",
     "phpunit": "vendor/bin/phpunit"
   },
   "suggest": {
