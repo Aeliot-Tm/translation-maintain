@@ -2,8 +2,8 @@
 
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="tests/bootstrap.php"
+         xsi:noNamespaceSchemaLocation="../../vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="../../tests/bootstrap.php"
          colors="true"
 >
     <php>
@@ -14,28 +14,28 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+            <directory>../../tests</directory>
         </testsuite>
     </testsuites>
 
     <logging>
-        <junit outputFile="report/junit.xml"/>
-        <text outputFile="report/logfile.txt"/>
+        <junit outputFile="../../report/junit.xml"/>
+        <text outputFile="../../report/logfile.txt"/>
     </logging>
 
-    <coverage cacheDirectory="report/coverage/cache"
+    <coverage cacheDirectory="../../report/coverage/cache"
               pathCoverage="true"
               ignoreDeprecatedCodeUnits="true">
         <include>
-            <directory>src</directory>
+            <directory>../../src</directory>
         </include>
         <report>
-            <clover outputFile="report/coverage/clover.xml"/>
-            <crap4j outputFile="report/coverage/crap4j.xml" threshold="50"/>
-            <html outputDirectory="report/coverage/html"/>
-            <php outputFile="report/coverage/coverage.php"/>
-            <text outputFile="report/coverage/coverage.txt" showUncoveredFiles="true"/>
-            <xml outputDirectory="report/coverage/xml"/>
+            <clover outputFile="../../report/coverage/clover.xml"/>
+            <crap4j outputFile="../../report/coverage/crap4j.xml" threshold="50"/>
+            <html outputDirectory="../../report/coverage/html"/>
+            <php outputFile="../../report/coverage/coverage.php"/>
+            <text outputFile="../../report/coverage/coverage.txt" showUncoveredFiles="true"/>
+            <xml outputDirectory="../../report/coverage/xml"/>
         </report>
     </coverage>
 </phpunit>
