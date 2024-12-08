@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 use PhpCsFixer\Finder;
 
-$finder = (new Finder())
-    ->in('src')
-    ->in('tests')
-    ->append([
-        '.php-cs-fixer.dist.php',
-        '.php-cs-fixer-finder.php',
-    ]);
+/** @var Finder $finder */
+$finder = require __DIR__ . '/finder.php';
 
 return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
