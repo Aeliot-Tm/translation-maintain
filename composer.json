@@ -71,7 +71,7 @@
       "@phpstan-analyse --generate-baseline scripts/phpstan/baseline.neon --allow-empty-baseline"
     ],
     "phpstan-clear": "vendor/bin/phpstan clear-result-cache -c scripts/phpstan/config.neon",
-    "phpunit": "vendor/bin/phpunit"
+    "phpunit": "vendor/bin/phpunit -c scripts/phpunit/config.xml"
   },
   "suggest": {
     "symfony/translation": "Can wrap provided of Translator and log missed translations. Tested with versions: 3.4, 4.4 and 5.3."
