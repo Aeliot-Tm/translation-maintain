@@ -57,7 +57,10 @@
       "@coverage"
     ],
     "coverage": "vendor/bin/pccb_clover_compare -c report/coverage/clover.xml -vv",
-    "cs-fixer-check": "vendor/bin/php-cs-fixer fix -vv --dry-run",
+    "cs-check": "@cs-fixer-check",
+    "cs-fix": "@cs-fixer-fix",
+    "cs-fixer-check": "@cs-fixer-fix --dry-run",
+    "cs-fixer-fix": "vendor/bin/php-cs-fixer fix -vv",
     "phpstan": [
       "@phpstan-clear",
       "@phpstan-analyse"
