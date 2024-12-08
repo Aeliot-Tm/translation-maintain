@@ -48,16 +48,30 @@
     "symfony/translation": "^3.4|^4.0|5.0|^6.0"
   },
   "scripts": {
-    "test": [
+    "app-cache-refresh": "rm -rf var/cache && XDEBUG_MODE=off tests/console cache:clear --env=test",
+    "check-all": [
+      "@app-cache-refresh",
       "@cs-fixer-check",
       "@phpstan",
       "@phpunit",
       "@coverage"
     ],
     "coverage": "vendor/bin/pccb_clover_compare -c report/coverage/clover.xml -vv",
-    "cs-fixer-check": "vendor/bin/php-cs-fixer fix -vv --dry-run",
-    "phpstan": "vendor/bin/phpstan analyse",
-    "phpunit": "vendor/bin/phpunit"
+    "cs-check": "@cs-fixer-check",
+    "cs-fix": "@cs-fixer-fix",
+    "cs-fixer-check": "@cs-fixer-fix --dry-run",
+    "cs-fixer-fix": "vendor/bin/php-cs-fixer fix --config=scripts/php-cs-fixer/config.php -vv",
+    "phpstan": [
+      "@phpstan-clear",
+      "@phpstan-analyse"
+    ],
+    "phpstan-analyse": "vendor/bin/phpstan analyse -c scripts/phpstan/config.neon",
+    "phpstan-baseline": [
+      "@phpstan-clear",
+      "@phpstan-analyse --generate-baseline scripts/phpstan/baseline.neon --allow-empty-baseline"
+    ],
+    "phpstan-clear": "vendor/bin/phpstan clear-result-cache -c scripts/phpstan/config.neon",
+    "phpunit": "vendor/bin/phpunit -c scripts/phpunit/config.xml"
   },
   "suggest": {
     "symfony/translation": "Can wrap provided of Translator and log missed translations. Tested with versions: 3.4, 4.4 and 5.3."

@@ -11,8 +11,10 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Aeliot\Bundle\TransMaintain\Service\Translator;
+use PhpCsFixer\Finder;
 
-final class TranslatorV3P4 extends LegacyTranslator
-{
-}
+return (new Finder())
+    ->files()
+    ->ignoreVCS(true)
+    ->in(dirname(__DIR__, 2))
+    ->exclude(['report', 'var', 'vendor']);
