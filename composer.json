@@ -49,7 +49,8 @@
   },
   "scripts": {
     "app-cache-refresh": "rm -rf var/cache && XDEBUG_MODE=off tests/console cache:clear --env=test",
-    "test": [
+    "check-all": [
+      "@app-cache-refresh",
       "@cs-fixer-check",
       "@phpstan",
       "@phpunit",
