@@ -2,10 +2,19 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the TransMaintain.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use PhpCsFixer\Finder;
 
 /** @var Finder $finder */
-$finder = require __DIR__ . '/finder.php';
+$finder = require __DIR__.'/finder.php';
 
 $rules = [
     '@Symfony' => true,
@@ -20,6 +29,7 @@ $rules = [
     'declare_strict_types' => true,
     // 'final_class' => true,
     'fopen_flags' => true,
+    'fully_qualified_strict_types' => false,
     'header_comment' => [
         'header' => <<<'EOF'
             This file is part of the TransMaintain.
