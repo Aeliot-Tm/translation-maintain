@@ -32,14 +32,17 @@ $rules = [
     ],
     'is_null' => true,
     'method_chaining_indentation' => true,
+    'native_function_invocation' => false,
     'no_superfluous_elseif' => true,
     'no_superfluous_phpdoc_tags' => true,
     'no_unreachable_default_argument_value' => true,
     'no_useless_else' => true,
+    'nullable_type_declaration_for_default_null_value' => false,
     'phpdoc_align' => ['align' => 'left'],
     'set_type_to_cast' => true,
     'simplified_if_return' => true,
     'strict_param' => true,
+    'trailing_comma_in_multiline' => false,
 ];
 
 return (new PhpCsFixer\Config())
