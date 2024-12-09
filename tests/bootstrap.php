@@ -15,7 +15,8 @@ use DG\BypassFinals;
 use Symfony\Component\Dotenv\Dotenv;
 
 require_once __DIR__.'/../vendor/autoload.php';
-require_once __DIR__.'/Kernel.php';
+
+BypassFinals::enable();
 
 if (!class_exists(Dotenv::class)) {
     throw new LogicException('Please run "composer require symfony/dotenv" to load the ".env" files configuring the application.');
@@ -28,14 +29,15 @@ $paths = array_filter($paths, static fn (string $x): bool => file_exists($x) && 
 if (method_exists(Dotenv::class, 'bootEnv')) {
     $dotenv = new Dotenv('APP_ENV', 'APP_DEBUG');
     array_walk($paths, static fn (string $x) => $dotenv->bootEnv($x, 'test'));
-} else {
+} elseif (method_exists(Dotenv::class, 'loadEnv')) {
     $dotenv = new Dotenv(false);
     array_walk($paths, static fn (string $x) => $dotenv->loadEnv($x, 'APP_ENV', 'test'));
+} else {
+    $dotenv = new Dotenv(false);
+    array_walk($paths, static fn (string $x) => $dotenv->load($x));
 }
 
 $_SERVER += $_ENV;
-$_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? null) ?: 'dev';
+$_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? null) ?: 'test';
 $_SERVER['APP_DEBUG'] = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? 'prod' !== $_SERVER['APP_ENV'];
-$_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) $_SERVER['APP_DEBUG'] || filter_var($_SERVER['APP_DEBUG'], \FILTER_VALIDATE_BOOLEAN) ? '1' : '0';
-
-BypassFinals::enable();
+$_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = (int) ($_SERVER['APP_DEBUG'] || filter_var($_SERVER['APP_DEBUG'], \FILTER_VALIDATE_BOOLEAN) ? '1' : '0');
