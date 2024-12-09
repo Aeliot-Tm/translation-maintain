@@ -10,4 +10,4 @@
 .php-cs-fixer.cache
 .phpunit.result.cache
 composer.lock
-docker-compose.override.yml
+compose.override.yaml
