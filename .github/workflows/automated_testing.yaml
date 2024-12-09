@@ -12,75 +12,66 @@ jobs:
       matrix:
         include:
           - php-version: '7.4'
-            symfony-version: '3.4.*'
-            phpunit-version: '7.5.20'
-            php-cs-fixer-version: '2.19.3'
+            lock-version: '3.4'
           - php-version: '7.4'
-            symfony-version: '^4.4'
-            phpunit-version: '9.5.28'
-            php-cs-fixer-version: '2.19.3'
+            lock-version: '4.4'
           - php-version: '8.0'
-            symfony-version: '5.0.*'
-            phpunit-version: '9.5.28'
-            php-cs-fixer-version: '2.19.3'
+            lock-version: '5.0'
           - php-version: '8.0'
-            symfony-version: '^5.4'
-            phpunit-version: '9.5.28'
-            php-cs-fixer-version: '^3.8'
+            lock-version: '5.4'
           - php-version: '8.0'
-            symfony-version: '6.0.*'
-            phpunit-version: '^9.5,<10.0'
-            php-cs-fixer-version: '^3.8'
+            lock-version: '6.0'
           - php-version: '8.1'
-            symfony-version: '6.2.*'
-            phpunit-version: '^9.5,<10.0'
-            php-cs-fixer-version: '^3.8'
+            lock-version: '6.4'
 
     steps:
       - uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '${{ matrix.php-version }}'
+          php-version: ${{ matrix.php-version }}
+          tools: composer
 
       - uses: actions/checkout@v3
 
       - name: Set versions
-        run: |
-          sed -i 's/\^3.4|\^4.0|\^5.0|\^6.0/${{ matrix.symfony-version }}/g' composer.json
-          sed -i 's/friendsofphp\/php-cs-fixer": "\^3.8/friendsofphp\/php-cs-fixer": "${{ matrix.php-cs-fixer-version }}/g' composer.json
-          sed -i 's/\^7.5|\^9.5/${{ matrix.phpunit-version }}/g' composer.json
-
-    # - name: Validate composer.json and composer.lock
-    #   run: composer validate --strict
+        run: cp composer.${{ matrix.lock-version }}.lock composer.lock
 
       - name: Install dependencies
         uses: ramsey/composer-install@v2
 
       - name: Run test suite
-        run: composer run-script phpunit
+        run: composer phpunit
 
   php-cs-fixer:
     runs-on: ubuntu-latest
     steps:
       - uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: 7.4
+          php-version: 8.1
+          tools: composer
 
       - uses: actions/checkout@v3
+
+      - name: Set versions
+        run: cp composer.6.4.lock composer.lock
 
       - name: Install dependencies
         uses: ramsey/composer-install@v2
 
       - name: PHPStan analyse
-        run: composer run-script cs-fixer-check
+        run: composer cs-fixer-check
 
   phpstan:
     runs-on: ubuntu-latest
     steps:
       - uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.0'
+          php-version: 8.1
+          tools: composer
 
       - uses: actions/checkout@v3
+
+      - name: Set versions
+        run: cp composer.6.4.lock composer.lock
 
       - name: Install dependencies
         uses: ramsey/composer-install@v2
@@ -89,4 +80,4 @@ jobs:
         run: php tests/console cache:warmup
 
       - name: PHPStan analyse
-        run: composer run-script phpstan
+        run: composer phpstan
