@@ -6,7 +6,9 @@ TransMaintain
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr-closed/Aeliot-Tm/php-cs-fixer-baseline?label=Pull%20Requests&labelColor=black)](https://github.com/Aeliot-Tm/php-cs-fixer-baseline/pulls?q=is%3Apr+is%3Aclosed)
 [![GitHub License](https://img.shields.io/github/license/Aeliot-Tm/php-cs-fixer-baseline?label=License&labelColor=black)](LICENSE)
 
-Package which helps to keep you translations consistent. Compatible with Symfony versions since 3.4.
+TransMaintain helps to keep you translations consistent. It gives handy tools for their management and control on CI.
+
+Compatible with all Symfony versions since: 3.4.
 
 ## Installation
 
