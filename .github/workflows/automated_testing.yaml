@@ -27,22 +27,22 @@ jobs:
           - php-version: '8.2'
             lock-version: '7.0'
 
-        steps:
-          - uses: 'shivammathur/setup-php@v2'
-            with:
-              php-version: ${{ matrix.php-version }}
-              tools: composer
+    steps:
+      - uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer
 
-          - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-          - name: Set versions
-            run: cp composer.${{ matrix.lock-version }}.lock composer.lock
+      - name: Set versions
+        run: cp composer.${{ matrix.lock-version }}.lock composer.lock
 
-          - name: Install dependencies
-            uses: ramsey/composer-install@v2
+      - name: Install dependencies
+        uses: ramsey/composer-install@v2
 
-          - name: Validate composer.json and composer.lock
-            run: composer validate --strict
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
   phpunit:
     runs-on: ubuntu-latest
