@@ -1,0 +1,51 @@
+name: TODO Registrar
+
+on:
+  push:
+    branches: [ "main" ]
+
+# Define the permissions for the action
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  todo-registrar:
+    name: Register TODO
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Register TODOs
+        uses: Aeliot-Tm/todo-registrar-action@2.1.0
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_TODO_REGISTRAR_ACCESS_TOKEN }}
+        with:
+          config: |
+            paths:
+              in: .
+              exclude:
+                - var
+                - vendor
+            process:
+              glueSameTickets: true
+              glueSequentialComments: true
+            registrar:
+              type: GitHub
+              options:
+                issue:
+                  addTagToLabels: true
+                  contextTitle: "**Added in position:**"
+                  labels:
+                    - needs-review
+                    - tech-debt
+                  showContext: numbered
+                  tagPrefix: tag-
+                service:
+                  personalAccessToken: "%env(GH_PERSONAL_ACCESS_TOKEN)%"
+                  repository: "${{ github.repository }}"
+          env_vars: |
+            GH_PERSONAL_ACCESS_TOKEN
+          new_branch_name: 'todo-registrar'
