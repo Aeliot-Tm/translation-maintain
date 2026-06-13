@@ -14,28 +14,38 @@ declare(strict_types=1);
 namespace Aeliot\Bundle\TransMaintain\Test\Integration;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 abstract class IntegrationTestCase extends KernelTestCase
 {
     /**
-     * @var bool
-     */
-    protected static $booted = false;
-    /**
      * @var ContainerInterface|null
      */
     protected static $container;
 
-    protected static function getContainer(): ContainerInterface
+    /**
+     * Only used on Symfony 3.4 where KernelTestCase has no $booted property.
+     *
+     * @var bool
+     */
+    protected static $legacyKernelBooted = false;
+
+    protected static function getContainer(): Container
     {
         if (method_exists(parent::class, 'getContainer')) {
             return parent::getContainer();
         }
 
-        if (!static::$booted) {
+        $isBooted = property_exists(parent::class, 'booted')
+            ? static::$booted
+            : static::$legacyKernelBooted;
+
+        if (!$isBooted) {
             static::bootKernel();
-            static::$booted = true;
+            if (!property_exists(parent::class, 'booted')) {
+                static::$legacyKernelBooted = true;
+            }
         }
 
         if (!static::$container) {
