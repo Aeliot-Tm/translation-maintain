@@ -36,7 +36,7 @@ final class Translator
 
     private function getTranslator(): TranslatorFacadeInterface
     {
-        // TODO implement logic of selection another API
+        // TODO #70 implement logic of selection another API
         return $this->facadesRegistry->getFacade(FacadesRegistry::FACADE_GOOGLE);
     }
 }

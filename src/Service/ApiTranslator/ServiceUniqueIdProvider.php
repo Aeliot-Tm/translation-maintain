@@ -34,7 +34,7 @@ final class ServiceUniqueIdProvider
             throw new \DomainException(sprintf('Undefined key for service "%s"', $serviceId));
         }
 
-        // TODO use more secure algorithm
+        // TODO #69 use more secure algorithm
         return md5(sprintf('%s.%s', $serviceId, $key));
     }
 }
